@@ -5,7 +5,27 @@
       <config />
     </shared>
     <layouts>
-      <layout url="file://$PROJECT_DIR$/TFG/app/src/main/res/layout/activity_main.xml">
+      <layout url="file://$PROJECT_DIR$/TFG/app/src/main/res/layout/panel1_employe_main.xml">
+        <config>
+          <theme>@style/Theme.TFG</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/TFG/app/src/main/res/layout/panel1_employee_main.xml">
+        <config>
+          <theme>@style/Theme.TFG</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/TFG/app/src/main/res/layout/panel1_parents_main.xml">
+        <config>
+          <theme>@style/Theme.TFG</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/TFG/app/src/main/res/layout/panel2_employe_main.xml">
+        <config>
+          <theme>@style/Theme.TFG</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/TFG/app/src/main/res/layout/panel2_parents_main.xml">
         <config>
           <theme>@style/Theme.TFG</theme>
         </config>
@@ -17,8 +37,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="49fbb1c6-0882-4fe1-81b2-48514c7790c8" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/TFG/app/src/main/res/drawable/checked.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TFG/app/src/main/res/drawable/custom_checkbox.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TFG/app/src/main/res/drawable/email16.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TFG/app/src/main/res/drawable/email32.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TFG/app/src/main/res/drawable/leftarrow32.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TFG/app/src/main/res/drawable/notchecked.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TFG/app/src/main/res/layout/panel1_employe_main.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TFG/app/src/main/res/layout/panel1_parents_main.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TFG/app/src/main/res/layout/panel2_employe_main.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TFG/app/src/main/res/layout/panel2_parents_main.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/Panel2Activity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/res/layout/activity_main.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/res/values/colors.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +108,7 @@
     "RunOnceActivity.cidr.known.project.marker": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
-    "last_opened_file_path": "C:/Users/pc/Documents/Git Repository/Rep_Appoec/Appoec/TFG/settings.gradle.kts",
+    "last_opened_file_path": "C:/Users/pc/Documents/Git Repository/Rep_Appoec/Appoec/TFG/app/src/main/res/layout",
     "project.structure.last.edited": "SDK Location",
     "project.structure.proportion": "0.17",
     "project.structure.side.proportion": "0.2",
@@ -83,8 +116,12 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\pc\Documents\Git Repository\Rep_Appoec\Appoec\TFG\app\src\main\res\layout" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\pc\Documents\Git Repository\Rep_Appoec\Appoec\TFG\app\src\main\res\drawable" />
+      <recent name="C:\Users\pc\Documents\Git Repository\Rep_Appoec\Appoec\TFG\app\src\main\res\layout" />
     </key>
   </component>
   <component name="RunManager">
