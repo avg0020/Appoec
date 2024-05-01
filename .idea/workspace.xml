@@ -17,20 +17,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="49fbb1c6-0882-4fe1-81b2-48514c7790c8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/TFG/app/src/main/res/drawable/checked.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TFG/app/src/main/res/drawable/custom_checkbox.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TFG/app/src/main/res/drawable/edit_text_background.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TFG/app/src/main/res/drawable/fondo1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TFG/app/src/main/res/drawable/logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TFG/app/src/main/res/drawable/notchecked.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TFG/app/src/main/res/drawable/passwordicon24.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TFG/app/src/main/res/drawable/passwordicon32.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TFG/app/src/main/res/drawable/usericon24.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TFG/app/src/main/res/drawable/usericon32.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/deploymentTargetDropDown.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deploymentTargetDropDown.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/res/layout/activity_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/res/values/colors.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,6 +47,11 @@
     </system>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="login" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProblemsViewState">
@@ -83,6 +76,9 @@
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
     "last_opened_file_path": "C:/Users/pc/Documents/Git Repository/Rep_Appoec/Appoec/TFG/settings.gradle.kts",
+    "project.structure.last.edited": "SDK Location",
+    "project.structure.proportion": "0.17",
+    "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "AndroidSdkUpdater"
   }
 }]]></component>
