@@ -2,6 +2,7 @@ package com.example.tfg;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -41,15 +42,21 @@ public class LoginActivity extends AppCompatActivity {
 
         DatabaseReference database = FirebaseDatabase.getInstance().getReference("usuarios");
 
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //button.setText(database.child("00001U").getKey());
+
                 database.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        String nom = editTextNom.getText().toString();
-                        String pass = editTextPass.getText().toString();
-                        if(snapshot.hasChild(nom)) {
+                        Log.d("E","Entro");
+                        String nom = editTextNom.getText().toString()+"";
+                        String pass = editTextPass.getText().toString()+"";
+                        Log.d("E",""+ snapshot.hasChild(nom));
+                        if(snapshot.hasChild(nom) && !nom.equals("")) {
+                            Log.d("k","que haces?");
                             if(snapshot.child(nom).child("password").getValue(String.class).equals(pass)) {
                                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
                             }
@@ -58,8 +65,8 @@ public class LoginActivity extends AppCompatActivity {
 
 
                     @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
+                    public void onCancelled(DatabaseError error) {
+                        Log.d("E","Error");
                     }
                 });
             }

@@ -3,4 +3,7 @@
     <color name="black">#000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="light_gray">#D9D9D9</color>
+    <color name="textBC">#C3939590</color>
+    <color name="naranja">#6BFF8E38</color>
+    <color name="editTextColor">#D9D9D9</color>
 </resources>
