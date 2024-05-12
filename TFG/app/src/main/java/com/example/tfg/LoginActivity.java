@@ -58,7 +58,7 @@ public class LoginActivity extends AppCompatActivity {
                         if(snapshot.hasChild(nom) && !nom.equals("")) {
                             Log.d("k","que haces?");
                             if(snapshot.child(nom).child("password").getValue(String.class).equals(pass)) {
-                                startActivity(new Intent(LoginActivity.this, Prueba.class));
+                                startActivity(new Intent(LoginActivity.this, Interfaz.class));
                             }
                         }
                     }

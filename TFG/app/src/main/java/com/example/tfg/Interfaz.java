@@ -11,7 +11,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
-public class Prueba extends AppCompatActivity {
+public class Interfaz extends AppCompatActivity {
 
     private FrameLayout fragmentContainer;
     private TextView option1, option2, option3, option4;
@@ -20,7 +20,7 @@ public class Prueba extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.prueba_menu);
+        setContentView(R.layout.interfaz);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(findViewById(R.id.toolbar));
 
