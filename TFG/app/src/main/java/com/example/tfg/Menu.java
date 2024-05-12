@@ -100,7 +100,7 @@ public class Menu extends Fragment {
         RecyclerView recycleViewUser = (RecyclerView) v.findViewById(R.id.recycleViewUser);
         // use a linear layout manager (distribucion de vistas configurable)
         //como queremos que se posicionen los elementos en las vistas, como lista o como cuadricula GridLayout
-        recycleViewUser.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recycleViewUser.setLayoutManager(new LinearLayoutManager(getContext()));
         recycleViewUser.setHasFixedSize(false);
         //puedo añadir animaciones automaticas (ItemAnimator) y sepaaciones automaticas (ItemDecoration)
 
@@ -111,15 +111,15 @@ public class Menu extends Fragment {
         // query in the database to fetch appropriate data
         FirebaseRecyclerOptions<Actividades> options
                 = new FirebaseRecyclerOptions.Builder<Actividades>()
-                .setQuery(myRef, Actividades.class)
-                .build();
+                .setQuery(myRef, Actividades.class).build();
 
-        adapter = new ActivityAdapter(options,getActivity());
+        adapter = new ActivityAdapter(options,getContext());
         // specify an adapter with the list to show
         adapter.startListening();
+        adapter.notifyDataSetChanged();
         recycleViewUser.setAdapter(adapter);
 
-        return inflater.inflate(R.layout.fragment_menu, container, false);
+        return v;
     }
 
     @Override public void onStart()

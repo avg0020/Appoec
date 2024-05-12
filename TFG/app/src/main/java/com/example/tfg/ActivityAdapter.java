@@ -3,6 +3,7 @@ package com.example.tfg;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,6 +48,7 @@ public class ActivityAdapter extends FirebaseRecyclerAdapter<
     @Override
     protected void onBindViewHolder(@NonNull activityViewholder holder, int position, @NonNull Actividades model) {
         holder.firstname.setText(model.getNombre()+"\n"+model.getCategoria());
+        Log.d("como","asdasdasddsaasdasddasasddassdaasdsdasdsda");
 
         int resourceId = context.getResources().getIdentifier(model.getIcono(), "drawable", context.getPackageName());
         holder.img.setImageResource(resourceId);
