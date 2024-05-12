@@ -64,7 +64,7 @@ public class ActivityAdapter extends FirebaseRecyclerAdapter<
                        int viewType)
     {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.articulo, parent, false);
+                .inflate(R.layout.actividad, parent, false);
         return new activityViewholder(view);
     }
 
