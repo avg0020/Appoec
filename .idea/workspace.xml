@@ -5,7 +5,27 @@
       <config />
     </shared>
     <layouts>
+      <layout url="file://$PROJECT_DIR$/TFG/app/src/main/res/layout/actividad.xml">
+        <config>
+          <theme>@style/Theme.TFG</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/TFG/app/src/main/res/layout/activity_main.xml">
+        <config>
+          <theme>@style/Theme.TFG</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/TFG/app/src/main/res/layout/fragment_menu.xml">
+        <config>
+          <theme>@style/Theme.TFG</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/TFG/app/src/main/res/layout/interfaz.xml">
+        <config>
+          <theme>@style/Theme.TFG</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/TFG/app/src/main/res/menu/desplegable.xml">
         <config>
           <theme>@style/Theme.TFG</theme>
         </config>
@@ -17,8 +37,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="49fbb1c6-0882-4fe1-81b2-48514c7790c8" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/LoginActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/res/layout/actividad.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/res/layout/actividad.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/res/layout/fragment_menu.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/res/layout/fragment_menu.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/res/layout/interfaz.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/res/layout/interfaz.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/res/values/colors.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,7 +51,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\pc\.android\avd\Pixel_7_API_30.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\pc\.android\avd\Pixel_4_API_30.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$/TFG">
       <ProjectState />
@@ -49,7 +72,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="login" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -75,6 +98,7 @@
     "RunOnceActivity.cidr.known.project.marker": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
+    "git-widget-placeholder": "panel-screen-functional",
     "last_opened_file_path": "C:/Users/pc/Documents/Git Repository/Rep_Appoec/Appoec/TFG/settings.gradle.kts",
     "project.structure.last.edited": "SDK Location",
     "project.structure.proportion": "0.17",
