@@ -73,8 +73,10 @@ public class Message extends Fragment {
 
         Bundle args = getArguments();
         Usuarios user = (Usuarios) args.getSerializable("user");
+        /*
         TextView date = (TextView) v.findViewById(R.id.tvDate);
         date.setText(user.getNombre());
+        */
         // Inflate the layout for this fragment
 
         //setSupportActionBar(getView().findViewById(R.id.toolbar));

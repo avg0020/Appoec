@@ -40,12 +40,22 @@ public class Interfaz extends AppCompatActivity {
         option3 = findViewById(R.id.option3);
         option4 = findViewById(R.id.option4);
 
+        Menu menuFragment = new Menu();
+        Bundle args = new Bundle();
+        args.putSerializable("user", user);
+        menuFragment.setArguments(args);
+        changeFragment(menuFragment);
+
 
         // Manejar clics en las opciones del menú
         option1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Menu menuFragment = new Menu();
+                Bundle args = new Bundle();
+                args.putSerializable("user", user);
+                menuFragment.setArguments(args);
+                changeFragment(menuFragment);
             }
         });
 

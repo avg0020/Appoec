@@ -87,8 +87,10 @@ public class Menu extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_menu, container, false);
 
+        Bundle args = getArguments();
+        Usuarios user = (Usuarios) args.getSerializable("user");
         // Inflate the layout for this fragment
-        TextView txt = (TextView) v.findViewById(R.id.text);
+        //TextView txt = (TextView) v.findViewById(R.id.text);
         //setSupportActionBar(getView().findViewById(R.id.toolbar));
 
         RecyclerView recycleViewUser = (RecyclerView) v.findViewById(R.id.recycleViewUser);
