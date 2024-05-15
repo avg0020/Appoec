@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
@@ -70,6 +71,10 @@ public class Message extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_message, container, false);
 
+        Bundle args = getArguments();
+        Usuarios user = (Usuarios) args.getSerializable("user");
+        TextView date = (TextView) v.findViewById(R.id.tvDate);
+        date.setText(user.getNombre());
         // Inflate the layout for this fragment
 
         //setSupportActionBar(getView().findViewById(R.id.toolbar));

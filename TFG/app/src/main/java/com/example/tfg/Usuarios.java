@@ -1,17 +1,23 @@
 package com.example.tfg;
 
-public class Usuario {
-    private String correo;
-    private String nombre;
-    private String password;
-    private String telefono;
+import java.io.Serializable;
+
+public class Usuarios implements Serializable {
+
+    public String correo;
+    public String nombre;
+    public String password;
+    public String telefono;
 
     // Constructor
-    public Usuario(String correo, String nombre, String password, String telefono) {
+    public Usuarios(String correo, String nombre, String password, String telefono) {
         this.correo = correo;
         this.nombre = nombre;
         this.password = password;
         this.telefono = telefono;
+    }
+
+    public Usuarios() {
     }
 
     // Getters y setters
