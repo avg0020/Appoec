@@ -52,8 +52,8 @@ public class LoginActivity extends AppCompatActivity {
                 database.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        String nom = editTextNom.getText().toString()+"";
-                        String pass = editTextPass.getText().toString()+"";
+                        String nom = editTextNom.getText().toString();
+                        String pass = editTextPass.getText().toString();
                         Toast.makeText(getApplicationContext(), String.valueOf(snapshot.hasChild(nom)), Toast.LENGTH_LONG).show();
                         if (!nom.isEmpty() && !pass.isEmpty()){
                             if(snapshot.hasChild(nom) && snapshot.child(nom).child("password").getValue(String.class).equals(pass)) {
