@@ -90,7 +90,8 @@ public class Menu extends Fragment {
         Bundle args = getArguments();
         Usuarios user = (Usuarios) args.getSerializable("user");
         // Inflate the layout for this fragment
-        //TextView txt = (TextView) v.findViewById(R.id.text);
+        TextView txt = (TextView) v.findViewById(R.id.tvAlumnos);
+        txt.setText(user.getHijos().get("fulanita").getEdad());
         //setSupportActionBar(getView().findViewById(R.id.toolbar));
 
         RecyclerView recycleViewUser = (RecyclerView) v.findViewById(R.id.recycleViewUser);

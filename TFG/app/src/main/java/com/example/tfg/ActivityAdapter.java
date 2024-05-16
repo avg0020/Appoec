@@ -52,8 +52,8 @@ public class ActivityAdapter extends FirebaseRecyclerAdapter<
 
         int resourceId = context.getResources().getIdentifier(model.getIcono(), "drawable", context.getPackageName());
         holder.img.setImageResource(resourceId);
-        GradientDrawable grad = (GradientDrawable) holder.container.getBackground().mutate();
-        grad.setColor(Color.parseColor(model.getColor()));
+        //GradientDrawable grad = (GradientDrawable) holder.container.getBackground().mutate();
+        //grad.setColor(Color.parseColor(model.getColor()));
 
     }
 

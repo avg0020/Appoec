@@ -41,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
         editTextPass =  findViewById(R.id.etPassword);
         Button button =  findViewById(R.id.btnLogIn);
 
-        DatabaseReference database = FirebaseDatabase.getInstance().getReference("usuarios");
+        DatabaseReference database = FirebaseDatabase.getInstance().getReference("usuario");
 
 
         button.setOnClickListener(new View.OnClickListener() {

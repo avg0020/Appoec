@@ -21,11 +21,6 @@
           <theme>@style/Theme.TFG</theme>
         </config>
       </layout>
-      <layout url="file://$PROJECT_DIR$/TFG/app/src/main/res/layout/fragment_fragmen.xml">
-        <config>
-          <theme>@style/Theme.TFG</theme>
-        </config>
-      </layout>
       <layout url="file://$PROJECT_DIR$/TFG/app/src/main/res/layout/fragment_menu.xml">
         <config>
           <theme>@style/Theme.TFG</theme>
@@ -41,6 +36,16 @@
           <theme>@style/Theme.TFG</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/TFG/app/src/main/res/layout/login_main.xml">
+        <config>
+          <theme>@style/Theme.TFG</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/TFG/app/src/main/res/layout/message_main.xml">
+        <config>
+          <theme>@style/Theme.TFG</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/TFG/app/src/main/res/menu/desplegable.xml">
         <config>
           <theme>@style/Theme.TFG</theme>
@@ -52,7 +57,16 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="49fbb1c6-0882-4fe1-81b2-48514c7790c8" name="Changes" comment="" />
+    <list default="true" id="49fbb1c6-0882-4fe1-81b2-48514c7790c8" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/Alumno.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/Actividades.java" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/Actividades.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/ActivityAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/ActivityAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/LoginActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/Usuarios.java" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/Usuarios.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/res/values/strings.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -61,7 +75,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[127.0.0.1:62001]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\jorpe\.android\avd\Pixel_3a_API_34_extension_level_7_x86_64.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$/TFG">
       <ProjectState />
@@ -78,6 +92,13 @@
         </projects_view>
       </state>
     </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -108,7 +129,7 @@
     "RunOnceActivity.cidr.known.project.marker": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "panel-screen-functional",
+    "git-widget-placeholder": "master",
     "last_opened_file_path": "C:/Users/Medac/Documents/GitHub/Appoec",
     "project.structure.last.edited": "SDK Location",
     "project.structure.proportion": "0.17",
