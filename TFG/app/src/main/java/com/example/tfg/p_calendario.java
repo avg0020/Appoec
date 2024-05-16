@@ -2,6 +2,7 @@ package com.example.tfg;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -12,6 +13,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
 
@@ -33,7 +40,7 @@ public class p_calendario extends AppCompatActivity {
     private Button numeroSabado;
     private Button numeroDomingo;
     private String mes;
-
+   private ActivityAdapter adapter;
     private int dia,mesN,ano;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +92,27 @@ public class p_calendario extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        RecyclerView recycleViewUser = (RecyclerView) findViewById(R.id.recycleViewCalendar);
+        // use a linear layout manager (distribucion de vistas configurable)
+        //como queremos que se posicionen los elementos en las vistas, como lista o como cuadricula GridLayout
+        recycleViewUser.setLayoutManager(new LinearLayoutManager(this));
+        //puedo añadir animaciones automaticas (ItemAnimator) y sepaaciones automaticas (ItemDecoration)
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference().child("actividades");
+
+        // It is a class provide by the FirebaseUI to make a
+        // query in the database to fetch appropriate data
+        FirebaseRecyclerOptions<Actividades> options
+                = new FirebaseRecyclerOptions.Builder<Actividades>()
+                .setQuery(myRef, Actividades.class)
+                .build();
+
+        adapter = new ActivityAdapter(options,this);
+        // specify an adapter with the list to show
+        recycleViewUser.setAdapter(adapter);
+        Log.d("dasdsadas",options.getSnapshots().toString());
 
     }
     private void openDialog(){
@@ -236,9 +264,9 @@ public class p_calendario extends AppCompatActivity {
                 numeroDomingo.setText(String.valueOf(fechaActual.get(Calendar.DAY_OF_MONTH)));
                 fechaActual.add(Calendar.DAY_OF_MONTH,-4);
                 numeroMiercoles.setText(String.valueOf(fechaActual.get(Calendar.DAY_OF_MONTH)));
-                fechaActual.add(Calendar.DAY_OF_MONTH,-5);
+                fechaActual.add(Calendar.DAY_OF_MONTH,-1);
                 numeroMartes.setText(String.valueOf(fechaActual.get(Calendar.DAY_OF_MONTH)));
-                fechaActual.add(Calendar.DAY_OF_MONTH,-6);
+                fechaActual.add(Calendar.DAY_OF_MONTH,-1);
                 numeroLunes.setText(String.valueOf(fechaActual.get(Calendar.DAY_OF_MONTH)));
                 fechaActual.add(Calendar.DAY_OF_MONTH,3);
                 break;
@@ -252,11 +280,11 @@ public class p_calendario extends AppCompatActivity {
                 numeroDomingo.setText(String.valueOf(fechaActual.get(Calendar.DAY_OF_MONTH)));
                 fechaActual.add(Calendar.DAY_OF_MONTH,-3);
                 numeroJueves.setText(String.valueOf(fechaActual.get(Calendar.DAY_OF_MONTH)));
-                fechaActual.add(Calendar.DAY_OF_MONTH,-4);
+                fechaActual.add(Calendar.DAY_OF_MONTH,-1);
                 numeroMiercoles.setText(String.valueOf(fechaActual.get(Calendar.DAY_OF_MONTH)));
-                fechaActual.add(Calendar.DAY_OF_MONTH,-5);
+                fechaActual.add(Calendar.DAY_OF_MONTH,-1);
                 numeroMartes.setText(String.valueOf(fechaActual.get(Calendar.DAY_OF_MONTH)));
-                fechaActual.add(Calendar.DAY_OF_MONTH,-6);
+                fechaActual.add(Calendar.DAY_OF_MONTH,-1);
                 numeroLunes.setText(String.valueOf(fechaActual.get(Calendar.DAY_OF_MONTH)));
                 fechaActual.add(Calendar.DAY_OF_MONTH,4);
                 break;
@@ -268,13 +296,13 @@ public class p_calendario extends AppCompatActivity {
                 numeroDomingo.setText(String.valueOf(fechaActual.get(Calendar.DAY_OF_MONTH)));
                 fechaActual.add(Calendar.DAY_OF_MONTH,-2);
                 numeroViernes.setText(String.valueOf(fechaActual.get(Calendar.DAY_OF_MONTH)));
-                fechaActual.add(Calendar.DAY_OF_MONTH,-3);
+                fechaActual.add(Calendar.DAY_OF_MONTH,-1);
                 numeroJueves.setText(String.valueOf(fechaActual.get(Calendar.DAY_OF_MONTH)));
-                fechaActual.add(Calendar.DAY_OF_MONTH,-4);
+                fechaActual.add(Calendar.DAY_OF_MONTH,-1);
                 numeroMiercoles.setText(String.valueOf(fechaActual.get(Calendar.DAY_OF_MONTH)));
-                fechaActual.add(Calendar.DAY_OF_MONTH,-5);
+                fechaActual.add(Calendar.DAY_OF_MONTH,-1);
                 numeroMartes.setText(String.valueOf(fechaActual.get(Calendar.DAY_OF_MONTH)));
-                fechaActual.add(Calendar.DAY_OF_MONTH,-6);
+                fechaActual.add(Calendar.DAY_OF_MONTH,-1);
                 numeroLunes.setText(String.valueOf(fechaActual.get(Calendar.DAY_OF_MONTH)));
                 fechaActual.add(Calendar.DAY_OF_MONTH,5);
                 break;
@@ -360,7 +388,7 @@ public class p_calendario extends AppCompatActivity {
                 numeroDomingo.setText(String.valueOf(fechaActual.get(Calendar.DAY_OF_MONTH)));
                 fechaActual.add(Calendar.DAY_OF_MONTH,-5);
                 numeroMartes.setText(String.valueOf(fechaActual.get(Calendar.DAY_OF_MONTH)));
-                fechaActual.add(Calendar.DAY_OF_MONTH,-6);
+                fechaActual.add(Calendar.DAY_OF_MONTH,-1);
                 numeroLunes.setText(String.valueOf(fechaActual.get(Calendar.DAY_OF_MONTH)));
                 fechaActual.add(Calendar.DAY_OF_MONTH,2);
                 break;
@@ -376,9 +404,9 @@ public class p_calendario extends AppCompatActivity {
                 numeroDomingo.setText(String.valueOf(fechaActual.get(Calendar.DAY_OF_MONTH)));
                 fechaActual.add(Calendar.DAY_OF_MONTH,-4);
                 numeroMiercoles.setText(String.valueOf(fechaActual.get(Calendar.DAY_OF_MONTH)));
-                fechaActual.add(Calendar.DAY_OF_MONTH,-5);
+                fechaActual.add(Calendar.DAY_OF_MONTH,-1);
                 numeroMartes.setText(String.valueOf(fechaActual.get(Calendar.DAY_OF_MONTH)));
-                fechaActual.add(Calendar.DAY_OF_MONTH,-6);
+                fechaActual.add(Calendar.DAY_OF_MONTH,-1);
                 numeroLunes.setText(String.valueOf(fechaActual.get(Calendar.DAY_OF_MONTH)));
                 fechaActual.add(Calendar.DAY_OF_MONTH,3);
                 break;
@@ -392,11 +420,11 @@ public class p_calendario extends AppCompatActivity {
                 numeroDomingo.setText(String.valueOf(fechaActual.get(Calendar.DAY_OF_MONTH)));
                 fechaActual.add(Calendar.DAY_OF_MONTH,-3);
                 numeroJueves.setText(String.valueOf(fechaActual.get(Calendar.DAY_OF_MONTH)));
-                fechaActual.add(Calendar.DAY_OF_MONTH,-4);
+                fechaActual.add(Calendar.DAY_OF_MONTH,-1);
                 numeroMiercoles.setText(String.valueOf(fechaActual.get(Calendar.DAY_OF_MONTH)));
-                fechaActual.add(Calendar.DAY_OF_MONTH,-5);
+                fechaActual.add(Calendar.DAY_OF_MONTH,-1);
                 numeroMartes.setText(String.valueOf(fechaActual.get(Calendar.DAY_OF_MONTH)));
-                fechaActual.add(Calendar.DAY_OF_MONTH,-6);
+                fechaActual.add(Calendar.DAY_OF_MONTH,-1);
                 numeroLunes.setText(String.valueOf(fechaActual.get(Calendar.DAY_OF_MONTH)));
                 fechaActual.add(Calendar.DAY_OF_MONTH,4);
                 break;
@@ -408,13 +436,13 @@ public class p_calendario extends AppCompatActivity {
                 numeroDomingo.setText(String.valueOf(fechaActual.get(Calendar.DAY_OF_MONTH)));
                 fechaActual.add(Calendar.DAY_OF_MONTH,-2);
                 numeroViernes.setText(String.valueOf(fechaActual.get(Calendar.DAY_OF_MONTH)));
-                fechaActual.add(Calendar.DAY_OF_MONTH,-3);
+                fechaActual.add(Calendar.DAY_OF_MONTH,-1);
                 numeroJueves.setText(String.valueOf(fechaActual.get(Calendar.DAY_OF_MONTH)));
-                fechaActual.add(Calendar.DAY_OF_MONTH,-4);
+                fechaActual.add(Calendar.DAY_OF_MONTH,-1);
                 numeroMiercoles.setText(String.valueOf(fechaActual.get(Calendar.DAY_OF_MONTH)));
-                fechaActual.add(Calendar.DAY_OF_MONTH,-5);
+                fechaActual.add(Calendar.DAY_OF_MONTH,-1);
                 numeroMartes.setText(String.valueOf(fechaActual.get(Calendar.DAY_OF_MONTH)));
-                fechaActual.add(Calendar.DAY_OF_MONTH,-6);
+                fechaActual.add(Calendar.DAY_OF_MONTH,-1);
                 numeroLunes.setText(String.valueOf(fechaActual.get(Calendar.DAY_OF_MONTH)));
                 fechaActual.add(Calendar.DAY_OF_MONTH,5);
                 break;

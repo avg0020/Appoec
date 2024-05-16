@@ -247,4 +247,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/daysLayout" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycleViewCalendar"
+        android:layout_width="383dp"
+        android:layout_height="272dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view"
+        tools:listitem="@layout/actividad" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
