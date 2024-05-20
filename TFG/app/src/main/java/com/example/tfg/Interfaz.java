@@ -62,7 +62,11 @@ public class Interfaz extends AppCompatActivity {
         option2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+           Calendar caleFragment=new Calendar();
+                Bundle args = new Bundle();
+                args.putSerializable("user", user);
+                caleFragment.setArguments(args);
+                changeFragment(caleFragment);
             }
         });
 

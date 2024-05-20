@@ -42,11 +42,17 @@ public class p_calendario extends AppCompatActivity {
     private String mes;
    private ActivityAdapter adapter;
     private int dia,mesN,ano;
+    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_calendario);
+
+
         // Encabezado
        textViewCalendario = findViewById(R.id.textViewCalendario);
 
