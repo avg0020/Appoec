@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Panel2Activity">
+    tools:context=".Interfaz">
 
     <TextView
         android:id="@+id/tvHeader"
@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
         android:layout_marginTop="32dp"
-        android:text="<Nombre del centro>"
+        android:text="Nombre del centro"
         android:textColor="@color/black"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
