@@ -6,8 +6,8 @@ public class Actividades {
     private String categoria;
     private String icono;
     private String color;
-    private int participantes;
-    private int participantesMax;
+    private String dias;
+    private String edad;
 
     public Actividades() {
 
@@ -21,20 +21,20 @@ public class Actividades {
         this.horario = horario;
     }
 
-    public int getParticipantes() {
-        return participantes;
+    public String getDias() {
+        return dias;
     }
 
-    public void setParticipantes(int participantes) {
-        this.participantes = participantes;
+    public void setDias(String dias) {
+        this.dias = dias;
     }
 
-    public int getParticipantesMax() {
-        return participantesMax;
+    public String getEdad() {
+        return edad;
     }
 
-    public void setParticipantesMax(int participantesMax) {
-        this.participantesMax = participantesMax;
+    public void setEdad(String edad) {
+        this.edad = edad;
     }
 
     public String getColor() {

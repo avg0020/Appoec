@@ -5,27 +5,48 @@
       <config />
     </shared>
     <layouts>
-      <layout url="file://$PROJECT_DIR$/TFG/app/src/main/res/layout/panel1_employe_main.xml">
+      <layout url="file://$PROJECT_DIR$/TFG/app/src/main/res/layout/actividad.xml">
         <config>
           <theme>@style/Theme.TFG</theme>
         </config>
       </layout>
-      <layout url="file://$PROJECT_DIR$/TFG/app/src/main/res/layout/panel1_employee_main.xml">
+      <layout url="file://$PROJECT_DIR$/TFG/app/src/main/res/layout/activity_main.xml">
         <config>
           <theme>@style/Theme.TFG</theme>
         </config>
       </layout>
-      <layout url="file://$PROJECT_DIR$/TFG/app/src/main/res/layout/panel1_parents_main.xml">
+      <layout url="file://$PROJECT_DIR$/TFG/app/src/main/res/layout/fragment_actividad.xml">
+        <config>
+          <night>night</night>
+          <theme>@style/Theme.TFG</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/TFG/app/src/main/res/layout/fragment_menu.xml">
         <config>
           <theme>@style/Theme.TFG</theme>
         </config>
       </layout>
-      <layout url="file://$PROJECT_DIR$/TFG/app/src/main/res/layout/panel2_employe_main.xml">
+      <layout url="file://$PROJECT_DIR$/TFG/app/src/main/res/layout/fragment_message.xml">
         <config>
           <theme>@style/Theme.TFG</theme>
         </config>
       </layout>
-      <layout url="file://$PROJECT_DIR$/TFG/app/src/main/res/layout/panel2_parents_main.xml">
+      <layout url="file://$PROJECT_DIR$/TFG/app/src/main/res/layout/interfaz.xml">
+        <config>
+          <theme>@style/Theme.TFG</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/TFG/app/src/main/res/layout/login_main.xml">
+        <config>
+          <theme>@style/Theme.TFG</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/TFG/app/src/main/res/layout/message_main.xml">
+        <config>
+          <theme>@style/Theme.TFG</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/TFG/app/src/main/res/menu/desplegable.xml">
         <config>
           <theme>@style/Theme.TFG</theme>
         </config>
@@ -37,21 +58,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="49fbb1c6-0882-4fe1-81b2-48514c7790c8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/TFG/app/src/main/res/drawable/checked.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TFG/app/src/main/res/drawable/custom_checkbox.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TFG/app/src/main/res/drawable/email16.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TFG/app/src/main/res/drawable/email32.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TFG/app/src/main/res/drawable/leftarrow32.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TFG/app/src/main/res/drawable/notchecked.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TFG/app/src/main/res/layout/panel1_employe_main.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TFG/app/src/main/res/layout/panel1_parents_main.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TFG/app/src/main/res/layout/panel2_employe_main.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TFG/app/src/main/res/layout/panel2_parents_main.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/Alumno.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/Panel2Activity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/res/layout/activity_main.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/res/values/colors.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/Actividades.java" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/Actividades.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/ActivityAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/ActivityAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/LoginActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/Usuarios.java" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/Usuarios.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/res/values/strings.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +75,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\pc\.android\avd\Pixel_7_API_30.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\jorpe\.android\avd\Pixel_3a_API_34_extension_level_7_x86_64.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$/TFG">
       <ProjectState />
@@ -79,10 +93,17 @@
       </state>
     </system>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="login" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -108,7 +129,8 @@
     "RunOnceActivity.cidr.known.project.marker": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
-    "last_opened_file_path": "C:/Users/pc/Documents/Git Repository/Rep_Appoec/Appoec/TFG/app/src/main/res/layout",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/Medac/Documents/GitHub/Appoec",
     "project.structure.last.edited": "SDK Location",
     "project.structure.proportion": "0.17",
     "project.structure.side.proportion": "0.2",

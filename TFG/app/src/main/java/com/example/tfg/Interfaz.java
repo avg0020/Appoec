@@ -16,6 +16,7 @@ public class Interfaz extends AppCompatActivity {
     private FrameLayout fragmentContainer;
     private TextView option1, option2, option3, option4;
     private DrawerLayout drawerLayout;
+    private Usuarios user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +31,8 @@ public class Interfaz extends AppCompatActivity {
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
+        user = (Usuarios) getIntent().getSerializableExtra("Usuarios");
+
         // Referencias de los elementos del layout
         fragmentContainer = findViewById(R.id.fragment_container);
         option1 = findViewById(R.id.option1);
@@ -37,13 +40,22 @@ public class Interfaz extends AppCompatActivity {
         option3 = findViewById(R.id.option3);
         option4 = findViewById(R.id.option4);
 
-        changeFragment(new Menu());
+        Menu menuFragment = new Menu();
+        Bundle args = new Bundle();
+        args.putSerializable("user", user);
+        menuFragment.setArguments(args);
+        changeFragment(menuFragment);
+
 
         // Manejar clics en las opciones del menú
         option1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Menu menuFragment = new Menu();
+                Bundle args = new Bundle();
+                args.putSerializable("user", user);
+                menuFragment.setArguments(args);
+                changeFragment(menuFragment);
             }
         });
 
@@ -57,7 +69,11 @@ public class Interfaz extends AppCompatActivity {
         option3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Message messageFragment = new Message();
+                Bundle args = new Bundle();
+                args.putSerializable("user", user);
+                messageFragment.setArguments(args);
+                changeFragment(messageFragment);
             }
         });
 
