@@ -3,8 +3,13 @@
     <color name="black">#000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="light_gray">#D9D9D9</color>
+    <color name="sky_blue">#34B39E</color>
+    <color name="dark_sky_blue">#278878</color>
+    <color name="green">#78C217</color>
+    <color name="dark_green">#5E9712</color>
+    <color name="blue">#03A2FB</color>
     <color name="textBC">#C3939590</color>
-    <color name="naranja">#6BFF8E38</color>
+    <color name="naranja">#EB6628</color>
     <color name="editTextColor">#D9D9D9</color>
     <color name="colorNormal">#000000</color> <!-- Color normal -->
     <color name="colorPressed">#F8F8F8</color> <!-- Color cuando está presionado -->

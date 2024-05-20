@@ -1,8 +1,6 @@
 package com.example.tfg;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.drawable.GradientDrawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,15 +13,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-public class ActivityAdapter extends FirebaseRecyclerAdapter<
-        Actividades, ActivityAdapter.activityViewholder> {
+public class MessageAdapter extends FirebaseRecyclerAdapter<
+        Mensajes, MessageAdapter.activityViewholder> {
 
     private Context context;
 
-    public ActivityAdapter(
-            @NonNull FirebaseRecyclerOptions<Actividades> options, Context context)
-    {
+    public MessageAdapter(
+            @NonNull FirebaseRecyclerOptions<Mensajes> options, Context context) {
         super(options);
         this.context = context;
     }
@@ -46,27 +48,34 @@ public class ActivityAdapter extends FirebaseRecyclerAdapter<
     */
 
     @Override
-    protected void onBindViewHolder(@NonNull activityViewholder holder, int position, @NonNull Actividades model) {
-        holder.firstname.setText(model.getNombre()+"\n"+model.getCategoria());
-        Log.d("como","asdasdasddsaasdasddasasddassdaasdsdasdsda");
+    protected void onBindViewHolder(@NonNull activityViewholder holder, int position, @NonNull Mensajes model) {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference();
 
-        int resourceId = context.getResources().getIdentifier(model.getIcono(), "drawable", context.getPackageName());
-        holder.img.setImageResource(resourceId);
-        //GradientDrawable grad = (GradientDrawable) holder.container.getBackground().mutate();
-        //grad.setColor(Color.parseColor(model.getColor()));
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                holder.firstname.setText(snapshot.child("actividades").child(model.getActivad()).child("nombre").getValue(String.class)
+                        + "\n" + snapshot.child("empleados").child(model.getEmisor()).child("nombre").getValue(String.class));
+            }
 
+            @Override
+            public void onCancelled(DatabaseError error) {
+                Log.d("Otro error", "Error");
+            }
+        });
     }
 
     @NonNull
     @Override
     public activityViewholder
     onCreateViewHolder(@NonNull ViewGroup parent,
-                       int viewType)
-    {
+                       int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.actividad, parent, false);
         return new activityViewholder(view);
     }
+
 
     //creamos nuestro viewHolder con los tipos de elementos a modificar de un elemento (por ejemplo 2 textView)
     //obtenemos los elementos del layout_item que queremos que se vayan cambiado
@@ -76,8 +85,8 @@ public class ActivityAdapter extends FirebaseRecyclerAdapter<
         TextView firstname, lastname;
         ImageView img;
         ImageView container;
-        public activityViewholder(@NonNull View itemView)
-        {
+
+        public activityViewholder(@NonNull View itemView) {
             super(itemView);
 
             firstname = itemView.findViewById(R.id.textEncima);

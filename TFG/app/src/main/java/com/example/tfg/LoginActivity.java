@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -40,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
         editTextPass =  findViewById(R.id.etPassword);
         Button button =  findViewById(R.id.btnLogIn);
 
-        DatabaseReference database = FirebaseDatabase.getInstance().getReference("usuarios");
+        DatabaseReference database = FirebaseDatabase.getInstance().getReference("usuario");
 
 
         button.setOnClickListener(new View.OnClickListener() {
@@ -51,15 +52,20 @@ public class LoginActivity extends AppCompatActivity {
                 database.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        Log.d("E","Entro");
-                        String nom = editTextNom.getText().toString()+"";
-                        String pass = editTextPass.getText().toString()+"";
-                        Log.d("E",""+ snapshot.hasChild(nom));
-                        if(snapshot.hasChild(nom) && !nom.equals("")) {
-                            Log.d("k","que haces?");
-                            if(snapshot.child(nom).child("password").getValue(String.class).equals(pass)) {
-                                startActivity(new Intent(LoginActivity.this, Interfaz.class));
+                        String nom = editTextNom.getText().toString();
+                        String pass = editTextPass.getText().toString();
+                        Toast.makeText(getApplicationContext(), String.valueOf(snapshot.hasChild(nom)), Toast.LENGTH_LONG).show();
+                        if (!nom.isEmpty() && !pass.isEmpty()){
+                            if(snapshot.hasChild(nom) && snapshot.child(nom).child("password").getValue(String.class).equals(pass)) {
+                                Usuarios user = snapshot.child(nom).getValue(Usuarios.class);
+                                Intent i = new Intent(LoginActivity.this, Interfaz.class);
+                                i.putExtra("Usuarios", user);
+                                startActivity(i);
+                            }else{
+                                Toast.makeText(getApplicationContext(), "usuario o contraseña incorrecto", Toast.LENGTH_LONG).show();
                             }
+                        }else {
+                            Toast.makeText(getApplicationContext(), "Debe rellenar todos los campos", Toast.LENGTH_LONG).show();
                         }
                     }
 
