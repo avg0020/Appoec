@@ -3,10 +3,16 @@ package com.example.tfg;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +29,7 @@ public class Actividad extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    ActivityAdapter adapter;
 
     public Actividad() {
         // Required empty public constructor
@@ -59,6 +66,39 @@ public class Actividad extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_actividad, container, false);
+        View v = inflater.inflate(R.layout.fragment_actividad, container, false);
+
+        Bundle args = getArguments();
+        Usuarios user = (Usuarios) args.getSerializable("user");
+        /*
+        TextView date = (TextView) v.findViewById(R.id.tvDate);
+        date.setText(user.getNombre());
+        */
+        // Inflate the layout for this fragment
+
+        //setSupportActionBar(getView().findViewById(R.id.toolbar));
+
+        RecyclerView recycleViewUser = (RecyclerView) v.findViewById(R.id.recycleViewUser);
+        // use a linear layout manager (distribucion de vistas configurable)
+        //como queremos que se posicionen los elementos en las vistas, como lista o como cuadricula GridLayout
+        recycleViewUser.setLayoutManager(new LinearLayoutManager(getContext()));
+        recycleViewUser.setHasFixedSize(false);
+        //puedo añadir animaciones automaticas (ItemAnimator) y sepaaciones automaticas (ItemDecoration)
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference().child("actividades");
+
+        // It is a class provide by the FirebaseUI to make a
+        // query in the database to fetch appropriate data
+        FirebaseRecyclerOptions<Actividades> options
+                = new FirebaseRecyclerOptions.Builder<Actividades>()
+                .setQuery(myRef, Actividades.class).build();
+        adapter = new ActivityAdapter(options,getContext());
+        // specify an adapter with the list to show
+        adapter.startListening();
+        adapter.notifyDataSetChanged();
+        recycleViewUser.setAdapter(adapter);
+
+        return v;
     }
 }

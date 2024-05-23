@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.ConcatAdapter;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -41,7 +42,7 @@ public class Menu extends Fragment {
     ArrayList<UserModel> datos;
     TextView txt;
 
-    ActivityAdapter adapter;
+    ChildrenActivityAdapter adapter;
 
     private DrawerLayout drawerLayout;
 
@@ -90,8 +91,6 @@ public class Menu extends Fragment {
         Bundle args = getArguments();
         Usuarios user = (Usuarios) args.getSerializable("user");
         // Inflate the layout for this fragment
-        TextView txt = (TextView) v.findViewById(R.id.tvAlumnos);
-        txt.setText(user.getHijos().get("fulanita").getEdad());
         //setSupportActionBar(getView().findViewById(R.id.toolbar));
 
         RecyclerView recycleViewUser = (RecyclerView) v.findViewById(R.id.recycleViewUser);
@@ -106,15 +105,25 @@ public class Menu extends Fragment {
 
         // It is a class provide by the FirebaseUI to make a
         // query in the database to fetch appropriate data
-        FirebaseRecyclerOptions<Actividades> options
+       /* FirebaseRecyclerOptions<Actividades> options
                 = new FirebaseRecyclerOptions.Builder<Actividades>()
-                .setQuery(myRef, Actividades.class).build();
+                .setQuery(myRef.orderByKey().equalTo("BAI04A"), Actividades.class).build();
+        Log.d("child", myRef.child("BAI").getKey());
+        adapter = new ChildrenActivityAdapter(options,getContext(),user);
+        */
+        ConcatAdapter adapters = new ConcatAdapter();
 
-        adapter = new ActivityAdapter(options,getContext());
+        for (String actividad:user.getHijos().get("fulanita").getActividades()) {
+            FirebaseRecyclerOptions<Actividades> options
+                    = new FirebaseRecyclerOptions.Builder<Actividades>()
+                    .setQuery(myRef.orderByKey().equalTo(actividad), Actividades.class).build();
+            adapter = new ChildrenActivityAdapter(options,getContext(),user);
+            adapter.startListening();
+            adapters.addAdapter(adapter);
+        }
+
         // specify an adapter with the list to show
-        adapter.startListening();
-        adapter.notifyDataSetChanged();
-        recycleViewUser.setAdapter(adapter);
+        recycleViewUser.setAdapter(adapters);
 
         return v;
     }
