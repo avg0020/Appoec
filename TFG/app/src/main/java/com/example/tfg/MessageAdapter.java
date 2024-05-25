@@ -39,7 +39,7 @@ public class MessageAdapter extends FirebaseRecyclerAdapter<
         holder.image.setImageResource(R.drawable.img);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) {7
                 Toast.makeText(v.getContext(), "Id: "
                         + userModelList.get(position).toString(), Toast.LENGTH_SHORT).show();
             }

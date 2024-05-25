@@ -38,41 +38,43 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         editTextNom = findViewById(R.id.etUser);
-        editTextPass =  findViewById(R.id.etPassword);
-        Button button =  findViewById(R.id.btnLogIn);
+        editTextPass = findViewById(R.id.etPassword);
+        Button button = findViewById(R.id.btnLogIn);
 
         DatabaseReference database = FirebaseDatabase.getInstance().getReference("usuario");
-
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //button.setText(database.child("00001U").getKey());
-
                 database.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         String nom = editTextNom.getText().toString();
                         String pass = editTextPass.getText().toString();
-                        Toast.makeText(getApplicationContext(), String.valueOf(snapshot.hasChild(nom)), Toast.LENGTH_LONG).show();
+
                         if (!nom.isEmpty() && !pass.isEmpty()){
                             if(snapshot.hasChild(nom) && snapshot.child(nom).child("password").getValue(String.class).equals(pass)) {
                                 Usuarios user = snapshot.child(nom).getValue(Usuarios.class);
-                                Intent i = new Intent(LoginActivity.this, Interfaz.class);
-                                i.putExtra("Usuarios", user);
-                                startActivity(i);
-                            }else{
-                                Toast.makeText(getApplicationContext(), "usuario o contraseña incorrecto", Toast.LENGTH_LONG).show();
+                                if (user.getRol().equals("usuario")) {
+                                    Intent i = new Intent(LoginActivity.this, InterfazPadres.class);
+                                    i.putExtra("Usuarios", user);
+                                    startActivity(i);
+                                } else if (user.getRol().equals("empleado")) {
+                                    Intent i = new Intent(LoginActivity.this, Interfaz.class);
+                                    i.putExtra("Usuarios", user);
+                                    startActivity(i);
+                                }
+                            } else {
+                                Toast.makeText(getApplicationContext(), "Usuario o contraseña incorrecto", Toast.LENGTH_LONG).show();
                             }
-                        }else {
+                        } else {
                             Toast.makeText(getApplicationContext(), "Debe rellenar todos los campos", Toast.LENGTH_LONG).show();
                         }
                     }
 
-
                     @Override
                     public void onCancelled(DatabaseError error) {
-                        Log.d("E","Error");
+                        Log.d("E", "Error");
                     }
                 });
             }
