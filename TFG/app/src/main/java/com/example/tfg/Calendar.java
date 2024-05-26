@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -17,8 +18,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class Calendar extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
@@ -40,8 +46,8 @@ public class Calendar extends Fragment {
     private Button numeroSabado;
     private Button numeroDomingo;
     private String mes;
-
-    private int dia,mesN,ano;
+    private ArrayList<Actividades> activitiesList = new ArrayList<>();
+    private int dia, mesN, ano;
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -49,10 +55,12 @@ public class Calendar extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    MessageAdapter adapter;
-    public Calendar(){
+    ActivityAdapter adapter;
+
+    public Calendar() {
 
     }
+
     public static Calendar newInstance(String param1, String param2) {
         Calendar fragment = new Calendar();
         Bundle args = new Bundle();
@@ -70,6 +78,7 @@ public class Calendar extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -94,7 +103,7 @@ public class Calendar extends Fragment {
         textViewDomingo = v.findViewById(R.id.textViewDomingo);
 
         // Numeros de la semana
-        numeroLunes =v.findViewById(R.id.numeroLunes);
+        numeroLunes = v.findViewById(R.id.numeroLunes);
         numeroMartes = v.findViewById(R.id.numeroMartes);
         numeroMiercoles = v.findViewById(R.id.numeroMiercoles);
         numeroJueves = v.findViewById(R.id.numeroJueves);
@@ -106,9 +115,9 @@ public class Calendar extends Fragment {
         java.util.Calendar calendar = java.util.Calendar.getInstance();
 
         dia = calendar.get(java.util.Calendar.DAY_OF_MONTH);
-        mesN = calendar.get(java.util.Calendar.MONTH) ; // Los meses en Calendar van de 0 a 11
+        mesN = calendar.get(java.util.Calendar.MONTH); // Los meses en Calendar van de 0 a 11
         ano = calendar.get(java.util.Calendar.YEAR);
-        textViewFecha.setText(sacarMes(mesN)+" "+ano);
+        textViewFecha.setText(sacarMes(mesN) + " " + ano);
         textViewFecha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -133,37 +142,32 @@ public class Calendar extends Fragment {
         recycleViewUser.setHasFixedSize(false);
         //puedo añadir animaciones automaticas (ItemAnimator) y sepaaciones automaticas (ItemDecoration)
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference().child("mensajes");
 
-        // It is a class provide by the FirebaseUI to make a
-        // query in the database to fetch appropriate data
-        FirebaseRecyclerOptions<Mensajes> options
-                = new FirebaseRecyclerOptions.Builder<Mensajes>()
-                .setQuery(myRef, Mensajes.class).build();
-        adapter = new MessageAdapter(options,getContext());
-        // specify an adapter with the list to show
-        adapter.startListening();
-        adapter.notifyDataSetChanged();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference();
+        activitiesList=getActivities(myRef);
+        user.getHijos();
+
         recycleViewUser.setAdapter(adapter);
 
         return v;
     }
 
-    private void openDialog(){
-        DatePickerDialog dialog=new DatePickerDialog(getContext(),  new DatePickerDialog.OnDateSetListener() {
+    private void openDialog() {
+        DatePickerDialog dialog = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
 
-                textViewFecha.setText(sacarMes(month)+" "+String.valueOf(year));
-                dayWeek(dayOfMonth,month,year);
+                textViewFecha.setText(sacarMes(month) + " " + String.valueOf(year));
+                dayWeek(dayOfMonth, month, year);
             }
-        },ano, mesN, dia);
+        }, ano, mesN, dia);
         dialog.show();
     }
-    private String sacarMes(int mesN){
+
+    private String sacarMes(int mesN) {
         String mes;
-        switch (mesN+1) {
+        switch (mesN + 1) {
             case 1:
                 mes = "Enero";
                 break;
@@ -207,10 +211,11 @@ public class Calendar extends Fragment {
         return mes;
 
     }
+
     //Metodo para sacar el dia en el que se selecciona, esta (en cuestion de Lunes,martes..)
-    private String dayWeek(){
-        java.util.Calendar fechaActual= java.util.Calendar.getInstance();
-        int diaSemana=fechaActual.get(java.util.Calendar.DAY_OF_WEEK);
+    private String dayWeek() {
+        java.util.Calendar fechaActual = java.util.Calendar.getInstance();
+        int diaSemana = fechaActual.get(java.util.Calendar.DAY_OF_WEEK);
         String dia;
         switch (diaSemana) {
             case java.util.Calendar.SUNDAY:
@@ -218,128 +223,128 @@ public class Calendar extends Fragment {
 
                 numeroDomingo.setPressed(true);
                 numeroDomingo.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,-1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, -1);
                 numeroSabado.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,-1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, -1);
                 numeroViernes.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,-1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, -1);
                 numeroJueves.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,-1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, -1);
                 numeroMiercoles.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,-1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, -1);
                 numeroMartes.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,-1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, -1);
                 numeroLunes.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,6);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, 6);
                 break;
             case java.util.Calendar.MONDAY:
                 dia = "Lunes";
 
                 numeroLunes.setPressed(true);
                 numeroLunes.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, 1);
                 numeroMartes.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, 1);
                 numeroMiercoles.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, 1);
                 numeroJueves.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, 1);
                 numeroViernes.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, 1);
                 numeroSabado.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, 1);
                 numeroDomingo.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,-6);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, -6);
                 break;
             case java.util.Calendar.TUESDAY:
                 dia = "Martes";
                 numeroMartes.setPressed(true);
                 numeroMartes.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, 1);
                 numeroMiercoles.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, 1);
                 numeroJueves.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, 1);
                 numeroViernes.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, 1);
                 numeroSabado.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, 1);
                 numeroDomingo.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,-6);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, -6);
                 numeroLunes.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, 1);
                 break;
             case java.util.Calendar.WEDNESDAY:
                 dia = "Miércoles";
                 numeroMiercoles.setPressed(true);
                 numeroMiercoles.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, 1);
                 numeroJueves.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, 1);
                 numeroViernes.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, 1);
                 numeroSabado.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, 1);
                 numeroDomingo.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,-5);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, -5);
                 numeroMartes.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,-6);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, -6);
                 numeroLunes.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,2);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, 2);
                 break;
             case java.util.Calendar.THURSDAY:
                 dia = "Jueves";
                 numeroJueves.setPressed(true);
                 numeroJueves.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, 1);
                 numeroViernes.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, 1);
                 numeroSabado.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, 1);
                 numeroDomingo.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,-4);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, -4);
                 numeroMiercoles.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,-1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, -1);
                 numeroMartes.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,-1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, -1);
                 numeroLunes.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,3);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, 3);
                 break;
             case java.util.Calendar.FRIDAY:
                 dia = "Viernes";
                 numeroViernes.setPressed(true);
                 numeroViernes.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, 1);
                 numeroSabado.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, 1);
                 numeroDomingo.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,-3);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, -3);
                 numeroJueves.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,-1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, -1);
                 numeroMiercoles.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,-1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, -1);
                 numeroMartes.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,-1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, -1);
                 numeroLunes.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,4);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, 4);
                 break;
             case java.util.Calendar.SATURDAY:
                 dia = "Sábado";
                 numeroSabado.setPressed(true);
                 numeroSabado.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, 1);
                 numeroDomingo.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,-2);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, -2);
                 numeroViernes.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,-1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, -1);
                 numeroJueves.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,-1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, -1);
                 numeroMiercoles.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,-1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, -1);
                 numeroMartes.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,-1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, -1);
                 numeroLunes.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,5);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, 5);
                 break;
             default:
                 dia = "Día no válido";
@@ -347,139 +352,140 @@ public class Calendar extends Fragment {
         }
         return dia;
     }
+
     //version 2 del metodo con parametro del dia elegido segund el calendario
-    private String dayWeek(int diaN, int mesN, int ano){
-        java.util.Calendar fechaActual= java.util.Calendar.getInstance();
-        fechaActual.set(ano,mesN,diaN);
-        int diaSemana=fechaActual.get(java.util.Calendar.DAY_OF_WEEK);
+    private String dayWeek(int diaN, int mesN, int ano) {
+        java.util.Calendar fechaActual = java.util.Calendar.getInstance();
+        fechaActual.set(ano, mesN, diaN);
+        int diaSemana = fechaActual.get(java.util.Calendar.DAY_OF_WEEK);
         String dia;
         switch (diaSemana) {
             case java.util.Calendar.SUNDAY:
                 dia = "Domingo";
                 numeroDomingo.setPressed(true);
                 numeroDomingo.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,-1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, -1);
                 numeroSabado.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,-1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, -1);
                 numeroViernes.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,-1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, -1);
                 numeroJueves.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,-1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, -1);
                 numeroMiercoles.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,-1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, -1);
                 numeroMartes.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,-1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, -1);
                 numeroLunes.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,6);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, 6);
                 break;
             case java.util.Calendar.MONDAY:
                 dia = "Lunes";
 
                 numeroLunes.setPressed(true);
                 numeroLunes.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, 1);
                 numeroMartes.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, 1);
                 numeroMiercoles.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, 1);
                 numeroJueves.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, 1);
                 numeroViernes.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, 1);
                 numeroSabado.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, 1);
                 numeroDomingo.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,-6);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, -6);
                 break;
             case java.util.Calendar.TUESDAY:
                 dia = "Martes";
                 numeroMartes.setPressed(true);
                 numeroMartes.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, 1);
                 numeroMiercoles.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, 1);
                 numeroJueves.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, 1);
                 numeroViernes.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, 1);
                 numeroSabado.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, 1);
                 numeroDomingo.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,-6);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, -6);
                 numeroLunes.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, 1);
                 break;
             case java.util.Calendar.WEDNESDAY:
                 dia = "Miércoles";
                 numeroMiercoles.setPressed(true);
                 numeroMiercoles.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, 1);
                 numeroJueves.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, 1);
                 numeroViernes.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, 1);
                 numeroSabado.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, 1);
                 numeroDomingo.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,-5);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, -5);
                 numeroMartes.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,-1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, -1);
                 numeroLunes.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,2);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, 2);
                 break;
             case java.util.Calendar.THURSDAY:
                 dia = "Jueves";
                 numeroJueves.setPressed(true);
                 numeroJueves.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, 1);
                 numeroViernes.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, 1);
                 numeroSabado.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, 1);
                 numeroDomingo.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,-4);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, -4);
                 numeroMiercoles.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,-1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, -1);
                 numeroMartes.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,-1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, -1);
                 numeroLunes.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,3);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, 3);
                 break;
             case java.util.Calendar.FRIDAY:
                 dia = "Viernes";
                 numeroViernes.setPressed(true);
                 numeroViernes.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, 1);
                 numeroSabado.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, 1);
                 numeroDomingo.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,-3);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, -3);
                 numeroJueves.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,-1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, -1);
                 numeroMiercoles.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,-1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, -1);
                 numeroMartes.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,-1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, -1);
                 numeroLunes.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,4);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, 4);
                 break;
             case java.util.Calendar.SATURDAY:
                 dia = "Sábado";
                 numeroSabado.setPressed(true);
                 numeroSabado.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, 1);
                 numeroDomingo.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,-2);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, -2);
                 numeroViernes.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,-1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, -1);
                 numeroJueves.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,-1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, -1);
                 numeroMiercoles.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,-1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, -1);
                 numeroMartes.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,-1);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, -1);
                 numeroLunes.setText(String.valueOf(fechaActual.get(java.util.Calendar.DAY_OF_MONTH)));
-                fechaActual.add(java.util.Calendar.DAY_OF_MONTH,5);
+                fechaActual.add(java.util.Calendar.DAY_OF_MONTH, 5);
                 break;
             default:
                 dia = "Día no válido";
@@ -487,6 +493,31 @@ public class Calendar extends Fragment {
         }
         return dia;
     }
+
+    private ArrayList<Actividades> getActivities(DatabaseReference myRef) {
+        ArrayList<Actividades> activitiesList = new ArrayList<>();
+        myRef.child("actividades").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                ;
+                for (DataSnapshot activitySnapshot : snapshot.getChildren()) {
+                    Actividades activity = activitySnapshot.getValue(Actividades.class);
+                    if (activity != null) {
+                        activitiesList.add(activity);
+                    }
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Manejar el error
+                System.err.println("Error: " + error.getMessage());
+            }
+        });
+        return activitiesList;
+    }
+
 
 }
 
