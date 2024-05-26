@@ -1,8 +1,6 @@
 package com.example.tfg;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.drawable.GradientDrawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,16 +14,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 
-public class ActivityAdapter extends FirebaseRecyclerAdapter<
-        Actividades, ActivityAdapter.activityViewholder> {
+public class ChildrenActivityAdapter extends FirebaseRecyclerAdapter<
+        Actividades, ChildrenActivityAdapter.ActivityViewholder> {
 
     private Context context;
+    private Usuarios user;
 
-    public ActivityAdapter(
-            @NonNull FirebaseRecyclerOptions<Actividades> options, Context context)
+    public ChildrenActivityAdapter(
+            @NonNull FirebaseRecyclerOptions<Actividades> options, Context context,Usuarios user)
     {
         super(options);
         this.context = context;
+        this.user = user;
     }
 
     /*
@@ -46,7 +46,8 @@ public class ActivityAdapter extends FirebaseRecyclerAdapter<
     */
 
     @Override
-    protected void onBindViewHolder(@NonNull activityViewholder holder, int position, @NonNull Actividades model) {
+    protected void onBindViewHolder(@NonNull ActivityViewholder holder, int position, @NonNull Actividades model) {
+
         holder.firstname.setText(model.getNombre()+"\n"+model.getCategoria());
         Log.d("como","asdasdasddsaasdasddasasddassdaasdsdasdsda");
 
@@ -59,24 +60,24 @@ public class ActivityAdapter extends FirebaseRecyclerAdapter<
 
     @NonNull
     @Override
-    public activityViewholder
+    public ActivityViewholder
     onCreateViewHolder(@NonNull ViewGroup parent,
                        int viewType)
     {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.actividad, parent, false);
-        return new activityViewholder(view);
+        return new ActivityViewholder(view);
     }
 
     //creamos nuestro viewHolder con los tipos de elementos a modificar de un elemento (por ejemplo 2 textView)
     //obtenemos los elementos del layout_item que queremos que se vayan cambiado
     //esto es lo que vamos a ir reciclando
-    class activityViewholder
+    class ActivityViewholder
             extends RecyclerView.ViewHolder {
         TextView firstname, lastname;
         ImageView img;
         ImageView container;
-        public activityViewholder(@NonNull View itemView)
+        public ActivityViewholder(@NonNull View itemView)
         {
             super(itemView);
 
