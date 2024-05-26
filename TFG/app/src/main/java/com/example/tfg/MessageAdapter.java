@@ -52,11 +52,16 @@ public class MessageAdapter extends FirebaseRecyclerAdapter<
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference();
 
+
+
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                holder.firstname.setText(snapshot.child("actividades").child(model.getActivad()).child("nombre").getValue(String.class)
-                        + "\n" + snapshot.child("empleados").child(model.getEmisor()).child("nombre").getValue(String.class));
+                holder.firstname.setText(snapshot.child("actividades").child(model.getActividad()).child("nombre").getValue(String.class) +
+                        "\n" +
+                        snapshot.child("usuario").child(model.getEmisor()).child("nombre").getValue(String.class)+
+                        "\n" +
+                        model.getMensaje());
             }
 
             @Override
@@ -91,7 +96,6 @@ public class MessageAdapter extends FirebaseRecyclerAdapter<
 
             firstname = itemView.findViewById(R.id.textEncima);
             img = itemView.findViewById(R.id.imageView);
-            container = itemView.findViewById(R.id.circle_1);
         }
     }
 }

@@ -86,7 +86,7 @@
                 android:layout_weight="1"
                 android:drawableTop="@drawable/correo"
                 android:gravity="center"
-                android:text="Actividades"
+                android:text="Correo"
                 android:textSize="15dp" />
         </LinearLayout>
 
