@@ -1,7 +1,7 @@
 package com.example.tfg;
 
 public class Mensajes {
-    private String activad;
+    private String actividad;
     private String emisor;
     private String mensaje;
 
@@ -10,12 +10,12 @@ public class Mensajes {
     }
 
     // Getters y setters
-    public String getActivad() {
-        return activad;
+    public String getActividad() {
+        return actividad;
     }
 
-    public void setActivad(String activad) {
-        this.activad = activad;
+    public void setActividad(String actividad) {
+        this.actividad = actividad;
     }
 
     public String getEmisor() {

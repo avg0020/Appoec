@@ -16,10 +16,10 @@ import com.google.firebase.database.FirebaseDatabase;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Actividad#newInstance} factory method to
+ * Use the {@link Correo#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Actividad extends Fragment {
+public class Correo extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -31,7 +31,7 @@ public class Actividad extends Fragment {
     private String mParam2;
     ActivityAdapter adapter;
 
-    public Actividad() {
+    public Correo() {
         // Required empty public constructor
     }
 
@@ -44,8 +44,8 @@ public class Actividad extends Fragment {
      * @return A new instance of fragment Actividad.
      */
     // TODO: Rename and change types and number of parameters
-    public static Actividad newInstance(String param1, String param2) {
-        Actividad fragment = new Actividad();
+    public static Correo newInstance(String param1, String param2) {
+        Correo fragment = new Correo();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -66,7 +66,7 @@ public class Actividad extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_actividad, container, false);
+        View v = inflater.inflate(R.layout.fragment_correo, container, false);
 
         Bundle args = getArguments();
         Usuarios user = (Usuarios) args.getSerializable("user");

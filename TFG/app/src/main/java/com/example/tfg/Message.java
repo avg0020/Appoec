@@ -3,6 +3,7 @@ package com.example.tfg;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.ConcatAdapter;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -93,14 +94,20 @@ public class Message extends Fragment {
 
         // It is a class provide by the FirebaseUI to make a
         // query in the database to fetch appropriate data
-        FirebaseRecyclerOptions<Mensajes> options
-                = new FirebaseRecyclerOptions.Builder<Mensajes>()
-                .setQuery(myRef, Mensajes.class).build();
-        adapter = new MessageAdapter(options,getContext());
-        // specify an adapter with the list to show
-        adapter.startListening();
-        adapter.notifyDataSetChanged();
-        recycleViewUser.setAdapter(adapter);
+
+
+        ConcatAdapter adapters = new ConcatAdapter();
+
+        for (String actividad:user.getHijos().get("fulanita").getActividades()) {
+            FirebaseRecyclerOptions<Mensajes> options
+                    = new FirebaseRecyclerOptions.Builder<Mensajes>()
+                    .setQuery(myRef.orderByChild("actividad").equalTo(actividad), Mensajes.class).build();
+            adapter = new MessageAdapter(options,getContext());
+            adapter.startListening();
+            adapters.addAdapter(adapter);
+        }
+
+        recycleViewUser.setAdapter(adapters);
 
         return v;
     }

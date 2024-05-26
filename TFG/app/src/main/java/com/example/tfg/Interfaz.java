@@ -80,7 +80,7 @@ public class Interfaz extends AppCompatActivity {
         option4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Actividad activityFragment = new Actividad();
+                Correo activityFragment = new Correo();
                 Bundle args = new Bundle();
                 args.putSerializable("user", user);
                 activityFragment.setArguments(args);

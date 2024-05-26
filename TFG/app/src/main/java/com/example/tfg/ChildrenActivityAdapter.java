@@ -83,7 +83,6 @@ public class ChildrenActivityAdapter extends FirebaseRecyclerAdapter<
 
             firstname = itemView.findViewById(R.id.textEncima);
             img = itemView.findViewById(R.id.imageView);
-            container = itemView.findViewById(R.id.circle_1);
         }
     }
 }
