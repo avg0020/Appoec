@@ -1,6 +1,11 @@
 package com.example.tfg;
 
-public class Actividades {
+import com.google.firebase.database.Exclude;
+
+import java.io.Serializable;
+
+public class Actividades implements Serializable {
+    private String key;
     private String horario;
     private String nombre;
     private String categoria;
@@ -11,6 +16,14 @@ public class Actividades {
 
     public Actividades() {
 
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 
     public String getHorario() {
