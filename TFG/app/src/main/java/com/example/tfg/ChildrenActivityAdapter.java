@@ -1,14 +1,19 @@
 package com.example.tfg;
 
+import android.app.Activity;
 import android.content.Context;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -19,13 +24,15 @@ public class ChildrenActivityAdapter extends FirebaseRecyclerAdapter<
 
     private Context context;
     private Usuarios user;
+    private Menu menu;
 
     public ChildrenActivityAdapter(
-            @NonNull FirebaseRecyclerOptions<Actividades> options, Context context,Usuarios user)
+            @NonNull FirebaseRecyclerOptions<Actividades> options, Context context,Usuarios user, Menu menu)
     {
         super(options);
         this.context = context;
         this.user = user;
+        this.menu = menu;
     }
 
     /*
@@ -53,6 +60,20 @@ public class ChildrenActivityAdapter extends FirebaseRecyclerAdapter<
 
         int resourceId = context.getResources().getIdentifier(model.getIcono(), "drawable", context.getPackageName());
         holder.img.setImageResource(resourceId);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context,model.getNombre(),Toast.LENGTH_SHORT).show();
+                Bundle args = new Bundle();
+                args.putSerializable("actividad", model);
+                FragmentManager fragmentManager = menu.getParentFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_container, InfoActivity.class, args);
+                fragmentTransaction.commit();
+
+            }
+        });
         //GradientDrawable grad = (GradientDrawable) holder.container.getBackground().mutate();
         //grad.setColor(Color.parseColor(model.getColor()));
 
@@ -68,6 +89,7 @@ public class ChildrenActivityAdapter extends FirebaseRecyclerAdapter<
                 .inflate(R.layout.actividad, parent, false);
         return new ActivityViewholder(view);
     }
+
 
     //creamos nuestro viewHolder con los tipos de elementos a modificar de un elemento (por ejemplo 2 textView)
     //obtenemos los elementos del layout_item que queremos que se vayan cambiado
