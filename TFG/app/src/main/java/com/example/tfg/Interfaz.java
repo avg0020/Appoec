@@ -110,12 +110,12 @@ public class Interfaz extends AppCompatActivity implements NavigationView.OnNavi
         option4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Correo activityFragment = new Correo();
+                AllActivities allActivities = new AllActivities();
                 Bundle args = new Bundle();
                 args.putSerializable("user", user);
                 args.putString("nombre", nom);
-                activityFragment.setArguments(args);
-                changeFragment(activityFragment);
+                allActivities.setArguments(args);
+                changeFragment(allActivities);
             }
         });
 

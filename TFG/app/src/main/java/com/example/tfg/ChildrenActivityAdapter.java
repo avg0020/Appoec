@@ -27,15 +27,23 @@ public class ChildrenActivityAdapter extends FirebaseRecyclerAdapter<
 
     private Context context;
     private Usuarios user;
-    private Menu menu;
+    private AllActivities menu = null;
 
     public ChildrenActivityAdapter(
-            @NonNull FirebaseRecyclerOptions<Actividades> options, Context context,Usuarios user, Menu menu)
+            @NonNull FirebaseRecyclerOptions<Actividades> options, Context context,Usuarios user, AllActivities menu)
     {
         super(options);
         this.context = context;
         this.user = user;
         this.menu = menu;
+    }
+
+    public ChildrenActivityAdapter(
+            @NonNull FirebaseRecyclerOptions<Actividades> options, Context context,Usuarios user)
+    {
+        super(options);
+        this.context = context;
+        this.user = user;
     }
 
     /*
@@ -67,19 +75,21 @@ public class ChildrenActivityAdapter extends FirebaseRecyclerAdapter<
         GradientDrawable grad = (GradientDrawable) holder.container.getBackground().mutate();
         grad.setColor(Color.parseColor(model.getColor()));
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(context,model.getNombre(),Toast.LENGTH_SHORT).show();
-                Bundle args = new Bundle();
-                args.putSerializable("actividad", model);
-                FragmentManager fragmentManager = menu.getParentFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_container, InfoActivity.class, args);
-                fragmentTransaction.commit();
+        if (menu!=null) {
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(context, model.getNombre(), Toast.LENGTH_SHORT).show();
+                    Bundle args = new Bundle();
+                    args.putSerializable("actividad", model);
+                    FragmentManager fragmentManager = menu.getParentFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.fragment_container, InfoActivity.class, args);
+                    fragmentTransaction.commit();
 
-            }
-        });
+                }
+            });
+        }
 
     }
 
