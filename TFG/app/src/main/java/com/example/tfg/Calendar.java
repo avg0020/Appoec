@@ -2,18 +2,21 @@ package com.example.tfg;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.ConcatAdapter;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,19 +28,15 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class Calendar extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private TextView textViewCalendario;
     private TextView textViewFecha;
-    private TextView textViewLunes;
-    private TextView textViewMartes;
-    private TextView textViewMiercoles;
-    private TextView textViewJueves;
-    private TextView textViewViernes;
-    private TextView textViewSabado;
-    private TextView textViewDomingo;
+
     private Button numeroLunes;
     private Button numeroMartes;
     private Button numeroMiercoles;
@@ -55,8 +54,9 @@ public class Calendar extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    ActivityAdapter adapter;
-
+    private ActivityLocalAdapter adapter;
+    private RecyclerView recyclerView;
+    private RecyclerView.LayoutManager layoutManager;
     public Calendar() {
 
     }
@@ -87,20 +87,14 @@ public class Calendar extends Fragment {
 
         Bundle args = getArguments();
         Usuarios user = (Usuarios) args.getSerializable("user");
+        String nom=args.getString("nombre");
+
+        recyclerView=v.findViewById(R.id.recycleViewCalendar);
         // Encabezado
         textViewCalendario = v.findViewById(R.id.textViewCalendario);
 
         // Fecha actual
         textViewFecha = v.findViewById(R.id.textViewFecha);
-
-        // Dias de la semana
-        textViewLunes = v.findViewById(R.id.textViewLunes);
-        textViewMartes = v.findViewById(R.id.textViewMartes);
-        textViewMiercoles = v.findViewById(R.id.textViewMiercoles);
-        textViewJueves = v.findViewById(R.id.textViewJueves);
-        textViewViernes = v.findViewById(R.id.textViewViernes);
-        textViewSabado = v.findViewById(R.id.textViewSabado);
-        textViewDomingo = v.findViewById(R.id.textViewDomingo);
 
         // Numeros de la semana
         numeroLunes = v.findViewById(R.id.numeroLunes);
@@ -118,12 +112,7 @@ public class Calendar extends Fragment {
         mesN = calendar.get(java.util.Calendar.MONTH); // Los meses en Calendar van de 0 a 11
         ano = calendar.get(java.util.Calendar.YEAR);
         textViewFecha.setText(sacarMes(mesN) + " " + ano);
-        textViewFecha.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openDialog();
-            }
-        });
+
 
         dayWeek();
 
@@ -131,37 +120,58 @@ public class Calendar extends Fragment {
         TextView date = (TextView) v.findViewById(R.id.tvDate);
         date.setText(user.getNombre());
         */
-        // Inflate the layout for this fragment
-
-        //setSupportActionBar(getView().findViewById(R.id.toolbar));
-
-        RecyclerView recycleViewUser = (RecyclerView) v.findViewById(R.id.recycleViewCalendar);
-        // use a linear layout manager (distribucion de vistas configurable)
-        //como queremos que se posicionen los elementos en las vistas, como lista o como cuadricula GridLayout
-        recycleViewUser.setLayoutManager(new LinearLayoutManager(getContext()));
-        recycleViewUser.setHasFixedSize(false);
-        //puedo añadir animaciones automaticas (ItemAnimator) y sepaaciones automaticas (ItemDecoration)
 
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference();
-        activitiesList=getActivities(myRef);
-        user.getHijos();
 
-        recycleViewUser.setAdapter(adapter);
+        layoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(layoutManager);
+        activitiesList=getActivities(myRef,activitiesList);
+
+        adapter=new ActivityLocalAdapter(activitiesList,getContext());
+        recyclerView.setAdapter(adapter);
+
+        comparacion(nom, user, myRef, calendar, new FirebaseCallback() {
+            @Override
+            public void onCallback(ArrayList<Actividades> actividades) {
+                activitiesList.clear();
+                activitiesList.addAll(actividades);
+                adapter.notifyDataSetChanged();
+            }
+        });
+
+        textViewFecha.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openDialog(nom,user,myRef,adapter);
+            }
+        });
 
         return v;
     }
 
-    private void openDialog() {
+    private void openDialog(String nom, Usuarios user, DatabaseReference myRef, ActivityLocalAdapter adapter) {
+        java.util.Calendar calendar = java.util.Calendar.getInstance();
         DatePickerDialog dialog = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
 
                 textViewFecha.setText(sacarMes(month) + " " + String.valueOf(year));
                 dayWeek(dayOfMonth, month, year);
+                calendar.set(year,month,dayOfMonth);
+                comparacion(nom, user, myRef, calendar, new FirebaseCallback() {
+                    @Override
+                    public void onCallback(ArrayList<Actividades> actividades) {
+                        activitiesList.clear();
+                        activitiesList.addAll(actividades);
+                        adapter.notifyDataSetChanged();
+                    }
+                });
+
             }
         }, ano, mesN, dia);
+
         dialog.show();
     }
 
@@ -494,8 +504,8 @@ public class Calendar extends Fragment {
         return dia;
     }
 
-    private ArrayList<Actividades> getActivities(DatabaseReference myRef) {
-        ArrayList<Actividades> activitiesList = new ArrayList<>();
+    private ArrayList<Actividades> getActivities(DatabaseReference myRef,ArrayList<Actividades>actividades) {
+        ArrayList<Actividades> activitiesList = actividades;
         myRef.child("actividades").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -515,10 +525,152 @@ public class Calendar extends Fragment {
                 System.err.println("Error: " + error.getMessage());
             }
         });
-        return activitiesList;
+        return actividades;
     }
+//Obtenemos los hijos de los cuales sacamos las actividades que tienen que ser mostradas para ese usario
+    private List<Hijo> mapeoHijos(Usuarios usuario) {
+
+    List<Hijo> hijitos=new ArrayList<>();
+                if (usuario != null && usuario.getHijos() != null) {
+                    // Obtener información de los hijos
+                    for (Map.Entry<String, Hijo> entry : usuario.getHijos().entrySet()) {
+                        String key = entry.getKey();
+                        Hijo hijo = entry.getValue();
+                        hijitos.add(hijo);
+                    }
+                }
+                return hijitos;
+            }
+
+    //metodo que compara las actividades relacionadas del usuario con las que hay en la base de datos y cuya coincidencia aparecerá en el recycler view
+    //interfaz para que no devuelva la lista de actividades vacia
+    public interface FirebaseCallback {
+        void onCallback(ArrayList<Actividades> actividades);
+    }
+    public void comparacion(String nom, Usuarios user, DatabaseReference myRef, java.util.Calendar calendar, FirebaseCallback callback) {
+       //donde acumularemos las actividades a mostrar
+        ArrayList<Actividades>mostrar=new ArrayList<>();
+        //Sacamos primero el dia
+        int diaDeLaSemana = calendar.get(java.util.Calendar.DAY_OF_WEEK);
+
+        // Convertir el valor numérico del día de la semana a su nombre correspondiente
+        String nombreDiaDeLaSemana = "";
+        switch (diaDeLaSemana) {
+            case java.util.Calendar.SUNDAY:
+                nombreDiaDeLaSemana = "D";
+                break;
+            case java.util.Calendar.MONDAY:
+                nombreDiaDeLaSemana = "L";
+                break;
+            case java.util.Calendar.TUESDAY:
+                nombreDiaDeLaSemana = "M";
+                break;
+            case java.util.Calendar.WEDNESDAY:
+                nombreDiaDeLaSemana = "X";
+                break;
+            case java.util.Calendar.THURSDAY:
+                nombreDiaDeLaSemana = "J";
+                break;
+            case java.util.Calendar.FRIDAY:
+                nombreDiaDeLaSemana = "V";
+                break;
+            case java.util.Calendar.SATURDAY:
+                nombreDiaDeLaSemana = "S";
+                break;
+        }
+       final String finalNombreDiaDeLaSemana = nombreDiaDeLaSemana;
+        //saca las calves de los hijos, seran nombres de los hijos
+
+        DatabaseReference prueba = myRef.child("usuario").child(nom).getRef();
+        // Añadir un listener para obtener los datos del nodo padre
+        prueba.child("hijos").addListenerForSingleValueEvent(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                ArrayList<String> clavesHijos = new ArrayList<>();
+                if (dataSnapshot.exists()) {
+                    // Procesar los datos obtenidosup
+                    for (DataSnapshot hijoSnapshot : dataSnapshot.getChildren())
+                        clavesHijos.add(hijoSnapshot.getKey());
+                } else {
+                    Log.d("Firebase", "No hay datos disponibles");
+                }
+                // Contador para verificar cuando todas las actividades hayan sido procesadas
+
+                for (int i = 0; i < clavesHijos.size(); i++) {
+                    for (String actividad : user.getHijos().get(clavesHijos.get(i).toString()).getActividades()) {
+                        DatabaseReference reference = myRef.child("actividades").child(actividad).getRef();
 
 
-}
+                        reference.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                // Verifica si la actividad actual tiene un hijo "dias"
+                                if (dataSnapshot.hasChild("dias")) {
+                                    // Obtiene el valor del hijo "dias"
+                                    String diasValue = dataSnapshot.child("dias").getValue(String.class);
+                                    String[] diaExacto = diasValue.split("/");
+                                    // Comprueba si el valor coincide con tu string deseado
+                                    if (diaExacto[0].equalsIgnoreCase(finalNombreDiaDeLaSemana)) {
+                                        mostrar.add(dataSnapshot.getValue(Actividades.class));
+                                        Log.d("TAG", "Se agregó una actividad a la lista: " + dataSnapshot.getValue(Actividades.class).toString());
+
+                                    } else if ( diaExacto[1].equalsIgnoreCase(finalNombreDiaDeLaSemana)) {
+                                        mostrar.add(dataSnapshot.getValue(Actividades.class));
+                                        Log.d("TAG", "Se agregó una actividad a la lista: " + dataSnapshot.getValue(Actividades.class).getNombre().toString());
+                                    }
+                                }
+                                    callback.onCallback(mostrar);
+
+
+
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+                                // Manejar errores de base de datos, si es necesario
+                            }
+                        });
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Manejar errores
+                System.out.println("Error al obtener datos: " + databaseError.getMessage());
+            }
+
+
+
+        });
+
+
+
+    }
+    public void obtenerTodasLasActividades(DatabaseReference myRef, FirebaseCallback callback) {
+        ArrayList<Actividades> todasLasActividades = new ArrayList<>();
+
+        DatabaseReference actividadesRef = myRef.child("actividades");
+        actividadesRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot actividadSnapshot : dataSnapshot.getChildren()) {
+                    Actividades actividad = actividadSnapshot.getValue(Actividades.class);
+                    todasLasActividades.add(actividad);
+                }
+                callback.onCallback(todasLasActividades);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Manejar errores de la base de datos, si es necesario
+            }
+        });
+    }
+        }
+
+
 
 

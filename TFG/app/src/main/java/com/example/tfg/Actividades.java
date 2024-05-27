@@ -8,9 +8,18 @@ public class Actividades {
     private String color;
     private String dias;
     private String edad;
+    private String key;
 
     public Actividades() {
 
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 
     public String getHorario() {

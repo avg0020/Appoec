@@ -10,21 +10,21 @@
     <!-- Encabezado -->
     <RelativeLayout
         android:id="@+id/headerLayout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="410dp"
+        android:layout_height="59dp"
         android:background="#FF0000"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/textViewCalendario"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
             android:text="Calendario"
             android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            android:layout_centerInParent="true"/>
+            android:textSize="20sp" />
 
     </RelativeLayout>
 
@@ -249,9 +249,10 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleViewCalendar"
-        android:layout_width="383dp"
-        android:layout_height="272dp"
+        android:layout_width="379dp"
+        android:layout_height="491dp"
         android:layout_marginTop="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view"

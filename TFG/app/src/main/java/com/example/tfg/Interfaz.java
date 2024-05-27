@@ -17,7 +17,7 @@ public class Interfaz extends AppCompatActivity {
     private TextView option1, option2, option3, option4;
     private DrawerLayout drawerLayout;
     private Usuarios user;
-
+private String nom;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +32,7 @@ public class Interfaz extends AppCompatActivity {
         toggle.syncState();
 
         user = (Usuarios) getIntent().getSerializableExtra("Usuarios");
-
+        nom=  getIntent().getStringExtra("nombre");
         // Referencias de los elementos del layout
         fragmentContainer = findViewById(R.id.fragment_container);
         option1 = findViewById(R.id.option1);
@@ -43,6 +43,7 @@ public class Interfaz extends AppCompatActivity {
         Menu menuFragment = new Menu();
         Bundle args = new Bundle();
         args.putSerializable("user", user);
+        args.putString("nombre", nom);
         menuFragment.setArguments(args);
         changeFragment(menuFragment);
 
@@ -54,6 +55,7 @@ public class Interfaz extends AppCompatActivity {
                 Menu menuFragment = new Menu();
                 Bundle args = new Bundle();
                 args.putSerializable("user", user);
+                args.putString("nombre", nom);
                 menuFragment.setArguments(args);
                 changeFragment(menuFragment);
             }
@@ -65,6 +67,7 @@ public class Interfaz extends AppCompatActivity {
            Calendar caleFragment=new Calendar();
                 Bundle args = new Bundle();
                 args.putSerializable("user", user);
+                args.putString("nombre", nom);
                 caleFragment.setArguments(args);
                 changeFragment(caleFragment);
             }
@@ -76,6 +79,7 @@ public class Interfaz extends AppCompatActivity {
                 Message messageFragment = new Message();
                 Bundle args = new Bundle();
                 args.putSerializable("user", user);
+                args.putString("nombre", nom);
                 messageFragment.setArguments(args);
                 changeFragment(messageFragment);
             }
@@ -87,6 +91,7 @@ public class Interfaz extends AppCompatActivity {
                 Correo activityFragment = new Correo();
                 Bundle args = new Bundle();
                 args.putSerializable("user", user);
+                args.putString("nombre", nom);
                 activityFragment.setArguments(args);
                 changeFragment(activityFragment);
             }

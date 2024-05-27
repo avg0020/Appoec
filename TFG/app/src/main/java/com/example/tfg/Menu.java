@@ -113,14 +113,14 @@ public class Menu extends Fragment {
         */
         ConcatAdapter adapters = new ConcatAdapter();
 
-        for (String actividad:user.getHijos().get("fulanita").getActividades()) {
+       /* for (String actividad:user.getHijos()) {
             FirebaseRecyclerOptions<Actividades> options
                     = new FirebaseRecyclerOptions.Builder<Actividades>()
                     .setQuery(myRef.orderByKey().equalTo(actividad), Actividades.class).build();
             adapter = new ChildrenActivityAdapter(options,getContext(),user);
             adapter.startListening();
             adapters.addAdapter(adapter);
-        }
+        }*/
 
         // specify an adapter with the list to show
         recycleViewUser.setAdapter(adapters);
@@ -128,19 +128,18 @@ public class Menu extends Fragment {
         return v;
     }
 
-    @Override public void onStart()
-    {
+    @Override
+    public void onStart() {
         super.onStart();
-        Log.d("dasdsadas","entrado");
+        Log.d("dasdsadas", "entrado");
 
     }
 
     // Function to tell the app to stop getting
     // data from database on stopping of the activity
-    @Override public void onStop()
-    {
+    @Override
+    public void onStop() {
         super.onStop();
-        adapter.stopListening();
+       // adapter.stopListening();
     }
-
 }
