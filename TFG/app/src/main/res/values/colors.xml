@@ -11,4 +11,6 @@
     <color name="textBC">#C3939590</color>
     <color name="naranja">#EB6628</color>
     <color name="editTextColor">#D9D9D9</color>
+    <color name="transparent">#00000000</color>
+    <color name="rosa">#B3DC79F8</color>
 </resources>

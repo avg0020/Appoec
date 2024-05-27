@@ -2,6 +2,8 @@ package com.example.tfg;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
@@ -61,6 +64,9 @@ public class ChildrenActivityAdapter extends FirebaseRecyclerAdapter<
         int resourceId = context.getResources().getIdentifier(model.getIcono(), "drawable", context.getPackageName());
         holder.img.setImageResource(resourceId);
 
+        GradientDrawable grad = (GradientDrawable) holder.container.getBackground().mutate();
+        grad.setColor(Color.parseColor(model.getColor()));
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,8 +80,6 @@ public class ChildrenActivityAdapter extends FirebaseRecyclerAdapter<
 
             }
         });
-        //GradientDrawable grad = (GradientDrawable) holder.container.getBackground().mutate();
-        //grad.setColor(Color.parseColor(model.getColor()));
 
     }
 
@@ -98,13 +102,14 @@ public class ChildrenActivityAdapter extends FirebaseRecyclerAdapter<
             extends RecyclerView.ViewHolder {
         TextView firstname, lastname;
         ImageView img;
-        ImageView container;
+        ConstraintLayout container;
         public ActivityViewholder(@NonNull View itemView)
         {
             super(itemView);
 
             firstname = itemView.findViewById(R.id.textEncima);
             img = itemView.findViewById(R.id.imageView);
+            container = itemView.findViewById(R.id.constraintLay);
         }
     }
 }

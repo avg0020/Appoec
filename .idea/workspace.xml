@@ -58,14 +58,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="49fbb1c6-0882-4fe1-81b2-48514c7790c8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/Alumno.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/Actividades.java" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/Actividades.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/ActivityAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/ActivityAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/LoginActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/Usuarios.java" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/Usuarios.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/res/layout/actividad.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/res/layout/actividad.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/res/layout/fragment_menu.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/res/layout/fragment_menu.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/res/values/colors.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,10 +123,11 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
+    "android.gradle.sync.needed": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/Medac/Documents/GitHub/Appoec",
+    "git-widget-placeholder": "panel-screen",
+    "last_opened_file_path": "C:/Users/pejor/AndroidStudioProjects/Appoec",
     "project.structure.last.edited": "SDK Location",
     "project.structure.proportion": "0.17",
     "project.structure.side.proportion": "0.2",
