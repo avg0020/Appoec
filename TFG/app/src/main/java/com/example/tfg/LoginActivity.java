@@ -60,6 +60,7 @@ public class LoginActivity extends AppCompatActivity {
                                 Usuarios user = snapshot.child(nom).getValue(Usuarios.class);
                                 Intent i = new Intent(LoginActivity.this, Interfaz.class);
                                 i.putExtra("Usuarios", user);
+                                i.putExtra("nombre",nom);
                                 startActivity(i);
                             }else{
                                 Toast.makeText(getApplicationContext(), "usuario o contraseña incorrecto", Toast.LENGTH_LONG).show();

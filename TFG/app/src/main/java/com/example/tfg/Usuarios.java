@@ -13,12 +13,12 @@ public class Usuarios implements Serializable {
     public String apellido1;
     public String apellido2;
     public String rol;
-    public Map<String, Alumno> hijos = new HashMap<>();
+    public Map<String, Hijo> hijos;
 
     // Constructor
 
 
-    public Usuarios(String correo, String nombre, String password, String telefono, String apellido1, String apellido2, String rol, Map<String, Alumno> hijos) {
+    public Usuarios(String correo, String nombre, String password, String telefono, String apellido1, String apellido2, String rol, Map<String, Hijo> hijos) {
         this.correo = correo;
         this.nombre = nombre;
         this.password = password;
@@ -89,11 +89,11 @@ public class Usuarios implements Serializable {
         this.rol = rol;
     }
 
-    public Map<String, Alumno> getHijos() {
+    public Map<String, Hijo> getHijos() {
         return hijos;
     }
 
-    public void setHijos(Map<String, Alumno> hijos) {
+    public void setHijos(Map<String, Hijo> hijos) {
         this.hijos = hijos;
     }
 }

@@ -25,6 +25,8 @@ public class Interfaz extends AppCompatActivity implements NavigationView.OnNavi
     private LinearLayout menuLayoutComedor, menuLayout;
     private DrawerLayout drawerLayout;
     private Usuarios user;
+    private String nom;
+
     ActionBarDrawerToggle toggle;
 
     @Override
@@ -45,7 +47,7 @@ public class Interfaz extends AppCompatActivity implements NavigationView.OnNavi
         navView.setCheckedItem(R.id.nav_icon1);
 
         user = (Usuarios) getIntent().getSerializableExtra("Usuarios");
-
+        nom=  getIntent().getStringExtra("nombre");
         // Referencias de los elementos del layout
         fragmentContainer = findViewById(R.id.fragment_container);
 
@@ -62,6 +64,7 @@ public class Interfaz extends AppCompatActivity implements NavigationView.OnNavi
         Menu menuFragment = new Menu();
         Bundle args = new Bundle();
         args.putSerializable("user", user);
+        args.putString("nombre", nom);
         menuFragment.setArguments(args);
         changeFragment(menuFragment);
 
@@ -74,6 +77,7 @@ public class Interfaz extends AppCompatActivity implements NavigationView.OnNavi
                 Menu menuFragment = new Menu();
                 Bundle args = new Bundle();
                 args.putSerializable("user", user);
+                args.putString("nombre", nom);
                 menuFragment.setArguments(args);
                 changeFragment(menuFragment);
             }
@@ -82,7 +86,12 @@ public class Interfaz extends AppCompatActivity implements NavigationView.OnNavi
         option2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+           Calendar caleFragment=new Calendar();
+                Bundle args = new Bundle();
+                args.putSerializable("user", user);
+                args.putString("nombre", nom);
+                caleFragment.setArguments(args);
+                changeFragment(caleFragment);
             }
         });
 
@@ -92,6 +101,7 @@ public class Interfaz extends AppCompatActivity implements NavigationView.OnNavi
                 Message messageFragment = new Message();
                 Bundle args = new Bundle();
                 args.putSerializable("user", user);
+                args.putString("nombre", nom);
                 messageFragment.setArguments(args);
                 changeFragment(messageFragment);
             }
@@ -103,6 +113,7 @@ public class Interfaz extends AppCompatActivity implements NavigationView.OnNavi
                 Correo activityFragment = new Correo();
                 Bundle args = new Bundle();
                 args.putSerializable("user", user);
+                args.putString("nombre", nom);
                 activityFragment.setArguments(args);
                 changeFragment(activityFragment);
             }
