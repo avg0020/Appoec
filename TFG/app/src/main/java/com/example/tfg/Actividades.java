@@ -13,6 +13,7 @@ public class Actividades implements Serializable {
     private String color;
     private String dias;
     private String edad;
+    private String key;
 
     public Actividades() {
 
