@@ -11,6 +11,8 @@
     <color name="textBC">#C3939590</color>
     <color name="naranja">#EB6628</color>
     <color name="editTextColor">#D9D9D9</color>
+    <color name="transparent">#00000000</color>
+    <color name="rosa">#B3DC79F8</color>
     <color name="colorNormal">#000000</color> <!-- Color normal -->
     <color name="colorPressed">#F8F8F8</color> <!-- Color cuando está presionado -->
     <color name="colorFocused">#0000FF</color> <!-- Color cuando está enfocado -->
