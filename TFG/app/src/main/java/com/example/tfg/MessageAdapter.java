@@ -56,19 +56,24 @@ public class MessageAdapter extends FirebaseRecyclerAdapter<
         DatabaseReference myRef = database.getReference();
 
 
-
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                holder.firstname.setText(snapshot.child("actividades").child(model.getActividad()).child("nombre").getValue(String.class) +
-                        "\n" +
-                        snapshot.child("usuario").child(model.getEmisor()).child("nombre").getValue(String.class)+
-                        "\n" +
-                        model.getMensaje());
-                int resourceId = context.getResources().getIdentifier(snapshot.child("actividades").child(model.getActividad()).child("icono").getValue(String.class), "drawable", context.getPackageName());
-                holder.img.setImageResource(resourceId);
-                GradientDrawable grad = (GradientDrawable) holder.container.getBackground().mutate();
-                grad.setColor(Color.parseColor(snapshot.child("actividades").child(model.getActividad()).child("color").getValue(String.class)));
+                if (model.getActividad().equalsIgnoreCase("comedor")) {
+                    holder.firstname.setText(model.getMensaje());
+                    GradientDrawable grad = (GradientDrawable) holder.container.getBackground().mutate();
+                    grad.setColor(Color.parseColor("#CC028AD3"));
+                } else {
+                    holder.firstname.setText(snapshot.child("actividades").child(model.getActividad()).child("nombre").getValue(String.class) +
+                            "\n" +
+                            snapshot.child("usuario").child(model.getEmisor()).child("nombre").getValue(String.class) +
+                            "\n" +
+                            model.getMensaje());
+                    int resourceId = context.getResources().getIdentifier(snapshot.child("actividades").child(model.getActividad()).child("icono").getValue(String.class), "drawable", context.getPackageName());
+                    holder.img.setImageResource(resourceId);
+                    GradientDrawable grad = (GradientDrawable) holder.container.getBackground().mutate();
+                    grad.setColor(Color.parseColor(snapshot.child("actividades").child(model.getActividad()).child("color").getValue(String.class)));
+                }
             }
 
             @Override

@@ -124,13 +124,14 @@ public class Menu extends Fragment {
             adapter.startListening();
             adapters.addAdapter(adapter);
         }*/
-
-        FirebaseRecyclerOptions<Actividades> options
-                = new FirebaseRecyclerOptions.Builder<Actividades>()
-                .setQuery(myRef, Actividades.class).build();
-        adapter = new ChildrenActivityAdapter(options,getContext(),user, this);
-        adapter.startListening();
-        adapters.addAdapter(adapter);
+        for (String actividad:user.getHijos().get("fulanita").getActividades()) {
+            FirebaseRecyclerOptions<Actividades> options
+                    = new FirebaseRecyclerOptions.Builder<Actividades>()
+                    .setQuery(myRef.orderByKey().equalTo(actividad), Actividades.class).build();
+            adapter = new ChildrenActivityAdapter(options, getContext(), user);
+            adapter.startListening();
+            adapters.addAdapter(adapter);
+        }
 
 
         // specify an adapter with the list to show
