@@ -1,14 +1,261 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".InicioComedor">
+    tools:context=".p_calendario">
 
-    <!-- TODO: Update blank fragment layout -->
+    <!-- Encabezado -->
+    <RelativeLayout
+        android:id="@+id/headerLayout"
+        android:layout_width="410dp"
+        android:layout_height="59dp"
+        android:background="#39812B"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textViewInicio_comedor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Inicio"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
+
+    </RelativeLayout>
+
+    <!-- Fecha actual -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/textViewFechac"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="FECHA"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/headerLayout"/>
 
-</FrameLayout>
+    <!-- Dias de la semana -->
+    <LinearLayout
+        android:id="@+id/daysLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewFechac">
+
+        <!-- Día 1 -->
+        <TextView
+            android:id="@+id/textViewLunes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="L"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+
+        <!-- Día 2 -->
+        <TextView
+            android:id="@+id/textViewMartes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="M"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+
+        <!-- Día 3 -->
+        <TextView
+            android:id="@+id/textViewMiercoles"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="X"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+
+        <!-- Día 4 -->
+        <TextView
+            android:id="@+id/textViewJueves"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="J"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+
+        <!-- Día 5 -->
+        <TextView
+            android:id="@+id/textViewViernes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="V"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+
+        <!-- Día 6 -->
+        <TextView
+            android:id="@+id/textViewSabado"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="S"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+
+        <!-- Día 7 -->
+        <TextView
+            android:id="@+id/textViewDomingo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="D"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+
+    </LinearLayout>
+
+    <!-- Numeros de la semana -->
+    <LinearLayout
+        android:id="@+id/daysNumberLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/view"
+        app:layout_constraintTop_toBottomOf="@+id/daysLayout"
+        >
+
+        <!-- Día 1 -->
+        <Button
+            android:id="@+id/cnumeroLunes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="29"
+            android:textSize="8sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:background="@drawable/button_selector"/>
+
+        <!-- Día 2 -->
+        <Button
+            android:id="@+id/cnumeroMartes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="10"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:background="@drawable/button_selector"/>
+
+        <!-- Día 3 -->
+        <Button
+            android:id="@+id/cnumeroMiercoles"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="10"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:background="@drawable/button_selector"/>
+
+        <!-- Día 4 -->
+        <Button
+            android:id="@+id/cnumeroJueves"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="10"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:background="@drawable/button_selector"/>
+
+        <!-- Día 5 -->
+        <Button
+            android:id="@+id/cnumeroViernes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="10"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:background="@drawable/button_selector"/>
+
+        <!-- Día 6 -->
+        <Button
+            android:id="@+id/cnumeroSabado"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="10"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:background="@drawable/button_selector"/>
+
+        <!-- Día 7 -->
+        <Button
+            android:id="@+id/cnumeroDomingo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="10"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:background="@drawable/button_selector"/>
+
+    </LinearLayout>
+
+    <!-- Línea separadora -->
+    <View
+        android:id="@+id/view"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="44dp"
+        android:background="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/daysLayout" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycleViewMenuComedor"
+        android:layout_width="379dp"
+        android:layout_height="491dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view"
+        tools:listitem="@layout/actividad" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
