@@ -17,6 +17,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -24,6 +27,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -40,6 +44,7 @@ public class Menu extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    String hijo;
 
     ArrayList<UserModel> datos;
     TextView txt;
@@ -92,7 +97,18 @@ public class Menu extends Fragment {
 
         Bundle args = getArguments();
         Usuarios user = (Usuarios) args.getSerializable("user");
-        user.getHijos();
+        hijo = user.getHijos().entrySet().iterator().next().getKey();
+        Spinner spin = v.findViewById(R.id.sp);
+        ArrayList<String> hijos = new ArrayList<String>();
+        for (Map.Entry<String, Hijo> entry : user.getHijos().entrySet()) {
+            Log.d("mira aqui",entry.getKey() + " : " + entry.getValue().toString());
+            hijos.add(entry.getKey());
+        }
+
+        ArrayAdapter<String> adap = new ArrayAdapter<>(v.getContext(), android.R.layout.simple_spinner_dropdown_item ,hijos);
+        adap.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spin.setAdapter(adap);
+
         // Inflate the layout for this fragment
         //setSupportActionBar(getView().findViewById(R.id.toolbar));
 
@@ -114,7 +130,6 @@ public class Menu extends Fragment {
         Log.d("child", myRef.child("BAI").getKey());
         adapter = new ChildrenActivityAdapter(options,getContext(),user);
         */
-        ConcatAdapter adapters = new ConcatAdapter();
 
        /* for (String actividad:user.getHijos()) {
             FirebaseRecyclerOptions<Actividades> options
@@ -124,7 +139,29 @@ public class Menu extends Fragment {
             adapter.startListening();
             adapters.addAdapter(adapter);
         }*/
-        for (String actividad:user.getHijos().get("fulanita").getActividades()) {
+        loadRecycler(user, myRef, recycleViewUser);
+
+        spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                hijo = (String) spin.getItemAtPosition(position);
+                loadRecycler(user, myRef, recycleViewUser);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+        return v;
+    }
+
+    private void loadRecycler(Usuarios user, DatabaseReference myRef, RecyclerView recycleViewUser) {
+        ConcatAdapter adapters = new ConcatAdapter();
+
+        for (String actividad: user.getHijos().get(hijo).getActividades()) {
             FirebaseRecyclerOptions<Actividades> options
                     = new FirebaseRecyclerOptions.Builder<Actividades>()
                     .setQuery(myRef.orderByKey().equalTo(actividad), Actividades.class).build();
@@ -132,13 +169,7 @@ public class Menu extends Fragment {
             adapter.startListening();
             adapters.addAdapter(adapter);
         }
-
-
-        // specify an adapter with the list to show
         recycleViewUser.setAdapter(adapters);
-
-
-        return v;
     }
 
     @Override
