@@ -16,6 +16,7 @@
 
         <!-- Menu Layout -->
 
+
         <LinearLayout
             android:id="@+id/menuLayoutComedor"
             android:layout_width="match_parent"
@@ -70,7 +71,10 @@
             app:title=""
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+
+
+        />
 
         <FrameLayout
             android:id="@+id/fragment_container"
@@ -80,7 +84,9 @@
             app:layout_constraintBottom_toTopOf="@+id/menuLayoutComedor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent" >
+
+        </FrameLayout>
 
         <LinearLayout
             android:id="@+id/menuLayout"
@@ -140,7 +146,7 @@
             android:id="@+id/layer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:constraint_referenced_ids="toolbar"
+            app:constraint_referenced_ids="spin,toolbar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -151,6 +157,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        app:menu="@menu/desplegable" />
+        app:menu="@menu/desplegable"
+        tools:visibility="gone" />
 
 </androidx.drawerlayout.widget.DrawerLayout>
