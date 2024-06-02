@@ -3,6 +3,8 @@ package com.example.tfg;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.ConcatAdapter;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -71,9 +74,21 @@ public class Message extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_message, container, false);
-
+        Button button = v.findViewById(R.id.button2);
         Bundle args = getArguments();
         Usuarios user = (Usuarios) args.getSerializable("user");
+        Message mensaje = this;
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle args = new Bundle();
+                args.putSerializable("user", user);
+                FragmentManager fragmentManager = mensaje.getParentFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_container, CreateMessage.class, args);
+                fragmentTransaction.commit();
+            }
+        });
         /*
         TextView date = (TextView) v.findViewById(R.id.tvDate);
         date.setText(user.getNombre());
