@@ -1,0 +1,448 @@
+[33mcommit efcdce5677454f207653090f190ffdab9b5236e1[m[33m ([m[1;36mHEAD -> [m[1;32mpanel-calendar[m[33m)[m
+Author: PBB9 <pablobb9924@gmail.com>
+Date:   Wed May 29 19:04:49 2024 +0200
+
+    push?
+
+[33mcommit f97d5253cd76fc5b8132e6333a3e0ce0fd8ecff7[m
+Author: PBB9 <pablobb9924@gmail.com>
+Date:   Wed May 29 19:01:35 2024 +0200
+
+    asdasd
+
+[33mcommit 7c6e9576a34485c8868e4f88b0bcc7bfcd471406[m
+Author: PBB9 <pablobb9924@gmail.com>
+Date:   Wed May 29 19:01:05 2024 +0200
+
+    cambvios
+
+[33mcommit 9acf4a53c028246ad421df98ec83af41c30ea554[m
+Author: PBB9 <pablobb9924@gmail.com>
+Date:   Wed May 29 18:58:33 2024 +0200
+
+    cambios /chatgpt/comedor
+
+[33mcommit 845047c73b1c9c1bf1e5facd93ade17bdaca597d[m[33m ([m[1;31morigin/panel-calendar[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmaster[m[33m)[m
+Merge: bbf6f37 d3c11ba
+Author: pejor76 <112394180+pejor76@users.noreply.github.com>
+Date:   Tue May 28 00:26:56 2024 +0200
+
+    Merge pull request #12 from avg0020/panel-screen
+    
+    Panel screen
+
+[33mcommit d3c11ba082d11459564a6007770746a5a9ccbbb9[m[33m ([m[1;31morigin/panel-screen[m[33m)[m
+Author: pejor76 <pejorcr@gmail.com>
+Date:   Tue May 28 00:26:23 2024 +0200
+
+    ajuster recycler view y creacion apartado actividades y cambios en panel
+
+[33mcommit 2ccf9fabd388121ddcbc927e21c5c22812031431[m
+Merge: 7eaf129 5f53153
+Author: pejor76 <pejorcr@gmail.com>
+Date:   Mon May 27 23:18:27 2024 +0200
+
+    Merge branch 'panel-screen' of https://github.com/avg0020/Appoec into panel-screen
+
+[33mcommit 7eaf129e436271fc648d634bc1dc338073441486[m
+Merge: 0c37de3 3c80f6e
+Author: pejor76 <pejorcr@gmail.com>
+Date:   Mon May 27 23:17:32 2024 +0200
+
+    Merge branch 'master' into panel-screen
+
+[33mcommit bbf6f37811fce8091d620a6bf227554b8996778b[m
+Merge: 3c80f6e 5f53153
+Author: pejor76 <112394180+pejor76@users.noreply.github.com>
+Date:   Mon May 27 23:16:23 2024 +0200
+
+    Merge pull request #11 from avg0020/panel-screen
+    
+    Imagenes añadidas y cambios al recyclerView
+
+[33mcommit 5f53153f181aab1fbdeb081317801948049901a9[m
+Merge: 0c37de3 3c80f6e
+Author: pejor76 <112394180+pejor76@users.noreply.github.com>
+Date:   Mon May 27 23:16:15 2024 +0200
+
+    Merge branch 'master' into panel-screen
+
+[33mcommit 0c37de39f4a57395be4c75f772cfe5a7c57298fd[m
+Author: pejor76 <pejorcr@gmail.com>
+Date:   Mon May 27 23:12:58 2024 +0200
+
+    Imagenes añadidas y cambios al recyclerView
+
+[33mcommit 3c80f6e11771b097946a25edbd81e494b92089bf[m
+Merge: 73816e5 dac9067
+Author: PBB9 <124272067+PBB99@users.noreply.github.com>
+Date:   Mon May 27 21:27:59 2024 +0200
+
+    Merge pull request #10 from avg0020/panel-calendar
+    
+    Panel calendar
+
+[33mcommit dac906793c9f22d6badf53e1f88e8f018f7824aa[m
+Merge: e1d0375 73816e5
+Author: PBB9 <124272067+PBB99@users.noreply.github.com>
+Date:   Mon May 27 21:27:52 2024 +0200
+
+    Merge branch 'master' into panel-calendar
+
+[33mcommit e1d03757c817cf2c21b14d9e4e9eb537f4306415[m
+Author: PBB9 <pablobb9924@gmail.com>
+Date:   Mon May 27 21:26:04 2024 +0200
+
+    2
+
+[33mcommit 0dbe41216727b75402d35c2ff5222eee8b9946c4[m
+Author: PBB9 <pablobb9924@gmail.com>
+Date:   Mon May 27 21:25:52 2024 +0200
+
+    2020
+
+[33mcommit bb93384ae51099d5f843d2aeb29617f387943634[m
+Author: PBB9 <pablobb9924@gmail.com>
+Date:   Mon May 27 20:58:28 2024 +0200
+
+    funcional
+
+[33mcommit 73816e5a118543977c7b0457801ba244cbf3c193[m
+Merge: 9f202f1 7ab2521
+Author: pejor76 <112394180+pejor76@users.noreply.github.com>
+Date:   Sun May 26 21:27:27 2024 +0200
+
+    Merge pull request #9 from avg0020/panel-screen
+    
+    Implementacion de comedor, a partir de panel se ve la informacion de …
+
+[33mcommit 7ab252167a3a3980d4ede9b44fc742c8d658d54b[m
+Author: pejor76 <pejorcr@gmail.com>
+Date:   Sun May 26 21:16:23 2024 +0200
+
+    Implementacion de comedor, a partir de panel se ve la informacion de la actividad y mensajes de comedor
+
+[33mcommit e202501ba09660d603bb72d521575575f49b52f9[m
+Merge: c12fea5 9f202f1
+Author: PBB9 <pablobb9924@gmail.com>
+Date:   Sun May 26 11:34:43 2024 +0200
+
+    Merge branch 'master' into panel-calendar
+
+[33mcommit 9f202f1e00185a25b5a2d7de161412a0ed5da69f[m
+Merge: e4363e8 651d140
+Author: pejor76 <112394180+pejor76@users.noreply.github.com>
+Date:   Sun May 26 11:33:05 2024 +0200
+
+    Merge pull request #8 from avg0020/panel-screen
+    
+    Apartado mensajes
+
+[33mcommit c12fea562448c3c0e042d0ca4454b51e50e46285[m
+Author: PBB9 <pablobb9924@gmail.com>
+Date:   Sun May 26 11:32:57 2024 +0200
+
+    asd
+
+[33mcommit fe7387ddd3c7ebfb5c67a2a67c60ae602501447e[m
+Author: PBB9 <pablobb9924@gmail.com>
+Date:   Sun May 26 11:32:44 2024 +0200
+
+    cambioos
+
+[33mcommit 651d140febce581715d2ca7e94a8ffbf29a6ccc8[m
+Author: pejor76 <pejorcr@gmail.com>
+Date:   Sun May 26 11:32:26 2024 +0200
+
+    Apartado mensajes
+
+[33mcommit e4363e8ff754c6c7190eb4613680e1a860d27ba1[m
+Merge: 71be0e3 d0432e0
+Author: pejor76 <112394180+pejor76@users.noreply.github.com>
+Date:   Thu May 23 22:16:22 2024 +0200
+
+    Merge pull request #7 from avg0020/panel-screen
+    
+    Panel screen
+
+[33mcommit d0432e0bd877c6d1d43ceca6b726361ff2d60d45[m
+Author: pejor76 <pejorcr@gmail.com>
+Date:   Thu May 23 22:15:39 2024 +0200
+
+    Cambios
+
+[33mcommit 412036ec621e6399a8746489c3cb0d9995bbb4bd[m
+Author: pejor76 <pejorcr@gmail.com>
+Date:   Mon May 20 22:14:06 2024 +0200
+
+    Ahora solo se ven las actividades del alumno en el panel
+
+[33mcommit 83c77ef3d57f05dda1d476a4ae165e2d055a7e6e[m
+Merge: b7b6a9c 71be0e3
+Author: pejor76 <pejorcr@gmail.com>
+Date:   Mon May 20 18:43:48 2024 +0200
+
+    Merge branch 'master' into panel-screen
+
+[33mcommit 38ee72b1c9aac0753beac5b4bc16f905078fb738[m
+Author: PBB9 <pablobb9924@gmail.com>
+Date:   Mon May 20 11:11:44 2024 +0200
+
+    calendar
+
+[33mcommit f0488d9ccca56ccc7078887cd9174b3d2e9d60b5[m
+Merge: ceb9d16 71be0e3
+Author: PBB9 <pablobb9924@gmail.com>
+Date:   Mon May 20 09:56:10 2024 +0200
+
+    Merge branch 'master' into panel-calendar
+
+[33mcommit ceb9d16e7297a36a42246358537797b54931c4ea[m
+Author: PBB9 <pablobb9924@gmail.com>
+Date:   Mon May 20 09:53:56 2024 +0200
+
+    asdas
+
+[33mcommit 71be0e3709130d2cf78e6f9ac9c5df3a0ce63c40[m
+Author: pejor76 <112394180+pejor76@users.noreply.github.com>
+Date:   Thu May 16 19:25:45 2024 +0200
+
+    Cambios Modelos(A revisar)
+
+[33mcommit ab489287b787534a31f610f81f44a6426a0f304c[m[33m ([m[1;31morigin/Calendario[m[33m)[m
+Author: ferlain <131766894+ferlain@users.noreply.github.com>
+Date:   Thu May 16 17:45:52 2024 +0200
+
+    Fragment actividades commit
+
+[33mcommit 25b4b35a0bf470cb5567ef68bd87b56c11434e19[m
+Author: PBB9 <pablobb9924@gmail.com>
+Date:   Thu May 16 11:39:21 2024 +0200
+
+    rv
+
+[33mcommit 7de980cebf09e576540d3f0e4b5f68744498e46e[m
+Merge: e49fc2d f5b164b
+Author: pejor76 <112394180+pejor76@users.noreply.github.com>
+Date:   Wed May 15 20:37:50 2024 +0200
+
+    Merge pull request #6 from avg0020/message-screen
+    
+    Message screen
+
+[33mcommit f5b164b25d19309b0145cbf6f4abd5a0f3eb77d1[m[33m ([m[1;31morigin/message-screen[m[33m)[m
+Author: pejor76 <pejorcr@gmail.com>
+Date:   Wed May 15 20:37:12 2024 +0200
+
+    Implementacion de menu en la interfaz
+
+[33mcommit d5a1f0d5d0c1efb0d5fde5ae2d1ac7012f36f549[m
+Author: pejor76 <pejorcr@gmail.com>
+Date:   Wed May 15 20:29:45 2024 +0200
+
+    login pasa parametros
+
+[33mcommit 979c1bc4dff60a958ee11c4eeb0802de9bb45d8a[m
+Merge: bc48c0e e49fc2d
+Author: pejor76 <pejorcr@gmail.com>
+Date:   Wed May 15 18:56:30 2024 +0200
+
+    Merge branch 'master' into message-screen
+
+[33mcommit e49fc2dcc381517a21840ccadf8af258a085b3ad[m
+Merge: 1a6c7ca b62c465
+Author: avg0020 <131160507+avg0020@users.noreply.github.com>
+Date:   Wed May 15 18:55:07 2024 +0200
+
+    Merge pull request #5 from avg0020/panel-screen-functional
+    
+    Panel screen functional
+
+[33mcommit b62c4655d453287ed7a3697b834fc99407aa13c1[m[33m ([m[1;31morigin/panel-screen-functional[m[33m)[m
+Author: avg0020 <avg0020@alu.medac.es>
+Date:   Wed May 15 18:51:44 2024 +0200
+
+    Update muestra pedro
+
+[33mcommit e6dd525d6b7842d5a9c335d898c9353f638e32ad[m
+Author: PBB9 <pablobb9924@gmail.com>
+Date:   Tue May 14 22:15:07 2024 +0200
+
+    actu_pablo
+
+[33mcommit 8a18fb7d3a44daa693cf8f7024822457075b0b93[m
+Author: avg0020 <avg0020@alu.medac.es>
+Date:   Tue May 14 21:08:49 2024 +0200
+
+    basic config
+
+[33mcommit bc48c0ec131d076e6b21c293c06e5e4a18c83298[m
+Author: pejor76 <pejorcr@gmail.com>
+Date:   Sun May 12 19:04:31 2024 +0200
+
+    comienzo mensajes
+
+[33mcommit b7b6a9c10a694920bfe7c22f37f477109c0c06e9[m
+Merge: 7f65665 1a6c7ca
+Author: avg0020 <avg0020@alu.medac.es>
+Date:   Sun May 12 17:27:43 2024 +0200
+
+    Merge branch 'master' into panel-screen
+
+[33mcommit f761ea33e8d544a5111d755faab7b08487261013[m
+Merge: 1ac8b8b 1a6c7ca
+Author: pejor76 <pejorcr@gmail.com>
+Date:   Sun May 12 17:23:06 2024 +0200
+
+    Merge branch 'master' into message-screen
+
+[33mcommit 1a6c7caa974e1b529dc14d05fd830cb3ebc8442d[m
+Author: avg0020 <avg0020@alu.medac.es>
+Date:   Sun May 12 17:19:33 2024 +0200
+
+    .gitignore
+
+[33mcommit 0a0cf4cb8b46b98a67894f0fd726349b28733133[m
+Merge: 1e1dc02 cc87fa1
+Author: pejor76 <112394180+pejor76@users.noreply.github.com>
+Date:   Sun May 12 17:03:48 2024 +0200
+
+    Merge pull request #4 from avg0020/login
+    
+    cambio de nombre 2
+
+[33mcommit cc87fa11d00d4232411a4bb2a06829b4070ec9bc[m[33m ([m[1;31morigin/login[m[33m)[m
+Author: pejor76 <pejorcr@gmail.com>
+Date:   Sun May 12 17:03:24 2024 +0200
+
+    cambio de nombre 2
+
+[33mcommit 1e1dc024ac8f0c67af1d00c2bf8db02e7346f72d[m
+Merge: b3803c8 cf6c021
+Author: pejor76 <112394180+pejor76@users.noreply.github.com>
+Date:   Sun May 12 17:00:10 2024 +0200
+
+    Merge pull request #3 from avg0020/login
+    
+    Login
+
+[33mcommit cf6c021e37a2c4c730b8bab12742badfa1cadd6b[m
+Author: pejor76 <pejorcr@gmail.com>
+Date:   Sun May 12 16:59:45 2024 +0200
+
+    Cambios de nombre
+
+[33mcommit 91354c0cf60a2046f11ce44267f34a15ebe7bc34[m
+Author: pejor76 <pejorcr@gmail.com>
+Date:   Sun May 12 13:02:58 2024 +0200
+
+    Arreglo recyclerview en fragment
+
+[33mcommit a79fce5d11409807518e989b6abb44cd1c92adb9[m
+Author: pejor76 <pejorcr@gmail.com>
+Date:   Sat May 11 19:32:55 2024 +0200
+
+    Arreglos
+
+[33mcommit b3803c8a0bf91dd54bde794ef5d9f1edcc343992[m
+Merge: 87f36ee 7db3484
+Author: pejor76 <112394180+pejor76@users.noreply.github.com>
+Date:   Sat May 11 16:27:23 2024 +0200
+
+    Merge pull request #2 from avg0020/login
+    
+    Login
+
+[33mcommit 7db3484962a8bf8ce1f2d026fe7b8205887a2698[m
+Merge: cf6be4e 87f36ee
+Author: pejor76 <112394180+pejor76@users.noreply.github.com>
+Date:   Sat May 11 16:27:12 2024 +0200
+
+    Merge branch 'master' into login
+
+[33mcommit cf6be4eb92bcc81abbb7705571e08364ad6396ea[m
+Author: pejor76 <pejorcr@gmail.com>
+Date:   Wed May 8 20:17:30 2024 +0200
+
+    Arreglo Base de datos
+
+[33mcommit 6b9e1d39f8a2526e07a2485ba39e73b6dfbce930[m
+Author: pejor76 <pejorcr@gmail.com>
+Date:   Mon May 6 21:02:05 2024 +0200
+
+    login añadido al manifest
+    
+    se esta intentando añadir la funcionalidad
+
+[33mcommit 7f656655d9868717a134f2a6b6a61584d0a69ed2[m
+Author: avg0020 <avg0020@alu.medac.es>
+Date:   Wed May 1 17:17:47 2024 +0200
+
+    Layout paneles
+
+[33mcommit cbb28c4ffffe1986d9d65693f1ab68e9864947e4[m
+Author: avg0020 <avg0020@alu.medac.es>
+Date:   Wed May 1 16:33:20 2024 +0200
+
+    Main rename
+
+[33mcommit 1ac8b8b3fc9009eee271d4e7a487db55577d4eb8[m
+Author: avg0020 <avg0020@alu.medac.es>
+Date:   Wed May 1 16:31:59 2024 +0200
+
+    Main rename
+
+[33mcommit f2c4db79201f00a32482b4078b42a1f8d69d6b4c[m
+Author: avg0020 <avg0020@alu.medac.es>
+Date:   Wed May 1 15:13:22 2024 +0200
+
+    Basic view
+
+[33mcommit 87f36ee5f6ab8d9d151c2ec7fe3067bcfe704671[m
+Author: avg0020 <avg0020@alu.medac.es>
+Date:   Wed May 1 15:08:35 2024 +0200
+
+    basic confi 2
+
+[33mcommit d659bd8cbfbeb8b301dd7e989bc116dd61c6a059[m
+Author: avg0020 <avg0020@alu.medac.es>
+Date:   Wed May 1 14:37:35 2024 +0200
+
+    basic confi
+
+[33mcommit 67e8db60ad3f5f7b145b47707b2fc0e00fb9d8f2[m
+Merge: 8690f9f 05265df
+Author: avg0020 <131160507+avg0020@users.noreply.github.com>
+Date:   Wed May 1 12:58:48 2024 +0200
+
+    Merge pull request #1 from avg0020/login
+    
+    Login
+
+[33mcommit 05265dfba946afc521f6068568509fbc47a4ac5b[m
+Author: avg0020 <avg0020@alu.medac.es>
+Date:   Wed May 1 12:57:46 2024 +0200
+
+    base model
+    
+    Se  hace una primera versión de como quedaría visualmente la pantalla del login
+
+[33mcommit 22fd48009d36543f1c47634d2cc3c1499d3b1709[m
+Author: avg0020 <avg0020@alu.medac.es>
+Date:   Wed May 1 09:40:00 2024 +0200
+
+    migrations
+
+[33mcommit 8ba45fef48da133f80fc82b2c7a63860fd546ba6[m
+Author: avg0020 <avg0020@alu.medac.es>
+Date:   Wed May 1 09:39:37 2024 +0200
+
+    configuration set up
+
+[33mcommit 8690f9f8145753a71e7375acb20c9cad769f2f38[m[33m ([m[1;31morigin/dev[m[33m)[m
+Author: pejor76 <pejorcr@gmail.com>
+Date:   Thu Apr 18 18:55:23 2024 +0200
+
+    first_commit
+    
+    Se hace el commit con el proyecto inicial
