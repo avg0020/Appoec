@@ -527,7 +527,7 @@ public class Calendar extends Fragment {
         });
         return actividades;
     }
-//Obtenemos los hijos de los cuales sacamos las actividades que tienen que ser mostradas para ese usario
+//Obtenemos los hijos de los cuales sacamos las actividades que tienen que ser mostradas para ese usario, obsoleto
     private List<Hijo> mapeoHijos(Usuarios usuario) {
 
     List<Hijo> hijitos=new ArrayList<>();
