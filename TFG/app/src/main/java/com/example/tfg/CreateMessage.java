@@ -138,7 +138,23 @@ public class CreateMessage extends Fragment {
                         }
                     });
                     builder.show();
-
+                }else{
+                    DatabaseReference ref = database.getReference().child("mensajes");
+                    Mensajes mensaje = new Mensajes();
+                    mensaje.setActividad(actividades.get(spin.getSelectedItemPosition()));
+                    mensaje.setEmisor(user.getNombre() + " " + user.getApellido1() + " " + user.getApellido2());
+                    mensaje.setMensaje(et.getText().toString());
+                    ref.push().setValue(mensaje);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                    builder.setMessage("Mensaje Enviado");
+                    builder.setTitle("Enviado");
+                    builder.setNegativeButton("Ok", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // ok button
+                            dialog.cancel();
+                        }
+                    });
+                    builder.show();
                 }
             }
         });
