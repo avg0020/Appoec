@@ -143,23 +143,23 @@
         >
 
         <!-- Día 1 -->
-        <Button
+        <TextView
             android:id="@+id/numeroLunes"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:layout_weight="1"
             android:gravity="center"
             android:text="29"
-            android:textSize="8sp"
+            android:textSize="16sp"
             android:textStyle="bold"
             android:textColor="@color/black"
             android:background="@drawable/button_selector"/>
 
         <!-- Día 2 -->
-        <Button
+        <TextView
             android:id="@+id/numeroMartes"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:layout_weight="1"
             android:gravity="center"
             android:text="10"
@@ -169,10 +169,10 @@
             android:background="@drawable/button_selector"/>
 
         <!-- Día 3 -->
-        <Button
+        <TextView
             android:id="@+id/numeroMiercoles"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:layout_weight="1"
             android:gravity="center"
             android:text="10"
@@ -182,10 +182,10 @@
             android:background="@drawable/button_selector"/>
 
         <!-- Día 4 -->
-        <Button
+        <TextView
             android:id="@+id/numeroJueves"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:layout_weight="1"
             android:gravity="center"
             android:text="10"
@@ -195,10 +195,10 @@
             android:background="@drawable/button_selector"/>
 
         <!-- Día 5 -->
-        <Button
+        <TextView
             android:id="@+id/numeroViernes"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:layout_weight="1"
             android:gravity="center"
             android:text="10"
@@ -208,10 +208,10 @@
             android:background="@drawable/button_selector"/>
 
         <!-- Día 6 -->
-        <Button
+        <TextView
             android:id="@+id/numeroSabado"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:layout_weight="1"
             android:gravity="center"
             android:text="10"
@@ -221,10 +221,10 @@
             android:background="@drawable/button_selector"/>
 
         <!-- Día 7 -->
-        <Button
+        <TextView
             android:id="@+id/numeroDomingo"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:layout_weight="1"
             android:gravity="center"
             android:text="10"

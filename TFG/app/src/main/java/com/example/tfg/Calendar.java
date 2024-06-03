@@ -37,13 +37,13 @@ public class Calendar extends Fragment {
     private TextView textViewCalendario;
     private TextView textViewFecha;
 
-    private Button numeroLunes;
-    private Button numeroMartes;
-    private Button numeroMiercoles;
-    private Button numeroJueves;
-    private Button numeroViernes;
-    private Button numeroSabado;
-    private Button numeroDomingo;
+    private TextView numeroLunes;
+    private TextView numeroMartes;
+    private TextView numeroMiercoles;
+    private TextView numeroJueves;
+    private TextView numeroViernes;
+    private TextView numeroSabado;
+    private TextView numeroDomingo;
     private String mes;
     private ArrayList<Actividades> activitiesList = new ArrayList<>();
     private int dia, mesN, ano;

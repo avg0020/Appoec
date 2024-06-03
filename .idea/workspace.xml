@@ -80,6 +80,16 @@
           <theme>@style/Theme.TFG</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/TFG/app/src/main/res/layout/panel1_parents_main.xml">
+        <config>
+          <theme>@style/Theme.TFG</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/TFG/app/src/main/res/layout/panel2_parents_main.xml">
+        <config>
+          <theme>@style/Theme.TFG</theme>
+        </config>
+      </layout>
     </layouts>
   </component>
   <component name="AutoImportSettings">
@@ -87,6 +97,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="49fbb1c6-0882-4fe1-81b2-48514c7790c8" name="Changes" comment="">
+<<<<<<< HEAD
       <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/InterfazEmp.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/MenuEmpleado.java" afterDir="false" />
@@ -100,6 +111,13 @@
       <change beforePath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/LoginActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/Usuarios.java" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/Usuarios.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TFG/app/src/main/res/layout/interfaz.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/res/layout/interfaz.xml" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/Calendar.java" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/Calendar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/InicioComedor.java" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/InicioComedor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/res/layout/activity_calendario.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/res/layout/activity_calendario.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/res/layout/fragment_inicio_comedor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/res/layout/fragment_inicio_comedor.xml" afterDir="false" />
+>>>>>>> df73626f7f28bbcf4e7d3672a027867bc03f0d49
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -160,6 +178,7 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+<<<<<<< HEAD
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
@@ -174,8 +193,24 @@
     "project.structure.proportion": "0.17",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "AndroidSdkUpdater"
+=======
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;panel-calendar&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Pablo/Documents/copia_APPOEC/Appoec&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;SDK Location&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.17&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;AndroidSdkUpdater&quot;
+>>>>>>> df73626f7f28bbcf4e7d3672a027867bc03f0d49
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\guill\Documents\GitHub\Appoec\TFG\app\src\main\res\drawable" />
