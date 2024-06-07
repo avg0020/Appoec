@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6611b3a2-1c75-49a2-ab5c-189495baed15" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/Calendar.java" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/Calendar.java" afterDir="false" />
     </list>

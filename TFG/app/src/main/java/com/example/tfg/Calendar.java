@@ -584,7 +584,7 @@ public class Calendar extends Fragment {
         DatabaseReference prueba = myRef.child("usuario").child(nom).getRef();
         DatabaseReference profes=myRef.child("usuario").child("actividades").getRef();
         // Añadir un listener para obtener los datos del nodo padre
-        if(user.getRol().toString().equals("usario")){
+        if(user.getRol().toString().equalsIgnoreCase("usuario")){
         prueba.child("hijos").addListenerForSingleValueEvent(new ValueEventListener() {
 
             @Override
@@ -646,43 +646,45 @@ public class Calendar extends Fragment {
 
 
         });
-    }else{
+    }else if (user.getRol().toString().equalsIgnoreCase("empleado")){
             profes.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    for (String actividad : user.getActividades()) {
-                        DatabaseReference reference = myRef.child("actividades").child(actividad).getRef();
+
+                        for (String actividad : user.getActividades()) {
+                            DatabaseReference reference = myRef.child("actividades").child(actividad).getRef();
 
 
-                        reference.addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                // Verifica si la actividad actual tiene un hijo "dias"
-                                if (dataSnapshot.hasChild("dias")) {
-                                    // Obtiene el valor del hijo "dias"
-                                    String diasValue = dataSnapshot.child("dias").getValue(String.class);
-                                    String[] diaExacto = diasValue.split("/");
-                                    // Comprueba si el valor coincide con tu string deseado
-                                    if (diaExacto[0].equalsIgnoreCase(finalNombreDiaDeLaSemana)) {
-                                        mostrar.add(dataSnapshot.getValue(Actividades.class));
-                                        Log.d("TAG", "Se agregó una actividad a la lista: " + dataSnapshot.getValue(Actividades.class).toString());
+                            reference.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    // Verifica si la actividad actual tiene un hijo "dias"
+                                    if (dataSnapshot.hasChild("dias")) {
+                                        // Obtiene el valor del hijo "dias"
+                                        String diasValue = dataSnapshot.child("dias").getValue(String.class);
+                                        String[] diaExacto = diasValue.split("/");
+                                        // Comprueba si el valor coincide con tu string deseado
+                                        if (diaExacto[0].equalsIgnoreCase(finalNombreDiaDeLaSemana)) {
+                                            mostrar.add(dataSnapshot.getValue(Actividades.class));
+                                            Log.d("TAG", "Se agregó una actividad a la lista: " + dataSnapshot.getValue(Actividades.class).toString());
 
-                                    } else if (diaExacto[1].equalsIgnoreCase(finalNombreDiaDeLaSemana)) {
-                                        mostrar.add(dataSnapshot.getValue(Actividades.class));
-                                        Log.d("TAG", "Se agregó una actividad a la lista: " + dataSnapshot.getValue(Actividades.class).getNombre().toString());
+                                        } else if (diaExacto[1].equalsIgnoreCase(finalNombreDiaDeLaSemana)) {
+                                            mostrar.add(dataSnapshot.getValue(Actividades.class));
+                                            Log.d("TAG", "Se agregó una actividad a la lista: " + dataSnapshot.getValue(Actividades.class).getNombre().toString());
+                                        }
                                     }
+                                    callback.onCallback(mostrar);
+
+
                                 }
-                                callback.onCallback(mostrar);
 
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+                                    // Manejar errores de base de datos, si es necesario
+                                }
+                            });
+                        }
 
-                            }
-
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
-                                // Manejar errores de base de datos, si es necesario
-                            }
-                        });
-                    }
                 }
 
 
