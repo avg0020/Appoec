@@ -1,12 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AndroidLayouts">
+    <shared>
+      <config />
+    </shared>
+    <layouts>
+      <layout url="file://$PROJECT_DIR$/TFG/app/src/main/res/layout/activity_correo.xml">
+        <config>
+          <theme>@style/Theme.TFG</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/TFG/app/src/main/res/layout/fragment_correo.xml">
+        <config>
+          <theme>@style/Theme.TFG</theme>
+        </config>
+      </layout>
+    </layouts>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6611b3a2-1c75-49a2-ab5c-189495baed15" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/Calendar.java" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/Calendar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/res/layout/activity_correo.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/res/layout/activity_correo.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
