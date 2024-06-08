@@ -69,6 +69,7 @@ public class MessageAdapter extends FirebaseRecyclerAdapter<
                             snapshot.child("usuario").child(model.getEmisor()).child("nombre").getValue(String.class) +
                             "\n" +
                             model.getMensaje());
+
                     int resourceId = context.getResources().getIdentifier(snapshot.child("actividades").child(model.getActividad()).child("icono").getValue(String.class), "drawable", context.getPackageName());
                     holder.img.setImageResource(resourceId);
                     GradientDrawable grad = (GradientDrawable) holder.container.getBackground().mutate();

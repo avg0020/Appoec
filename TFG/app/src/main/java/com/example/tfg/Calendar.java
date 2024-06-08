@@ -599,6 +599,7 @@ public class Calendar extends Fragment {
 
                 for (int i = 0; i < clavesHijos.size(); i++) {
                     for (String actividad : user.getHijos().get(clavesHijos.get(i).toString()).getActividades()) {
+                        Log.d("actividad",actividad);
                         DatabaseReference reference = myRef.child("actividades").child(actividad).getRef();
 
 

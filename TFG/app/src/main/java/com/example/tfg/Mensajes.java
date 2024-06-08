@@ -3,6 +3,7 @@ package com.example.tfg;
 public class Mensajes {
     private String actividad;
     private String emisor;
+    private String receptor;
     private String mensaje;
 
     // Constructor
@@ -32,5 +33,13 @@ public class Mensajes {
 
     public void setMensaje(String mensaje) {
         this.mensaje = mensaje;
+    }
+
+    public String getReceptor() {
+        return receptor;
+    }
+
+    public void setReceptor(String receptor) {
+        this.receptor = receptor;
     }
 }

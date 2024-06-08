@@ -49,7 +49,7 @@ public class Menu extends Fragment {
     ArrayList<UserModel> datos;
     TextView txt;
 
-    ChildrenActivityAdapter adapter;
+    PanelActivityAdapter adapter;
 
     private DrawerLayout drawerLayout;
 
@@ -165,7 +165,7 @@ public class Menu extends Fragment {
             FirebaseRecyclerOptions<Actividades> options
                     = new FirebaseRecyclerOptions.Builder<Actividades>()
                     .setQuery(myRef.orderByKey().equalTo(actividad), Actividades.class).build();
-            adapter = new ChildrenActivityAdapter(options, getContext(), user);
+            adapter = new PanelActivityAdapter(options, getContext(), user,this);
             adapter.startListening();
             adapters.addAdapter(adapter);
         }

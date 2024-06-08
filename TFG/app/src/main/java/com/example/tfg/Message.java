@@ -77,6 +77,7 @@ public class Message extends Fragment {
         Button button = v.findViewById(R.id.button2);
         Bundle args = getArguments();
         Usuarios user = (Usuarios) args.getSerializable("user");
+        String nom = args.getString("nombre");
         Message mensaje = this;
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,11 +117,19 @@ public class Message extends Fragment {
         for (String actividad:user.getHijos().get("fulanita").getActividades()) {
             FirebaseRecyclerOptions<Mensajes> options
                     = new FirebaseRecyclerOptions.Builder<Mensajes>()
-                    .setQuery(myRef.orderByChild("actividad").equalTo(actividad), Mensajes.class).build();
+                    .setQuery(myRef.orderByChild("receptor").equalTo(actividad), Mensajes.class).build();
             adapter = new MessageAdapter(options,getContext());
             adapter.startListening();
             adapters.addAdapter(adapter);
+            Log.d("texto","texto");
         }
+
+        FirebaseRecyclerOptions<Mensajes> options
+                = new FirebaseRecyclerOptions.Builder<Mensajes>()
+                .setQuery(myRef.orderByChild("receptor").equalTo(nom), Mensajes.class).build();
+        adapter = new MessageAdapter(options,getContext());
+        adapter.startListening();
+        adapters.addAdapter(adapter);
 
         recycleViewUser.setAdapter(adapters);
 

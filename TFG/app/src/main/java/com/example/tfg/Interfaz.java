@@ -47,7 +47,7 @@ public class Interfaz extends AppCompatActivity implements NavigationView.OnNavi
         navView.setCheckedItem(R.id.nav_icon1);
 
         user = (Usuarios) getIntent().getSerializableExtra("Usuarios");
-        nom=  getIntent().getStringExtra("nombre");
+        nom =  getIntent().getStringExtra("nombre");
         // Referencias de los elementos del layout
         fragmentContainer = findViewById(R.id.fragment_container);
 
