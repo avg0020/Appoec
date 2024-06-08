@@ -55,17 +55,31 @@ public class LoginActivity extends AppCompatActivity {
                         String nom = editTextNom.getText().toString();
                         String pass = editTextPass.getText().toString();
                         Toast.makeText(getApplicationContext(), String.valueOf(snapshot.hasChild(nom)), Toast.LENGTH_LONG).show();
+
                         if (!nom.isEmpty() && !pass.isEmpty()){
                             if(snapshot.hasChild(nom) && snapshot.child(nom).child("password").getValue(String.class).equals(pass)) {
                                 Usuarios user = snapshot.child(nom).getValue(Usuarios.class);
-                                Intent i = new Intent(LoginActivity.this, Interfaz.class);
+                                String rol = snapshot.child(nom).child("rol").getValue(String.class);
+                                Intent i;
+
+                                if ("empleado".equals(rol)) {
+                                    i = new Intent(LoginActivity.this, InterfazEmp.class);
+                                } else {
+                                    i = new Intent(LoginActivity.this, Interfaz.class);
+                                }
+
                                 i.putExtra("Usuarios", user);
-                                i.putExtra("nombre",nom);
+                                i.putExtra("nombre", nom);
+
+                                System.out.println("[!]----------------------");
+                                System.out.println(user.getNombre());
+                                System.out.println("[!]----------------------");
+
                                 startActivity(i);
-                            }else{
-                                Toast.makeText(getApplicationContext(), "usuario o contraseña incorrecto", Toast.LENGTH_LONG).show();
+                            } else {
+                                Toast.makeText(getApplicationContext(), "Usuario o contraseña incorrecto", Toast.LENGTH_LONG).show();
                             }
-                        }else {
+                        } else {
                             Toast.makeText(getApplicationContext(), "Debe rellenar todos los campos", Toast.LENGTH_LONG).show();
                         }
                     }

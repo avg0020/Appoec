@@ -2,6 +2,7 @@ package com.example.tfg;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Usuarios implements Serializable {
@@ -14,6 +15,8 @@ public class Usuarios implements Serializable {
     public String apellido2;
     public String rol;
     public Map<String, Hijo> hijos;
+
+    private List<String> actividades;
 
     // Constructor
 
@@ -30,6 +33,14 @@ public class Usuarios implements Serializable {
     }
 
     public Usuarios() {
+    }
+
+    public List<String> getActividades() {
+        return actividades;
+    }
+
+    public void setActividades(List<String> actividades) {
+        this.actividades = actividades;
     }
 
     // Getters y setters

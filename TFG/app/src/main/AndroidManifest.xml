@@ -24,6 +24,10 @@
         <activity
             android:name=".Interfaz"
             android:exported="false" />
+
+        <activity
+            android:name=".InterfazEmp"
+            android:exported="false" />
     </application>
 
 </manifest>

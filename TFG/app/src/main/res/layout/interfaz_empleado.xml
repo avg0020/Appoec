@@ -136,9 +136,9 @@
                 android:layout_width="0dp"
                 android:layout_height="60dp"
                 android:layout_weight="1"
-                android:drawableTop="@drawable/actividades"
+                android:drawableTop="@drawable/correo"
                 android:gravity="center"
-                android:text="Actividades"
+                android:text="Correo"
                 android:textSize="15dp" />
         </LinearLayout>
 

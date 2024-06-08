@@ -33,8 +33,8 @@
         android:id="@+id/textViewFecha"
         android:layout_width="148dp"
         android:layout_height="21dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="36dp"
         android:text="nombre del centro"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -45,7 +45,7 @@
         android:id="@+id/imageView"
         android:layout_width="69dp"
         android:layout_height="32dp"
-        android:layout_marginBottom="44dp"
+        android:layout_marginBottom="39dp"
         android:src="@drawable/mail"
         app:layout_constraintBottom_toTopOf="@+id/view"
         app:layout_constraintEnd_toEndOf="parent"
@@ -62,5 +62,16 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textViewFecha" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycleViewUser"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="160dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view"
+        tools:listitem="@layout/actividad" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
