@@ -72,7 +72,7 @@
             android:background="@color/black" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycleViewUser"
+            android:id="@+id/recyclerAssist"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"

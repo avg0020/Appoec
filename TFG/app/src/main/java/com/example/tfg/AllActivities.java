@@ -76,7 +76,7 @@ public class AllActivities extends Fragment {
         // Inflate the layout for this fragment
         //setSupportActionBar(getView().findViewById(R.id.toolbar));
 
-        RecyclerView recycleViewUser = (RecyclerView) v.findViewById(R.id.recycleViewUser);
+        RecyclerView recycleViewUser = (RecyclerView) v.findViewById(R.id.recyclerAssist);
         // use a linear layout manager (distribucion de vistas configurable)
         //como queremos que se posicionen los elementos en las vistas, como lista o como cuadricula GridLayout
         recycleViewUser.setLayoutManager(new LinearLayoutManager(getContext()));

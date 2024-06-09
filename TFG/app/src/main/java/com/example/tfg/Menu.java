@@ -2,13 +2,8 @@ package com.example.tfg;
 
 import android.os.Bundle;
 
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.ConcatAdapter;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -112,7 +107,7 @@ public class Menu extends Fragment {
         // Inflate the layout for this fragment
         //setSupportActionBar(getView().findViewById(R.id.toolbar));
 
-        RecyclerView recycleViewUser = (RecyclerView) v.findViewById(R.id.recycleViewUser);
+        RecyclerView recycleViewUser = (RecyclerView) v.findViewById(R.id.recyclerAssist);
         // use a linear layout manager (distribucion de vistas configurable)
         //como queremos que se posicionen los elementos en las vistas, como lista o como cuadricula GridLayout
         recycleViewUser.setLayoutManager(new LinearLayoutManager(getContext()));

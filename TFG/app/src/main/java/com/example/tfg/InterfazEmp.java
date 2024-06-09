@@ -85,7 +85,7 @@ public class InterfazEmp extends AppCompatActivity implements NavigationView.OnN
         option2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-           Calendar caleFragment=new Calendar();
+                Calendar caleFragment=new Calendar();
                 Bundle args = new Bundle();
                 args.putSerializable("user", user);
                 args.putString("nombre", nom);

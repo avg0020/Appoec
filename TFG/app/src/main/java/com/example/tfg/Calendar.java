@@ -129,7 +129,7 @@ public class Calendar extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
         activitiesList=getActivities(myRef,activitiesList);
 
-        adapter=new ActivityLocalAdapter(activitiesList,getContext());
+        adapter=new ActivityLocalAdapter(activitiesList,getContext(),this, user.getRol(),nom, user);
         recyclerView.setAdapter(adapter);
 
         comparacion(nom, user, myRef, calendar, new FirebaseCallback() {
