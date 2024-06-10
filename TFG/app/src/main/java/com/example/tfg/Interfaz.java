@@ -184,6 +184,8 @@ public class Interfaz extends AppCompatActivity implements NavigationView.OnNavi
             }
             menuLayout.setVisibility(View.INVISIBLE);
             menuLayoutComedor.setVisibility(View.VISIBLE);
+        } else if (menuItem.getItemId() == R.id.nav_icon6) {
+            this.finish();
         }
         return true;
     }

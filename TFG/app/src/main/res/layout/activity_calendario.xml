@@ -15,7 +15,7 @@
         android:layout_height="59dp"
         android:background="#FE0000"
         android:padding="5dp"
-        android:text="Calenadrio"
+        android:text="Calendario"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="35sp"

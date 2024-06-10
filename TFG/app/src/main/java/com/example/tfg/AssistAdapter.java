@@ -71,7 +71,9 @@ public class AssistAdapter extends FirebaseRecyclerAdapter<
     @Override
     protected void onBindViewHolder(@NonNull ActivityViewholder holder, int i, @NonNull Hijo model) {
         Log.d("kilo","kakita");
-        holder.firstname.setText(model.getApellido1() + " " + model.getApellido2());
+        holder.firstname.setText( name.substring(0, 1).toUpperCase() + name.substring(1) + " "
+                +  model.getApellido1().substring(0, 1).toUpperCase() + model.getApellido1().substring(1) + " " +
+                model.getApellido2().substring(0, 1).toUpperCase() + model.getApellido2().substring(1) );
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

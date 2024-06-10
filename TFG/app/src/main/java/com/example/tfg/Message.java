@@ -2,6 +2,7 @@ package com.example.tfg;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -17,8 +18,11 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -101,25 +105,43 @@ public class Message extends Fragment {
 
 
         ConcatAdapter adapters = new ConcatAdapter();
-
-        for (String actividad:user.getHijos().get("fulanita").getActividades()) {
-            FirebaseRecyclerOptions<Mensajes> options
-                    = new FirebaseRecyclerOptions.Builder<Mensajes>()
-                    .setQuery(myRef.orderByChild("receptor").equalTo(actividad), Mensajes.class).build();
-            adapter = new MessageAdapter(options,getContext());
-            adapter.startListening();
-            adapters.addAdapter(adapter);
-            Log.d("texto","texto");
+        for (Hijo hijo:user.getHijos().values()){
+            for (String actividad:hijo.getActividades()) {
+                Log.d("actividad",actividad);
+                if (!actividad.equalsIgnoreCase("comedor")){
+                    FirebaseRecyclerOptions<Mensajes> options
+                            = new FirebaseRecyclerOptions.Builder<Mensajes>()
+                            .setQuery(myRef.orderByChild("receptor").equalTo(actividad), Mensajes.class).build();
+                    adapter = new MessageAdapter(options,getContext());
+                    adapter.startListening();
+                    adapters.addAdapter(adapter);
+                    Log.d("texto","texto");
+                }
+            }
         }
 
-        FirebaseRecyclerOptions<Mensajes> options
-                = new FirebaseRecyclerOptions.Builder<Mensajes>()
-                .setQuery(myRef.orderByChild("receptor").equalTo(nom), Mensajes.class).build();
-        adapter = new MessageAdapter(options,getContext());
-        adapter.startListening();
-        adapters.addAdapter(adapter);
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot mensajesSnap:snapshot.getChildren()){
+                    if(!mensajesSnap.child("actividad").getValue(String.class).equalsIgnoreCase("comedor") &&
+                            mensajesSnap.child("receptor").getValue(String.class).equalsIgnoreCase(nom) ){
+                        FirebaseRecyclerOptions<Mensajes> options
+                                = new FirebaseRecyclerOptions.Builder<Mensajes>()
+                                .setQuery(myRef.orderByKey().equalTo(mensajesSnap.getKey()), Mensajes.class).build();
+                        adapter = new MessageAdapter(options,getContext());
+                        adapter.startListening();
+                        adapters.addAdapter(adapter);
+                    }
+                }
+                recycleViewUser.setAdapter(adapters);
+            }
 
-        recycleViewUser.setAdapter(adapters);
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         return v;
     }

@@ -27,6 +27,7 @@ public class PanelActivityAdapter extends FirebaseRecyclerAdapter<
     private Context context;
     private Usuarios user;
     private Menu menu = null;
+    private Correo correo = null;
 
     public PanelActivityAdapter(
             @NonNull FirebaseRecyclerOptions<Actividades> options, Context context,Usuarios user, Menu menu)
@@ -35,6 +36,15 @@ public class PanelActivityAdapter extends FirebaseRecyclerAdapter<
         this.context = context;
         this.user = user;
         this.menu = menu;
+    }
+
+    public PanelActivityAdapter(
+            @NonNull FirebaseRecyclerOptions<Actividades> options, Context context,Usuarios user, Correo correo)
+    {
+        super(options);
+        this.context = context;
+        this.user = user;
+        this.correo = correo;
     }
 
     /*
@@ -74,6 +84,20 @@ public class PanelActivityAdapter extends FirebaseRecyclerAdapter<
                     args.putSerializable("user", user);
                     args.putSerializable("activity", model.getKey());
                     FragmentManager fragmentManager = menu.getParentFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.fragment_container, CreateMessage.class, args);
+                    fragmentTransaction.commit();
+
+                }
+            });
+        } else if (correo!=null) {
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Bundle args = new Bundle();
+                    args.putSerializable("user", user);
+                    args.putSerializable("activity", model.getKey());
+                    FragmentManager fragmentManager = correo.getParentFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                     fragmentTransaction.replace(R.id.fragment_container, CreateMessage.class, args);
                     fragmentTransaction.commit();
