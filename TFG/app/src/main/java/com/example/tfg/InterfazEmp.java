@@ -109,7 +109,7 @@ public class InterfazEmp extends AppCompatActivity implements NavigationView.OnN
         option4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AllActivities allActivities = new AllActivities();
+                Correo allActivities = new Correo();
                 Bundle args = new Bundle();
                 args.putSerializable("user", user);
                 args.putString("nombre", nom);

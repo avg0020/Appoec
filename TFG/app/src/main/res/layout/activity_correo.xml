@@ -11,20 +11,20 @@
     <RelativeLayout
         android:id="@+id/headerLayout"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="59dp"
         android:background="#EB753D"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/textViewCorreo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
             android:text="Correo"
             android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            android:layout_centerInParent="true"/>
+            android:textSize="20sp" />
 
     </RelativeLayout>
 
@@ -64,7 +64,7 @@
         app:layout_constraintTop_toBottomOf="@id/textViewFecha" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycleViewUser"
+        android:id="@+id/recycleViewCorreo"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="160dp"
