@@ -90,8 +90,7 @@ public class Calendar extends Fragment {
         String nom=args.getString("nombre");
 
         recyclerView=v.findViewById(R.id.recycleViewCalendar);
-        // Encabezado
-        textViewCalendario = v.findViewById(R.id.textViewCalendario);
+
 
         // Fecha actual
         textViewFecha = v.findViewById(R.id.textViewFecha);

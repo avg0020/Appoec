@@ -115,6 +115,11 @@
           <theme>@style/Theme.TFG</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/TFG/app/src/main/res/layout/panel3_employe_main.xml">
+        <config>
+          <theme>@style/Theme.TFG</theme>
+        </config>
+      </layout>
     </layouts>
   </component>
   <component name="AutoImportSettings">
@@ -123,22 +128,11 @@
   <component name="ChangeListManager">
     <list default="true" id="6611b3a2-1c75-49a2-ab5c-189495baed15" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/Correo.java" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/Correo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/InterfazEmp.java" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/InterfazEmp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/Calendar.java" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/Calendar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/p_calendario.java" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/p_calendario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/res/layout/activity_calendario.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/res/layout/activity_calendario.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TFG/app/src/main/res/layout/activity_correo.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/res/layout/activity_correo.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/res/layout/fragment_all_activities.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/res/layout/fragment_all_activities.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/res/layout/fragment_correo.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/res/layout/fragment_correo.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/res/layout/fragment_info_activity.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/res/layout/fragment_info_activity.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/res/layout/fragment_menu.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/res/layout/fragment_menu.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/res/layout/fragment_menu_empleado.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/res/layout/fragment_menu_empleado.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/res/layout/fragment_message.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/res/layout/fragment_message.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/res/layout/fragment_message_comedor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/res/layout/fragment_message_comedor.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/res/layout/message_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/res/layout/message_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/res/layout/panel1_employe_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/res/layout/panel1_employe_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/res/layout/panel1_parents_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/res/layout/panel1_parents_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/res/layout/panel2_employe_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/res/layout/panel2_employe_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/res/layout/panel2_parents_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/res/layout/panel2_parents_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/res/layout/panel3_employe_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/res/layout/panel3_employe_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/res/layout/fragment_inicio_comedor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/res/layout/fragment_inicio_comedor.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
