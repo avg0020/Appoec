@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.ConcatAdapter;
@@ -17,8 +18,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -36,7 +40,8 @@ public class Correo extends Fragment {// TODO: Rename parameter arguments, choos
     ArrayList<UserModel> datos;
     TextView txt;
 
-    ChildrenActivityAdapter adapter;
+    PanelActivityAdapter adapter;
+    Correo correo;
 
     private DrawerLayout drawerLayout;
 
@@ -73,6 +78,7 @@ public class Correo extends Fragment {// TODO: Rename parameter arguments, choos
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.activity_correo, container, false);
+        correo = this;
 
         Bundle args = getArguments();
         Usuarios user = (Usuarios) args.getSerializable("user");
@@ -89,15 +95,28 @@ public class Correo extends Fragment {// TODO: Rename parameter arguments, choos
     private void loadRecycler(Usuarios user, DatabaseReference myRef, RecyclerView recycleViewUser) {
         ConcatAdapter adapters = new ConcatAdapter();
 
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot actividadesSnap:snapshot.getChildren()){
+                    if(!user.getActividades().contains(actividadesSnap.getKey())){
+                        FirebaseRecyclerOptions<Actividades> options
+                                = new FirebaseRecyclerOptions.Builder<Actividades>()
+                                .setQuery(myRef.orderByKey().equalTo(actividadesSnap.getKey()), Actividades.class).build();
+                        adapter = new PanelActivityAdapter(options, getContext(), user, correo);
+                        adapter.startListening();
+                        adapters.addAdapter(adapter);
+                    }
+                }
+                recycleViewUser.setAdapter(adapters);
+            }
 
-            FirebaseRecyclerOptions<Actividades> options
-                    = new FirebaseRecyclerOptions.Builder<Actividades>()
-                    .setQuery(myRef.orderByKey(), Actividades.class).build();
-            adapter = new ChildrenActivityAdapter(options, getContext(), user);
-            adapter.startListening();
-            adapters.addAdapter(adapter);
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
-        recycleViewUser.setAdapter(adapters);
+            }
+        });
+
     }
 
     @Override

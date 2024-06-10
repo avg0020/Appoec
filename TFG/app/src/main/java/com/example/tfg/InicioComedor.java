@@ -4,6 +4,8 @@ import android.app.DatePickerDialog;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.ConcatAdapter;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -41,6 +43,7 @@ public class InicioComedor extends Fragment {
     private RecyclerView.LayoutManager layoutManager;
     private ComidasAdapter adaptador;
     private RecyclerView recyclerView;
+    private  Button messageButton;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -86,9 +89,14 @@ public class InicioComedor extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v=inflater.inflate(R.layout.fragment_inicio_comedor, container, false);
+        Bundle args = getArguments();
+        Usuarios user = (Usuarios) args.getSerializable("user");
+        InicioComedor inicioComedor = this;
+
         recyclerView=v.findViewById(R.id.recycleViewMenuComedor);
         // Fecha actual
         textViewFecha = v.findViewById(R.id.textViewFechac);
+        messageButton = v.findViewById(R.id.messageButton);
 
         // Numeros de la semana
         numeroLunes = v.findViewById(R.id.cnumeroLunes);
@@ -118,6 +126,19 @@ public class InicioComedor extends Fragment {
         adaptador = new ComidasAdapter(options,getContext());
         adaptador.startListening();
         recyclerView.setAdapter(adaptador);
+
+        messageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle args = new Bundle();
+                args.putSerializable("user", user);
+                args.putSerializable("activity", "comedor");
+                FragmentManager fragmentManager = inicioComedor.getParentFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_container, CreateMessage.class, args);
+                fragmentTransaction.commit();
+            }
+        });
         textViewFecha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

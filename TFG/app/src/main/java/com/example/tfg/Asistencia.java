@@ -113,13 +113,12 @@ public class Asistencia extends Fragment {
                                     adapter = new AssistAdapter(options, hijoSnap.getKey(), usuarioSnap.getKey());
                                     adapter.startListening();
                                     adapters.addAdapter(adapter);
-                                    recycleViewUser.setAdapter(adapter);
-
                                 }
                             }
                         }
                     }
                 }
+                recycleViewUser.setAdapter(adapters);
                 Log.d("kilo",String.valueOf(adapters.getAdapters().size()));
 
             }
@@ -148,24 +147,25 @@ public class Asistencia extends Fragment {
                     mensaje.setReceptor(assistAdapter.getParent());
                     ref.push().setValue(mensaje);
 
-                    AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
-                    builder.setMessage("Se han enviado las asistencias");
-                    builder.setTitle("Asistencias");
-                    builder.setNegativeButton("Ok", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            // ok button
-                            Bundle args = new Bundle();
-                            args.putSerializable("actividad", actividad);
-                            args.putSerializable("user", user);
-                            args.putString("nombre", username);
-                            FragmentTransaction fragmentTransaction = fragManger.beginTransaction();
-                            fragmentTransaction.replace(R.id.fragment_container, Calendar.class, args);
-                            fragmentTransaction.commit();
-                            dialog.cancel();
-                        }
-                    });
-                    builder.show();
+
                 }
+                AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                builder.setMessage("Se han enviado las asistencias");
+                builder.setTitle("Asistencias");
+                builder.setNegativeButton("Ok", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // ok button
+                        Bundle args = new Bundle();
+                        args.putSerializable("actividad", actividad);
+                        args.putSerializable("user", user);
+                        args.putString("nombre", username);
+                        FragmentTransaction fragmentTransaction = fragManger.beginTransaction();
+                        fragmentTransaction.replace(R.id.fragment_container, Calendar.class, args);
+                        fragmentTransaction.commit();
+                        dialog.cancel();
+                    }
+                });
+                builder.show();
             }
         });
 
