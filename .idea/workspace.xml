@@ -20,6 +20,11 @@
           <theme>@style/Theme.TFG</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/TFG/app/src/main/res/layout/asistencia.xml">
+        <config>
+          <theme>@style/Theme.TFG</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/TFG/app/src/main/res/layout/fragment_all_activities.xml">
         <config>
           <theme>@style/Theme.TFG</theme>
@@ -61,6 +66,11 @@
         </config>
       </layout>
       <layout url="file://$PROJECT_DIR$/TFG/app/src/main/res/layout/fragment_message_comedor.xml">
+        <config>
+          <theme>@style/Theme.TFG</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/TFG/app/src/main/res/layout/fragment_message_empleado.xml">
         <config>
           <theme>@style/Theme.TFG</theme>
         </config>
@@ -120,6 +130,11 @@
           <theme>@style/Theme.TFG</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/TFG/app/src/main/res/menu/desplegable.xml">
+        <config>
+          <theme>@style/Theme.TFG</theme>
+        </config>
+      </layout>
     </layouts>
   </component>
   <component name="AutoImportSettings">
@@ -127,12 +142,46 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6611b3a2-1c75-49a2-ab5c-189495baed15" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TFG/app/src/main/ic_launcher-playstore.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TFG/app/src/main/res/drawable-hdpi/ic_stat_name.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TFG/app/src/main/res/drawable-mdpi/ic_stat_name.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TFG/app/src/main/res/drawable-xhdpi/ic_stat_name.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TFG/app/src/main/res/drawable-xxhdpi/ic_stat_name.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TFG/app/src/main/res/drawable-xxxhdpi/ic_stat_name.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TFG/app/src/main/res/drawable/boton_enviar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TFG/app/src/main/res/drawable/bubble_background.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TFG/app/src/main/res/drawable/recomenda.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TFG/app/src/main/res/mipmap-hdpi/ic_launcher_foreground.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TFG/app/src/main/res/mipmap-mdpi/ic_launcher_foreground.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TFG/app/src/main/res/mipmap-xhdpi/ic_launcher_foreground.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TFG/app/src/main/res/mipmap-xxhdpi/ic_launcher_foreground.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TFG/app/src/main/res/mipmap-xxxhdpi/ic_launcher_foreground.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TFG/app/src/main/res/values/ic_launcher_background.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/Calendar.java" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/Calendar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/p_calendario.java" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/java/com/example/tfg/p_calendario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/res/layout/activity_calendario.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/res/layout/activity_calendario.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/res/layout/activity_correo.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/res/layout/activity_correo.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/res/drawable/ic_launcher_background.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/res/drawable/ic_launcher_background.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/res/drawable/ic_launcher_foreground.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/res/drawable/ic_launcher_foreground.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/res/drawable/rectangle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/res/drawable/rectangle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/res/layout/asistencia.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/res/layout/asistencia.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/res/layout/fragment_create_message.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/res/layout/fragment_create_message.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TFG/app/src/main/res/layout/fragment_inicio_comedor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/res/layout/fragment_inicio_comedor.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/res/layout/fragment_recomendaciones_comedor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/res/layout/fragment_recomendaciones_comedor.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/res/layout/interfaz.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/res/layout/interfaz.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/res/layout/interfaz_empleado.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/res/layout/interfaz_empleado.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/res/mipmap-hdpi/ic_launcher.webp" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/res/mipmap-hdpi/ic_launcher.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/res/mipmap-hdpi/ic_launcher_round.webp" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/res/mipmap-hdpi/ic_launcher_round.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/res/mipmap-mdpi/ic_launcher.webp" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/res/mipmap-mdpi/ic_launcher.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/res/mipmap-mdpi/ic_launcher_round.webp" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/res/mipmap-mdpi/ic_launcher_round.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/res/mipmap-xhdpi/ic_launcher.webp" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/res/mipmap-xhdpi/ic_launcher.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/res/mipmap-xhdpi/ic_launcher_round.webp" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/res/mipmap-xhdpi/ic_launcher_round.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/res/mipmap-xxhdpi/ic_launcher.webp" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/res/mipmap-xxhdpi/ic_launcher.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.webp" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.webp" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TFG/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/TFG/app/src/main/res/values/strings.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,12 +212,19 @@
       </state>
     </system>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="resourceFile" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 3
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
   <component name="ProjectId" id="2hgLYbhscnFL4p2TSSCSErvqqxf" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -177,17 +233,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "master"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Pablo\Documents\GitHub\Appoec\TFG\app\src\main\res\drawable" />
+    </key>
+  </component>
   <component name="RunManager" selected="Android App.app">
     <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App">
       <module name="TFG.app.main" />

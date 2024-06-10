@@ -156,7 +156,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="29"
-            android:textSize="8sp"
+            android:textSize="16sp"
             android:textStyle="bold"
             android:textColor="@color/black"
             android:background="@drawable/button_selector"/>
@@ -271,6 +271,8 @@
         android:layout_marginStart="160dp"
         android:layout_marginEnd="160dp"
         android:text="Enviar Mensaje"
+        android:backgroundTint="@drawable/boton_enviar"
+        android:background="@drawable/boton_enviar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="parent"
