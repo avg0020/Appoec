@@ -8,38 +8,44 @@
     tools:context=".p_calendario">
 
     <!-- Encabezado -->
-    <RelativeLayout
-        android:id="@+id/headerLayout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="#EB753D"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+
 
         <TextView
-            android:id="@+id/textViewCorreo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/tvHeader"
+            android:layout_width="match_parent"
+            android:layout_height="59dp"
+            android:background="#EB6628"
+            android:padding="5dp"
             android:text="Correo"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            android:layout_centerInParent="true"/>
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="35sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    </RelativeLayout>
 
+    <View
+        android:id="@+id/vLineHeader"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="#A14600"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvHeader" />
 
     <TextView
         android:id="@+id/textViewFecha"
         android:layout_width="148dp"
         android:layout_height="21dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
         android:text="nombre del centro"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/headerLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/tvHeader" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -64,7 +70,7 @@
         app:layout_constraintTop_toBottomOf="@id/textViewFecha" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerAssist"
+        android:id="@+id/recycleViewCorreo"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="160dp"

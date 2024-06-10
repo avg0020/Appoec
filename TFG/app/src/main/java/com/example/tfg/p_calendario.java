@@ -32,13 +32,13 @@ public class p_calendario extends AppCompatActivity {
     private TextView textViewViernes;
     private TextView textViewSabado;
     private TextView textViewDomingo;
-    private Button numeroLunes;
-    private Button numeroMartes;
-    private Button numeroMiercoles;
-    private Button numeroJueves;
-    private Button numeroViernes;
-    private Button numeroSabado;
-    private Button numeroDomingo;
+    private TextView numeroLunes;
+    private TextView numeroMartes;
+    private TextView numeroMiercoles;
+    private TextView numeroJueves;
+    private TextView numeroViernes;
+    private TextView numeroSabado;
+    private TextView numeroDomingo;
     private String mes;
    private ActivityAdapter adapter;
     private int dia,mesN,ano;
@@ -53,8 +53,7 @@ public class p_calendario extends AppCompatActivity {
         setContentView(R.layout.activity_calendario);
 
 
-        // Encabezado
-       textViewCalendario = findViewById(R.id.textViewCalendario);
+
 
         // Fecha actual
          textViewFecha = findViewById(R.id.textViewFecha);
