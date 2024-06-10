@@ -157,12 +157,14 @@ public class Menu extends Fragment {
         ConcatAdapter adapters = new ConcatAdapter();
 
         for (String actividad: user.getHijos().get(hijo).getActividades()) {
-            FirebaseRecyclerOptions<Actividades> options
-                    = new FirebaseRecyclerOptions.Builder<Actividades>()
-                    .setQuery(myRef.orderByKey().equalTo(actividad), Actividades.class).build();
-            adapter = new PanelActivityAdapter(options, getContext(), user,this);
-            adapter.startListening();
-            adapters.addAdapter(adapter);
+            if (!actividad.equalsIgnoreCase("comedor")) {
+                FirebaseRecyclerOptions<Actividades> options
+                        = new FirebaseRecyclerOptions.Builder<Actividades>()
+                        .setQuery(myRef.orderByKey().equalTo(actividad), Actividades.class).build();
+                adapter = new PanelActivityAdapter(options, getContext(), user, this);
+                adapter.startListening();
+                adapters.addAdapter(adapter);
+            }
         }
         recycleViewUser.setAdapter(adapters);
     }

@@ -108,7 +108,7 @@ public class AllActivities extends Fragment {
 
         FirebaseRecyclerOptions<Actividades> options
                 = new FirebaseRecyclerOptions.Builder<Actividades>()
-                .setQuery(myRef, Actividades.class).build();
+                .setQuery(myRef.orderByChild("actividad").equalTo(true), Actividades.class).build();
         adapter = new ChildrenActivityAdapter(options,getContext(),user, this);
         adapter.startListening();
         adapters.addAdapter(adapter);
