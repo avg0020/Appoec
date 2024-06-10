@@ -74,21 +74,10 @@ public class Message extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_message, container, false);
-        Button button = v.findViewById(R.id.button2);
         Bundle args = getArguments();
         Usuarios user = (Usuarios) args.getSerializable("user");
-        Message mensaje = this;
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Bundle args = new Bundle();
-                args.putSerializable("user", user);
-                FragmentManager fragmentManager = mensaje.getParentFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_container, CreateMessage.class, args);
-                fragmentTransaction.commit();
-            }
-        });
+        String nom = args.getString("nombre");
+
         /*
         TextView date = (TextView) v.findViewById(R.id.tvDate);
         date.setText(user.getNombre());
@@ -116,11 +105,19 @@ public class Message extends Fragment {
         for (String actividad:user.getHijos().get("fulanita").getActividades()) {
             FirebaseRecyclerOptions<Mensajes> options
                     = new FirebaseRecyclerOptions.Builder<Mensajes>()
-                    .setQuery(myRef.orderByChild("actividad").equalTo(actividad), Mensajes.class).build();
+                    .setQuery(myRef.orderByChild("receptor").equalTo(actividad), Mensajes.class).build();
             adapter = new MessageAdapter(options,getContext());
             adapter.startListening();
             adapters.addAdapter(adapter);
+            Log.d("texto","texto");
         }
+
+        FirebaseRecyclerOptions<Mensajes> options
+                = new FirebaseRecyclerOptions.Builder<Mensajes>()
+                .setQuery(myRef.orderByChild("receptor").equalTo(nom), Mensajes.class).build();
+        adapter = new MessageAdapter(options,getContext());
+        adapter.startListening();
+        adapters.addAdapter(adapter);
 
         recycleViewUser.setAdapter(adapters);
 

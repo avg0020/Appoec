@@ -1,31 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CreateMessage">
+    tools:context=".Asistencia">
 
     <!-- TODO: Update blank fragment layout -->
 
-    <EditText
-        android:id="@+id/editTextText"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerAssist"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="112dp"
-        android:layout_marginTop="318dp"
-        android:ems="10"
-        android:inputType="text"
+        android:layout_height="492dp"
+        android:layout_marginTop="76dp"
+        android:background="@color/black"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/asistencia" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnAssist"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="160dp"
-        android:layout_marginBottom="208dp"
+        android:layout_marginBottom="84dp"
         android:text="Button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

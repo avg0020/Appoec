@@ -85,7 +85,7 @@ public class InterfazEmp extends AppCompatActivity implements NavigationView.OnN
         option2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-           Calendar caleFragment=new Calendar();
+                Calendar caleFragment=new Calendar();
                 Bundle args = new Bundle();
                 args.putSerializable("user", user);
                 args.putString("nombre", nom);
@@ -109,12 +109,12 @@ public class InterfazEmp extends AppCompatActivity implements NavigationView.OnN
         option4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Correo allActivities = new Correo();
+                Correo correo = new Correo();
                 Bundle args = new Bundle();
                 args.putSerializable("user", user);
                 args.putString("nombre", nom);
-                allActivities.setArguments(args);
-                changeFragment(allActivities);
+                correo.setArguments(args);
+                changeFragment(correo);
             }
         });
 
@@ -173,16 +173,8 @@ public class InterfazEmp extends AppCompatActivity implements NavigationView.OnN
             }
             menuLayout.setVisibility(View.VISIBLE);
             menuLayoutComedor.setVisibility(View.INVISIBLE);
-        } else if (menuItem.getItemId() == R.id.nav_icon2) {
-            if (menuLayoutComedor.getVisibility() == View.INVISIBLE){
-                InicioComedor inicioComedor = new InicioComedor();
-                Bundle args = new Bundle();
-                args.putSerializable("user", user);
-                inicioComedor.setArguments(args);
-                changeFragment(inicioComedor);
-            }
-            menuLayout.setVisibility(View.INVISIBLE);
-            menuLayoutComedor.setVisibility(View.VISIBLE);
+        } else if (menuItem.getItemId() == R.id.nav_icon6) {
+            this.finish();
         }
         return true;
     }

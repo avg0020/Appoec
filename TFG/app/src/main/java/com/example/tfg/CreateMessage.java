@@ -25,13 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Map;
-import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import java.util.concurrent.CountDownLatch;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -48,6 +42,7 @@ public class CreateMessage extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private String teacherName;
 
     public CreateMessage() {
         // Required empty public constructor
@@ -80,6 +75,32 @@ public class CreateMessage extends Fragment {
         }
     }
 
+    public interface OnGetDataListener {
+        //this is for callbacks
+        void onSuccess(DataSnapshot dataSnapshotValue);
+    }
+
+    private void getTeacher(OnGetDataListener interfaz) {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference().child("usuario");
+
+
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                boolean found = false;
+                interfaz.onSuccess(snapshot);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        Log.d("encontrado","fuera");
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -88,39 +109,11 @@ public class CreateMessage extends Fragment {
 
         Bundle args = getArguments();
         Usuarios user = (Usuarios) args.getSerializable("user");
-        Spinner spin = v.findViewById(R.id.sp);
+        String activity = args.getString("activity");
         EditText et = v.findViewById(R.id.editTextText);
         Button bt = v.findViewById(R.id.button);
-        ArrayList<String> actividades = new ArrayList<String>();
-        for (Map.Entry<String, Hijo> entry : user.getHijos().entrySet()) {
-            for (String actividad: entry.getValue().getActividades()){
-                actividades.add(actividad);
-            }
-        }
-
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference().child("actividades");
-
-        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                ArrayList<String> actividadesNom = new ArrayList<String>();
-                for (String act: actividades){
-                    if(snapshot.hasChild(act)){
-                        actividadesNom.add(snapshot.child(act).child("nombre").getValue(String.class) + " " + snapshot.child(act).child("categoria").getValue(String.class));
-                    }
-                }
-                ArrayAdapter<String> adap = new ArrayAdapter<>(v.getContext(), android.R.layout.simple_spinner_dropdown_item ,actividadesNom);
-                adap.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                spin.setAdapter(adap);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
 
         bt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -138,7 +131,42 @@ public class CreateMessage extends Fragment {
                         }
                     });
                     builder.show();
+                }else{
+                    DatabaseReference ref = database.getReference().child("mensajes");
+                    Mensajes mensaje = new Mensajes();
+                    getTeacher( new OnGetDataListener() {
+                        @Override
+                        public void onSuccess(DataSnapshot dataSnapshotValue) {
+                            for (DataSnapshot usuarioSnap:dataSnapshotValue.getChildren()){
+                                if (usuarioSnap.child("rol").getValue(String.class).equalsIgnoreCase("empleado")){
+                                    for (DataSnapshot activitiesSnap:usuarioSnap.child("actividades").getChildren()){
+                                        if(activitiesSnap.getValue(String.class).equalsIgnoreCase(activity)){
+                                            Log.d("actividad","actividad");
+                                            mensaje.setActividad(activity);
+                                            Log.d("actividad",activity);
+                                            mensaje.setEmisor(user.getNombre() + " " + user.getApellido1() + " " + user.getApellido2());
+                                            Log.d("actividad",user.getNombre());
+                                            mensaje.setMensaje(et.getText().toString());
+                                            Log.d("actividad",et.getText().toString());
+                                            mensaje.setReceptor(usuarioSnap.getKey());
+                                            ref.push().setValue(mensaje);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    });
 
+                    AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                    builder.setMessage("Mensaje Enviado");
+                    builder.setTitle("Enviado");
+                    builder.setNegativeButton("Ok", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // ok button
+                            dialog.cancel();
+                        }
+                    });
+                    builder.show();
                 }
             }
         });

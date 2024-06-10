@@ -128,7 +128,7 @@ public class Calendar extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
         activitiesList=getActivities(myRef,activitiesList);
 
-        adapter=new ActivityLocalAdapter(activitiesList,getContext());
+        adapter=new ActivityLocalAdapter(activitiesList,getContext(),this, user.getRol(),nom, user);
         recyclerView.setAdapter(adapter);
 
         comparacion(nom, user, myRef, calendar, new FirebaseCallback() {
@@ -601,6 +601,7 @@ public class Calendar extends Fragment {
                 for (int i = 0; i < clavesHijos.size(); i++) {
 
                     for (String actividad : user.getHijos().get(clavesHijos.get(i).toString()).getActividades()) {
+                        Log.d("actividad",actividad);
                         DatabaseReference reference = myRef.child("actividades").child(actividad).getRef();
 
 

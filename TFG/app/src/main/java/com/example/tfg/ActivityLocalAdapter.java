@@ -3,14 +3,19 @@ package com.example.tfg;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tfg.Actividades;
@@ -21,10 +26,18 @@ public class ActivityLocalAdapter extends RecyclerView.Adapter<ActivityLocalAdap
 
     private List<Actividades> actividadesList;
     private Context context;
+    private com.example.tfg.Calendar calendar;
+    private String rol;
+    private String userName;
+    private Usuarios user;
 
-    public ActivityLocalAdapter(List<Actividades> actividadesList, Context context) {
+    public ActivityLocalAdapter(List<Actividades> actividadesList, Context context, Calendar calendar,String rol, String userName, Usuarios user) {
         this.actividadesList = actividadesList;
         this.context = context;
+        this.calendar = calendar;
+        this.rol = rol;
+        this.userName = userName;
+        this.user = user;
     }
 
     @NonNull
@@ -43,6 +56,22 @@ public class ActivityLocalAdapter extends RecyclerView.Adapter<ActivityLocalAdap
         holder.img.setImageResource(resourceId);
         GradientDrawable grad = (GradientDrawable) holder.container.getBackground().mutate();
         grad.setColor(Color.parseColor(actividad.getColor()));
+
+        if (this.rol.equalsIgnoreCase("empleado")) {
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Bundle args = new Bundle();
+                    args.putSerializable("actividad", actividad);
+                    args.putString("username",userName);
+                    args.putSerializable("user",user);
+                    FragmentManager fragmentManager = calendar.getParentFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.fragment_container, Asistencia.class, args);
+                    fragmentTransaction.commit();
+                }
+            });
+        }
     }
 
     @Override

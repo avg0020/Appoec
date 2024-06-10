@@ -76,7 +76,7 @@ public class AllActivities extends Fragment {
         // Inflate the layout for this fragment
         //setSupportActionBar(getView().findViewById(R.id.toolbar));
 
-        RecyclerView recycleViewUser = (RecyclerView) v.findViewById(R.id.recycleViewUser);
+        RecyclerView recycleViewUser = (RecyclerView) v.findViewById(R.id.recyclerAssist);
         // use a linear layout manager (distribucion de vistas configurable)
         //como queremos que se posicionen los elementos en las vistas, como lista o como cuadricula GridLayout
         recycleViewUser.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -108,7 +108,7 @@ public class AllActivities extends Fragment {
 
         FirebaseRecyclerOptions<Actividades> options
                 = new FirebaseRecyclerOptions.Builder<Actividades>()
-                .setQuery(myRef, Actividades.class).build();
+                .setQuery(myRef.orderByChild("actividad").equalTo(true), Actividades.class).build();
         adapter = new ChildrenActivityAdapter(options,getContext(),user, this);
         adapter.startListening();
         adapters.addAdapter(adapter);

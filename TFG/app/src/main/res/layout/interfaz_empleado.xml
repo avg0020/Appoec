@@ -157,7 +157,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        app:menu="@menu/desplegable"
+        app:menu="@menu/desplegable_prof"
         tools:visibility="gone" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

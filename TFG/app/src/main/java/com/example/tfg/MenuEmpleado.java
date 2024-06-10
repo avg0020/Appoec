@@ -73,7 +73,7 @@ public class MenuEmpleado extends Fragment {
         Bundle args = getArguments();
         Usuarios user = (Usuarios) args.getSerializable("user");
 
-        RecyclerView recycleViewUser = (RecyclerView) v.findViewById(R.id.recycleViewUser);
+        RecyclerView recycleViewUser = (RecyclerView) v.findViewById(R.id.recyclerAssist);
         recycleViewUser.setLayoutManager(new LinearLayoutManager(getContext()));
         recycleViewUser.setHasFixedSize(false);
 
