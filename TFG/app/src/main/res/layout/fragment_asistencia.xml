@@ -21,9 +21,9 @@
         android:id="@+id/btnAssist"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="160dp"
-        android:layout_marginBottom="84dp"
-        android:text="Button"
+        android:layout_marginStart="112dp"
+        android:layout_marginBottom="80dp"
+        android:text="Confirmar Asistencia"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
