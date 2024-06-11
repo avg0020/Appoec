@@ -3,11 +3,9 @@ package com.example.tfg;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -29,7 +27,6 @@ public class ComidasAdapter extends FirebaseRecyclerAdapter<Comidas,ComidasAdapt
 
     @Override
     protected void onBindViewHolder(@NonNull ComidasAdapter.comidasViewholder comidasViewholder, int i, @NonNull Comidas comidas) {
-        Log.d("Impresio",comidas.getM1()+"hoaaaaa");
         comidasViewholder.plato.setText(comidas.getM1());
 
 
@@ -48,7 +45,6 @@ public class ComidasAdapter extends FirebaseRecyclerAdapter<Comidas,ComidasAdapt
             grad.setColor(Color.parseColor("#6B78C217"));
         }
 
-
     }
 
     @NonNull
@@ -61,8 +57,6 @@ public class ComidasAdapter extends FirebaseRecyclerAdapter<Comidas,ComidasAdapt
                 .inflate(R.layout.menuscomedor, parent, false);
         return new ComidasAdapter.comidasViewholder(view);
     }
-
-
 
     class comidasViewholder
             extends RecyclerView.ViewHolder {

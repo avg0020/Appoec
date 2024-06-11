@@ -5,6 +5,7 @@ public class Mensajes {
     private String emisor;
     private String receptor;
     private String mensaje;
+    private String codigo;
 
     // Constructor
     public Mensajes() {
@@ -41,5 +42,12 @@ public class Mensajes {
 
     public void setReceptor(String receptor) {
         this.receptor = receptor;
+    }
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 }

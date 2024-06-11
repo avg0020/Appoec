@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -124,6 +123,7 @@ public class InterfazEmp extends AppCompatActivity implements NavigationView.OnN
                 InicioComedor inicioComedor = new InicioComedor();
                 Bundle args = new Bundle();
                 args.putSerializable("user", user);
+                args.putString("nombre", nom);
                 inicioComedor.setArguments(args);
                 changeFragment(inicioComedor);
             }
@@ -162,7 +162,6 @@ public class InterfazEmp extends AppCompatActivity implements NavigationView.OnN
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        Toast.makeText(this, "Hola", Toast.LENGTH_SHORT).show();
         if(menuItem.getItemId() == R.id.nav_icon1) {
             if (menuLayout.getVisibility() == View.INVISIBLE){
                 Menu menuFragment = new Menu();

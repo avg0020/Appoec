@@ -2,25 +2,18 @@ package com.example.tfg;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 import androidx.annotation.NonNull;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.ConcatAdapter;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -129,7 +122,7 @@ public class Calendar extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
         activitiesList=getActivities(myRef,activitiesList);
 
-        adapter=new ActivityLocalAdapter(activitiesList,getContext(),this, user.getRol(),nom, user);
+        adapter=new ActivityLocalAdapter(activitiesList,getContext(),this, user.getRol(),nom, user, String.valueOf(dia) +"/"+String.valueOf(mesN+1)+"/"+String.valueOf(ano));
         recyclerView.setAdapter(adapter);
 
         comparacion(nom, user, myRef, calendar, new FirebaseCallback() {
@@ -595,14 +588,12 @@ public class Calendar extends Fragment {
                     for (DataSnapshot hijoSnapshot : dataSnapshot.getChildren())
                         clavesHijos.add(hijoSnapshot.getKey());
                 } else {
-                    Log.d("Firebase", "No hay datos disponibles");
                 }
                 // Contador para verificar cuando todas las actividades hayan sido procesadas
 
                 for (int i = 0; i < clavesHijos.size(); i++) {
 
                     for (String actividad : user.getHijos().get(clavesHijos.get(i).toString()).getActividades()) {
-                        Log.d("actividad",actividad);
                         DatabaseReference reference = myRef.child("actividades").child(actividad).getRef();
 
 
@@ -625,7 +616,6 @@ public class Calendar extends Fragment {
                                         if(!containActivity){
                                             mostrar.add(dataSnapshot.getValue(Actividades.class));
                                         }
-                                        Log.d("TAG", "Se agregó una actividad a la lista: " + dataSnapshot.getValue(Actividades.class).toString());
                                     }
 
                                         // Comprueba si el valor coincide con tu string deseado
@@ -683,11 +673,9 @@ public class Calendar extends Fragment {
                                         // Comprueba si el valor coincide con tu string deseado
                                         if (diaExacto[0].equalsIgnoreCase(finalNombreDiaDeLaSemana)) {
                                             mostrar.add(dataSnapshot.getValue(Actividades.class));
-                                            Log.d("TAG", "Se agregó una actividad a la lista: " + dataSnapshot.getValue(Actividades.class).toString());
 
                                         } else if (diaExacto[1].equalsIgnoreCase(finalNombreDiaDeLaSemana)) {
                                             mostrar.add(dataSnapshot.getValue(Actividades.class));
-                                            Log.d("TAG", "Se agregó una actividad a la lista: " + dataSnapshot.getValue(Actividades.class).getNombre().toString());
                                         }
                                     }
                                     callback.onCallback(mostrar);

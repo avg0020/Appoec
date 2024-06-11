@@ -2,7 +2,6 @@ package com.example.tfg;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -54,7 +53,6 @@ public class LoginActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         String nom = editTextNom.getText().toString();
                         String pass = editTextPass.getText().toString();
-                        Toast.makeText(getApplicationContext(), String.valueOf(snapshot.hasChild(nom)), Toast.LENGTH_LONG).show();
 
                         if (!nom.isEmpty() && !pass.isEmpty()){
                             if(snapshot.hasChild(nom) && snapshot.child(nom).child("password").getValue(String.class).equals(pass)) {
@@ -87,7 +85,6 @@ public class LoginActivity extends AppCompatActivity {
 
                     @Override
                     public void onCancelled(DatabaseError error) {
-                        Log.d("E","Error");
                     }
                 });
             }

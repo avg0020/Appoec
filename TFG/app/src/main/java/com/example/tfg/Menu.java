@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.ConcatAdapter;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,21 +23,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.Map;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Menu#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class Menu extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
     String hijo;
 
     ArrayList<UserModel> datos;
@@ -52,33 +38,12 @@ public class Menu extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment menu.
-     */
-    // TODO: Rename and change types and number of parameters
     public static Menu newInstance(String param1, String param2) {
         Menu fragment = new Menu();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
-
-    /*
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }*/
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -92,11 +57,11 @@ public class Menu extends Fragment {
 
         Bundle args = getArguments();
         Usuarios user = (Usuarios) args.getSerializable("user");
+        String userName = args.getString("nombre");
         hijo = user.getHijos().entrySet().iterator().next().getKey();
         Spinner spin = v.findViewById(R.id.sp);
         ArrayList<String> hijos = new ArrayList<String>();
         for (Map.Entry<String, Hijo> entry : user.getHijos().entrySet()) {
-            Log.d("mira aqui",entry.getKey() + " : " + entry.getValue().toString());
             hijos.add(entry.getKey());
         }
 
@@ -104,43 +69,20 @@ public class Menu extends Fragment {
         adap.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spin.setAdapter(adap);
 
-        // Inflate the layout for this fragment
-        //setSupportActionBar(getView().findViewById(R.id.toolbar));
-
         RecyclerView recycleViewUser = (RecyclerView) v.findViewById(R.id.recyclerAssist);
-        // use a linear layout manager (distribucion de vistas configurable)
-        //como queremos que se posicionen los elementos en las vistas, como lista o como cuadricula GridLayout
         recycleViewUser.setLayoutManager(new LinearLayoutManager(getContext()));
         recycleViewUser.setHasFixedSize(false);
-        //puedo añadir animaciones automaticas (ItemAnimator) y sepaaciones automaticas (ItemDecoration)
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference().child("actividades");
 
-        // It is a class provide by the FirebaseUI to make a
-        // query in the database to fetch appropriate data
-       /* FirebaseRecyclerOptions<Actividades> options
-                = new FirebaseRecyclerOptions.Builder<Actividades>()
-                .setQuery(myRef.orderByKey().equalTo("BAI04A"), Actividades.class).build();
-        Log.d("child", myRef.child("BAI").getKey());
-        adapter = new ChildrenActivityAdapter(options,getContext(),user);
-        */
-
-       /* for (String actividad:user.getHijos()) {
-            FirebaseRecyclerOptions<Actividades> options
-                    = new FirebaseRecyclerOptions.Builder<Actividades>()
-                    .setQuery(myRef.orderByKey().equalTo(actividad), Actividades.class).build();
-            adapter = new ChildrenActivityAdapter(options,getContext(),user);
-            adapter.startListening();
-            adapters.addAdapter(adapter);
-        }*/
-        loadRecycler(user, myRef, recycleViewUser);
+        loadRecycler(user, myRef, recycleViewUser,userName);
 
         spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 hijo = (String) spin.getItemAtPosition(position);
-                loadRecycler(user, myRef, recycleViewUser);
+                loadRecycler(user, myRef, recycleViewUser,userName);
             }
 
             @Override
@@ -153,7 +95,7 @@ public class Menu extends Fragment {
         return v;
     }
 
-    private void loadRecycler(Usuarios user, DatabaseReference myRef, RecyclerView recycleViewUser) {
+    private void loadRecycler(Usuarios user, DatabaseReference myRef, RecyclerView recycleViewUser, String username) {
         ConcatAdapter adapters = new ConcatAdapter();
 
         for (String actividad: user.getHijos().get(hijo).getActividades()) {
@@ -161,7 +103,7 @@ public class Menu extends Fragment {
                 FirebaseRecyclerOptions<Actividades> options
                         = new FirebaseRecyclerOptions.Builder<Actividades>()
                         .setQuery(myRef.orderByKey().equalTo(actividad), Actividades.class).build();
-                adapter = new PanelActivityAdapter(options, getContext(), user, this);
+                adapter = new PanelActivityAdapter(options, getContext(), user, this,username);
                 adapter.startListening();
                 adapters.addAdapter(adapter);
             }
@@ -172,7 +114,6 @@ public class Menu extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        Log.d("dasdsadas", "entrado");
 
     }
 

@@ -1,8 +1,10 @@
 package com.example.tfg;
 
+import android.app.Fragment;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +14,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -26,29 +30,18 @@ public class MessageAdapter extends FirebaseRecyclerAdapter<
         Mensajes, MessageAdapter.activityViewholder> {
 
     private Context context;
+    private String userName;
+    private FragmentManager fragmentManager;
+    private Usuarios user;
 
     public MessageAdapter(
-            @NonNull FirebaseRecyclerOptions<Mensajes> options, Context context) {
+            @NonNull FirebaseRecyclerOptions<Mensajes> options, Context context, String userName, FragmentManager fragmentManager, Usuarios user) {
         super(options);
         this.context = context;
+        this.userName = userName;
+        this.fragmentManager = fragmentManager;
+        this.user = user;
     }
-
-    /*
-    //usamos como base el viewHolder y lo personalizamos con los datos segun la posicion
-    @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.name1.setText(userModelList.get(position).getApellidos());
-        holder.name2.setText(userModelList.get(position).getApellidos());
-        holder.image.setImageResource(R.drawable.img);
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(v.getContext(), "Id: "
-                        + userModelList.get(position).toString(), Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-    */
 
     @Override
     protected void onBindViewHolder(@NonNull activityViewholder holder, int position, @NonNull Mensajes model) {
@@ -80,6 +73,21 @@ public class MessageAdapter extends FirebaseRecyclerAdapter<
                     GradientDrawable grad = (GradientDrawable) holder.container.getBackground().mutate();
                     grad.setColor(Color.parseColor(snapshot.child("actividades").child(model.getActividad()).child("color").getValue(String.class)));
                 }
+
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Bundle args = new Bundle();
+                        args.putSerializable("user", user);
+                        args.putString("activity", model.getActividad());
+                        args.putString("codigo", model.getCodigo());
+                        args.putString("username", userName);
+                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                        fragmentTransaction.replace(R.id.fragment_container, CreateMessage2.class, args);
+                        fragmentTransaction.commit();
+
+                    }
+                });
             }
 
             @Override
@@ -99,13 +107,9 @@ public class MessageAdapter extends FirebaseRecyclerAdapter<
         return new activityViewholder(view);
     }
 
-
-    //creamos nuestro viewHolder con los tipos de elementos a modificar de un elemento (por ejemplo 2 textView)
-    //obtenemos los elementos del layout_item que queremos que se vayan cambiado
-    //esto es lo que vamos a ir reciclando
     class activityViewholder
             extends RecyclerView.ViewHolder {
-        TextView firstname, lastname;
+        TextView firstname;
         ImageView img;
         ConstraintLayout container;
 
