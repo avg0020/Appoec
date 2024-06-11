@@ -671,10 +671,13 @@ public class Calendar extends Fragment {
                                         String diasValue = dataSnapshot.child("dias").getValue(String.class);
                                         String[] diaExacto = diasValue.split("/");
                                         // Comprueba si el valor coincide con tu string deseado
-                                        if (diaExacto[0].equalsIgnoreCase(finalNombreDiaDeLaSemana)) {
+                                        /*if (diaExacto[0].equalsIgnoreCase(finalNombreDiaDeLaSemana)) {
                                             mostrar.add(dataSnapshot.getValue(Actividades.class));
 
                                         } else if (diaExacto[1].equalsIgnoreCase(finalNombreDiaDeLaSemana)) {
+                                            mostrar.add(dataSnapshot.getValue(Actividades.class));
+                                        }*/
+                                        if (Arrays.asList(diaExacto).contains(finalNombreDiaDeLaSemana)) {
                                             mostrar.add(dataSnapshot.getValue(Actividades.class));
                                         }
                                     }
