@@ -60,13 +60,16 @@ public class MessageAdapter extends FirebaseRecyclerAdapter<
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (model.getActividad().equalsIgnoreCase("comedor")) {
-                    holder.firstname.setText(model.getMensaje());
+                    holder.firstname.setText(snapshot.child("actividades").child(model.getActividad()).child("nombre").getValue(String.class) + "\n" +
+                            model.getEmisor() +
+                            "\n" +
+                            model.getMensaje());
                     int resourceId = context.getResources().getIdentifier(snapshot.child("actividades").child(model.getActividad()).child("icono").getValue(String.class), "drawable", context.getPackageName());
                     holder.img.setImageResource(resourceId);
                     GradientDrawable grad = (GradientDrawable) holder.container.getBackground().mutate();
                     grad.setColor(Color.parseColor(snapshot.child("actividades").child(model.getActividad()).child("color").getValue(String.class)));
                 } else {
-                    holder.firstname.setText(snapshot.child("actividades").child(model.getActividad()).child("nombre").getValue(String.class) + " " +snapshot.child("actividades").child(model.getActividad()).child("nombre").getValue(String.class) +
+                    holder.firstname.setText(snapshot.child("actividades").child(model.getActividad()).child("nombre").getValue(String.class) + " " +snapshot.child("actividades").child(model.getActividad()).child("categoria").getValue(String.class) +
                             "\n" +
                             model.getEmisor() +
                             "\n" +

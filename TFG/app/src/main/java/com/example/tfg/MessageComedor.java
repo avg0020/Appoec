@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
@@ -68,6 +69,7 @@ public class MessageComedor extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_message_comedor, container, false);
+        ImageButton imgBtn = v.findViewById(R.id.reloadBtn);
 
         Bundle args = getArguments();
         Usuarios user = (Usuarios) args.getSerializable("user");
@@ -93,17 +95,28 @@ public class MessageComedor extends Fragment {
         // query in the database to fetch appropriate data
 
 
-        ConcatAdapter adapters = new ConcatAdapter();
+        reloadRecycler(myRef, recycleViewUser);
 
-            FirebaseRecyclerOptions<Mensajes> options
-                    = new FirebaseRecyclerOptions.Builder<Mensajes>()
-                    .setQuery(myRef.orderByChild("actividad").equalTo("comedor"), Mensajes.class).build();
-            adapter = new MessageAdapter(options,getContext());
-            adapter.startListening();
-            adapters.addAdapter(adapter);
-
-        recycleViewUser.setAdapter(adapters);
+        imgBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                reloadRecycler(myRef, recycleViewUser);
+            }
+        });
 
         return v;
+    }
+
+    private void reloadRecycler(DatabaseReference myRef, RecyclerView recycleViewUser) {
+        ConcatAdapter adapters = new ConcatAdapter();
+
+        FirebaseRecyclerOptions<Mensajes> options
+                = new FirebaseRecyclerOptions.Builder<Mensajes>()
+                .setQuery(myRef.orderByChild("actividad").equalTo("comedor"), Mensajes.class).build();
+        adapter = new MessageAdapter(options,getContext());
+        adapter.startListening();
+        adapters.addAdapter(adapter);
+
+        recycleViewUser.setAdapter(adapters);
     }
 }

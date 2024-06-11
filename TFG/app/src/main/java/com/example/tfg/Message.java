@@ -1,5 +1,6 @@
 package com.example.tfg;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,11 +11,14 @@ import androidx.recyclerview.widget.ConcatAdapter;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -23,6 +27,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -81,6 +90,7 @@ public class Message extends Fragment {
         Bundle args = getArguments();
         Usuarios user = (Usuarios) args.getSerializable("user");
         String nom = args.getString("nombre");
+        ImageButton imgBtn = v.findViewById(R.id.reloadBtn);
 
         /*
         TextView date = (TextView) v.findViewById(R.id.tvDate);
@@ -103,9 +113,21 @@ public class Message extends Fragment {
         // It is a class provide by the FirebaseUI to make a
         // query in the database to fetch appropriate data
 
+        loadRecycler(user, myRef, nom, recycleViewUser);
 
+        imgBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadRecycler(user, myRef, nom, recycleViewUser);
+            }
+        });
+
+        return v;
+    }
+
+    private void loadRecycler(Usuarios user, DatabaseReference myRef, String nom, RecyclerView recycleViewUser) {
         ConcatAdapter adapters = new ConcatAdapter();
-        for (Hijo hijo:user.getHijos().values()){
+        for (Hijo hijo: user.getHijos().values()){
             for (String actividad:hijo.getActividades()) {
                 Log.d("actividad",actividad);
                 if (!actividad.equalsIgnoreCase("comedor")){
@@ -142,7 +164,5 @@ public class Message extends Fragment {
 
             }
         });
-
-        return v;
     }
 }
