@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -72,8 +73,10 @@ public class MessageEmp extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_message, container, false);
+        ImageButton imgBtn = v.findViewById(R.id.reloadBtn);
         Bundle args = getArguments();
         Usuarios user = (Usuarios) args.getSerializable("user");
+        String nom = args.getString("nombre");
         MessageEmp mensaje = this;
 
 
@@ -85,29 +88,30 @@ public class MessageEmp extends Fragment {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference().child("mensajes");
 
-        ConcatAdapter adapters = new ConcatAdapter();
+        reloadRecycler(myRef, nom, recycleViewUser);
 
-        // Modificar la lógica para obtener las actividades del usuario
-        // Verificamos si user y user.getActividades() no son nulos antes de acceder a las actividades
-        if (user != null && user.getActividades() != null) {
-            for (String actividad : user.getActividades()) {
-                FirebaseRecyclerOptions<Mensajes> options
-                        = new FirebaseRecyclerOptions.Builder<Mensajes>()
-                        .setQuery(myRef.orderByChild("actividad").equalTo(actividad), Mensajes.class).build();
-                adapter = new MessageAdapter(options, getContext());
-                adapter.startListening();
-                adapters.addAdapter(adapter);
+        imgBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                reloadRecycler(myRef, nom, recycleViewUser);
             }
-        } else {
-            // Si no hay actividades asociadas al usuario, puedes manejar esto de alguna manera, como mostrar un mensaje de error o no mostrar ningún mensaje en absoluto.
-            Log.d("MessageEmp", "El usuario o sus actividades asociadas son nulos.");
-        }
-
-        recycleViewUser.setAdapter(adapters);
+        });
 
         return v;
     }
 
+    private void reloadRecycler(DatabaseReference myRef, String nom, RecyclerView recycleViewUser) {
+        ConcatAdapter adapters = new ConcatAdapter();
+
+        FirebaseRecyclerOptions<Mensajes> options
+                = new FirebaseRecyclerOptions.Builder<Mensajes>()
+                .setQuery(myRef.orderByChild("receptor").equalTo(nom), Mensajes.class).build();
+        adapter = new MessageAdapter(options, getContext());
+        adapter.startListening();
+        adapters.addAdapter(adapter);
+
+        recycleViewUser.setAdapter(adapters);
+    }
 
 
 }

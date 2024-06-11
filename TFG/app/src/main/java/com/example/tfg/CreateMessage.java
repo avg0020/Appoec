@@ -144,7 +144,9 @@ public class CreateMessage extends Fragment {
                                             Log.d("actividad","actividad");
                                             mensaje.setActividad(activity);
                                             Log.d("actividad",activity);
-                                            mensaje.setEmisor(user.getNombre() + " " + user.getApellido1() + " " + user.getApellido2());
+                                            mensaje.setEmisor(user.getNombre().substring(0, 1).toUpperCase() + user.getNombre().substring(1) + " "
+                                                    + user.getApellido1().substring(0, 1).toUpperCase() + user.getApellido1().substring(1) + " "
+                                                    + user.getApellido2().substring(0, 1).toUpperCase() + user.getApellido2().substring(1));
                                             Log.d("actividad",user.getNombre());
                                             mensaje.setMensaje(et.getText().toString());
                                             Log.d("actividad",et.getText().toString());

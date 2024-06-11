@@ -28,6 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -608,12 +609,27 @@ public class Calendar extends Fragment {
                         reference.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                boolean containActivity = false;
                                 // Verifica si la actividad actual tiene un hijo "dias"
                                 if (dataSnapshot.hasChild("dias")) {
                                     // Obtiene el valor del hijo "dias"
                                     String diasValue = dataSnapshot.child("dias").getValue(String.class);
                                     String[] diaExacto = diasValue.split("/");
-                                    // Comprueba si el valor coincide con tu string deseado
+
+                                    if (Arrays.asList(diaExacto).contains(finalNombreDiaDeLaSemana)) {
+                                        for (Actividades act:mostrar){
+                                            if(act.getKey().equalsIgnoreCase(dataSnapshot.getKey())){
+                                                containActivity =true;
+                                            }
+                                        }
+                                        if(!containActivity){
+                                            mostrar.add(dataSnapshot.getValue(Actividades.class));
+                                        }
+                                        Log.d("TAG", "Se agregó una actividad a la lista: " + dataSnapshot.getValue(Actividades.class).toString());
+                                    }
+
+                                        // Comprueba si el valor coincide con tu string deseado
+                                    /*
                                     if (diaExacto[0].equalsIgnoreCase(finalNombreDiaDeLaSemana)) {
                                         mostrar.add(dataSnapshot.getValue(Actividades.class));
                                         Log.d("TAG", "Se agregó una actividad a la lista: " + dataSnapshot.getValue(Actividades.class).toString());
@@ -622,6 +638,7 @@ public class Calendar extends Fragment {
                                         mostrar.add(dataSnapshot.getValue(Actividades.class));
                                         Log.d("TAG", "Se agregó una actividad a la lista: " + dataSnapshot.getValue(Actividades.class).getNombre().toString());
                                     }
+                                    */
                                 }
                                 callback.onCallback(mostrar);
 

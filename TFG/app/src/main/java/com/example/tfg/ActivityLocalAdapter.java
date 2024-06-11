@@ -50,8 +50,11 @@ public class ActivityLocalAdapter extends RecyclerView.Adapter<ActivityLocalAdap
     @Override
     public void onBindViewHolder(@NonNull ActivityViewHolder holder, int position) {
         Actividades actividad = actividadesList.get(position);
-        holder.firstname.setText(actividad.getNombre() + "\n" + actividad.getCategoria());
-        Log.d("pruebaaaaaa","asdasdasddsaasdasddasasddassdaasdsdasdsda");
+        if (actividad.getCategoria().equalsIgnoreCase("")){
+            holder.firstname.setText(actividad.getNombre() + "\n" + actividad.getHorario());
+        }else {
+            holder.firstname.setText(actividad.getNombre() + "\n" + actividad.getCategoria() + "\n" + actividad.getHorario());
+        }
         int resourceId = context.getResources().getIdentifier(actividad.getIcono(), "drawable", context.getPackageName());
         holder.img.setImageResource(resourceId);
         GradientDrawable grad = (GradientDrawable) holder.container.getBackground().mutate();
