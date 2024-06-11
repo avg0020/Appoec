@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -125,6 +124,7 @@ public class Interfaz extends AppCompatActivity implements NavigationView.OnNavi
                 InicioComedor inicioComedor = new InicioComedor();
                 Bundle args = new Bundle();
                 args.putSerializable("user", user);
+                args.putString("nombre", nom);
                 inicioComedor.setArguments(args);
                 changeFragment(inicioComedor);
             }
@@ -136,6 +136,7 @@ public class Interfaz extends AppCompatActivity implements NavigationView.OnNavi
                 MessageComedor messageComedor = new MessageComedor();
                 Bundle args = new Bundle();
                 args.putSerializable("user", user);
+                args.putString("nombre", nom);
                 messageComedor.setArguments(args);
                 changeFragment(messageComedor);
             }
@@ -147,6 +148,7 @@ public class Interfaz extends AppCompatActivity implements NavigationView.OnNavi
                 RecomendacionesComedor recomendacionesComedor = new RecomendacionesComedor();
                 Bundle args = new Bundle();
                 args.putSerializable("user", user);
+                args.putString("nombre", nom);
                 recomendacionesComedor.setArguments(args);
                 changeFragment(recomendacionesComedor);
             }
@@ -159,11 +161,8 @@ public class Interfaz extends AppCompatActivity implements NavigationView.OnNavi
                 .commit();
     }
 
-
-
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        Toast.makeText(this, "Hola", Toast.LENGTH_SHORT).show();
         if(menuItem.getItemId() == R.id.nav_icon1) {
             if (menuLayout.getVisibility() == View.INVISIBLE){
                 Menu menuFragment = new Menu();

@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.ConcatAdapter;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,43 +25,17 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.List;
-
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Asistencia#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class Asistencia extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
     AssistAdapter adapter;
 
     public Asistencia() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Asistencia.
-     */
-    // TODO: Rename and change types and number of parameters
     public static Asistencia newInstance(String param1, String param2) {
         Asistencia fragment = new Asistencia();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -69,10 +43,6 @@ public class Asistencia extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -85,6 +55,7 @@ public class Asistencia extends Fragment {
         Actividades actividad = (Actividades) args.getSerializable("actividad");
         Usuarios user = (Usuarios) args.getSerializable("user");
         String username = args.getString("username");
+        String fecha = args.getString("fecha");
 
         RecyclerView recycleViewUser = (RecyclerView) v.findViewById(R.id.recyclerAssist);
         recycleViewUser.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -105,11 +76,9 @@ public class Asistencia extends Fragment {
                         for (DataSnapshot hijoSnap:usuarioSnap.child("hijos").getChildren()){
                             for (DataSnapshot actividadeSnap:hijoSnap.child("actividades").getChildren()){
                                 if(actividadeSnap.getValue(String.class).equalsIgnoreCase(actividad.getKey())){
-                                    Log.d("kilo", hijoSnap.getKey());
                                     FirebaseRecyclerOptions<Hijo> options
                                             = new FirebaseRecyclerOptions.Builder<Hijo>()
                                             .setQuery(myRef.child(usuarioSnap.getKey()).child("hijos").orderByKey().equalTo(hijoSnap.getKey()), Hijo.class).build();
-                                    Log.d("kilo", hijoSnap.getKey());
                                     adapter = new AssistAdapter(options, hijoSnap.getKey(), usuarioSnap.getKey());
                                     adapter.startListening();
                                     adapters.addAdapter(adapter);
@@ -119,8 +88,6 @@ public class Asistencia extends Fragment {
                     }
                 }
                 recycleViewUser.setAdapter(adapters);
-                Log.d("kilo",String.valueOf(adapters.getAdapters().size()));
-
             }
 
             @Override
@@ -135,16 +102,16 @@ public class Asistencia extends Fragment {
             public void onClick(View v) {
                 for (RecyclerView.Adapter adapt : adapters.getAdapters()) {
                     AssistAdapter assistAdapter = (AssistAdapter) adapt;
-                    Log.d("kilo", String.valueOf(assistAdapter.checkBoxState()));
                     Mensajes mensaje = new Mensajes();
                     mensaje.setActividad(actividad.getKey());
                     mensaje.setEmisor(user.getNombre() + " " + user.getApellido1() + " " + user.getApellido2());
                     if (assistAdapter.checkBoxState()){
-                        mensaje.setMensaje("Su hijo " + assistAdapter.getName() + " ha asistido a "+ actividad.getNombre() + " "+ actividad.getCategoria());
+                        mensaje.setMensaje("Su hijo/a " + assistAdapter.getName() + " ha asistido a "+ actividad.getNombre().toLowerCase() + " "+ actividad.getCategoria().toLowerCase()+"\n"+fecha);
                     }else {
-                        mensaje.setMensaje("Su hijo " + assistAdapter.getName() + " no ha asistido a "+ actividad.getNombre() + " "+ actividad.getCategoria());
+                        mensaje.setMensaje("Su hijo/a " + assistAdapter.getName() + " no ha asistido a "+ actividad.getNombre().toLowerCase() + " "+ actividad.getCategoria().toLowerCase()+"\n"+fecha);
                     }
                     mensaje.setReceptor(assistAdapter.getParent());
+                    mensaje.setCodigo(username);
                     ref.push().setValue(mensaje);
 
 

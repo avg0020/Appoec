@@ -26,35 +26,15 @@ import com.google.firebase.database.FirebaseDatabase;
  */
 public class MessageEmp extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
     MessageAdapter adapter;
 
     public MessageEmp() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Message.
-     */
-    // TODO: Rename and change types and number of parameters
     public static MessageEmp newInstance(String param1, String param2) {
         MessageEmp fragment = new MessageEmp();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -62,10 +42,6 @@ public class MessageEmp extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -81,32 +57,31 @@ public class MessageEmp extends Fragment {
 
 
         RecyclerView recycleViewUser = (RecyclerView) v.findViewById(R.id.listMesagge);
-        // use a linear layout manager
         recycleViewUser.setLayoutManager(new LinearLayoutManager(getContext()));
         recycleViewUser.setHasFixedSize(false);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference().child("mensajes");
 
-        reloadRecycler(myRef, nom, recycleViewUser);
+        reloadRecycler(myRef, nom, recycleViewUser,user);
 
         imgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                reloadRecycler(myRef, nom, recycleViewUser);
+                reloadRecycler(myRef, nom, recycleViewUser, user);
             }
         });
 
         return v;
     }
 
-    private void reloadRecycler(DatabaseReference myRef, String nom, RecyclerView recycleViewUser) {
+    private void reloadRecycler(DatabaseReference myRef, String nom, RecyclerView recycleViewUser,Usuarios user) {
         ConcatAdapter adapters = new ConcatAdapter();
 
         FirebaseRecyclerOptions<Mensajes> options
                 = new FirebaseRecyclerOptions.Builder<Mensajes>()
                 .setQuery(myRef.orderByChild("receptor").equalTo(nom), Mensajes.class).build();
-        adapter = new MessageAdapter(options, getContext());
+        adapter = new MessageAdapter(options, getContext(),nom,this.getParentFragmentManager(),user);
         adapter.startListening();
         adapters.addAdapter(adapter);
 
